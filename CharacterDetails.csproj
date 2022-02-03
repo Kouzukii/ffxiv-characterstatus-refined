@@ -1,0 +1,91 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <PlatformTarget>x64</PlatformTarget>
+        <TargetFramework>net5.0-windows</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <Platforms>x64</Platforms>
+        <Configurations>Debug;Release</Configurations>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <FileVersion>1.0.0.0</FileVersion>
+    </PropertyGroup>
+
+    <!-- Dalamud Configuration -->
+    <PropertyGroup>
+        <DalamudVersion>dev</DalamudVersion>
+        <DalamudLocal>../dalamud/</DalamudLocal>
+        <DalamudXIVLauncher>$(APPDATA)\XIVLauncher\addon\Hooks\$(DalamudVersion)</DalamudXIVLauncher>
+    </PropertyGroup>
+
+    <!-- Assembly Reference Locations -->
+    <PropertyGroup>
+        <AssemblySearchPaths>
+            $(AssemblySearchPaths);
+            $(DalamudLocal);
+            $(DalamudXIVLauncher);
+        </AssemblySearchPaths>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Reference Include="Dalamud">
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Newtonsoft.Json">
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="ImGui.NET">
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="ImGuiScene">
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Lumina">
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="Lumina.Excel">
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="FFXIVClientStructs">
+            <Private>False</Private>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="DalamudPackager" Version="2.1.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="images" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="images\icon.png" />
+      <Content Include="images\icon.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="images\image1.png" />
+      <Content Include="images\image1.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug' ">
+        <OutputPath>$(AppData)\XIVLauncher\devPlugins\$(AssemblyName)</OutputPath>
+    </PropertyGroup>
+
+    <Target Name="DalamudPackageDebug" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
+        <DalamudPackager ProjectDir="$(ProjectDir)" OutputPath="$(AppData)\XIVLauncher\devPlugins\$(AssemblyName)" AssemblyName="$(AssemblyName)" MakeZip="false" VersionComponents="4" />
+    </Target>
+
+    <Target Name="DalamudPackageRelease" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+        <DalamudPackager ProjectDir="$(ProjectDir)" OutputPath="$(TargetDir)" AssemblyName="$(AssemblyName)" MakeZip="true" Exclude="DeathRecap.pdb" VersionComponents="4" />
+    </Target>
+
+</Project>

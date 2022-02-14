@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace CharacterDetails {
+namespace CharacterPanelRefined {
     public class LevelModifiers {
         public static readonly Dictionary<int, (int Main, int Sub, int Div)> LevelTable = new() {
             { 1, (Main: 20, Sub: 56, Div: 56) },
@@ -94,5 +94,23 @@ namespace CharacterDetails {
             { 89, (Main: 385, Sub: 398, Div: 1840) },
             { 90, (Main: 390, Sub: 400, Div: 1900) }
         };
+
+        // this seems to be the modifiers after some testing..
+        // it is yet missing the adjustment for tanks however
+        public static double AttackModifier(int level) {
+            if (level <= 50) {
+                return 75;
+            }
+
+            if (level <= 70) {
+                return (level - 50) * 2.5 + 75;
+            }
+
+            if (level <= 80) {
+                return (level - 70) * 4 + 125;
+            }
+
+            return (level - 80) * 3 + 165;
+        }
     }
 }

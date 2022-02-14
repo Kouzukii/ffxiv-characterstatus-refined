@@ -1,0 +1,8 @@
+name: Character Panel Refined
+author: Kouzukii
+description: "Refine the character panel to display useful information like crit and direct hit chance"
+repo_url: https://github.com/Kouzukii/ffxiv-characterstatus-refined
+icon_url: https://raw.githubusercontent.com/Kouzukii/ffxiv-characterstatus-refined/master/images/icon.png
+image_urls: 
+  - https://raw.githubusercontent.com/Kouzukii/ffxiv-characterstatus-refined/master/images/image1.png
+  - https://raw.githubusercontent.com/Kouzukii/ffxiv-characterstatus-refined/master/images/image2.png

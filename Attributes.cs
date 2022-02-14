@@ -1,4 +1,4 @@
-namespace CharacterDetails {
+namespace CharacterPanelRefined {
     public enum Attributes : int {
         Strength = 1,
         Dexterity = 2,
@@ -8,7 +8,8 @@ namespace CharacterDetails {
         Piety = 6,
         MaxHp = 7,
         MaxMp = 8,
-        CurrentMp=10,
+        CurrentMp = 10,
+        CurrentGp = 11,
         Tenacity = 19,
         AttackPower = 20,
         Defense = 21,
@@ -20,5 +21,9 @@ namespace CharacterDetails {
         Determination = 44,
         SkillSpeed = 45,
         SpellSpeed = 46,
+        Craftsmanship = 70,
+        Control = 71,
+        Gathering = 72,
+        Perception = 73
     }
 }

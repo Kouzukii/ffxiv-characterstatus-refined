@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterDetails", "CharacterDetails.csproj", "{CA9F0CA0-C2C4-4C51-85DA-8400E3CB1352}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterPanelRefined", "CharacterPanelRefined.csproj", "{CA9F0CA0-C2C4-4C51-85DA-8400E3CB1352}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

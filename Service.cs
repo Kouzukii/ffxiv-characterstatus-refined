@@ -26,6 +26,10 @@ namespace DeathRecap {
         [PluginService]
         [RequiredVersion("1.0")]
         internal static GameGui GameGui { get; private set; }
+
+        [PluginService]
+        [RequiredVersion("1.0")]
+        internal static DataManager DataManager { get; private set; }
     }
 }
 #pragma warning restore 8618

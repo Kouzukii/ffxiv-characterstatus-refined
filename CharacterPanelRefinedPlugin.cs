@@ -344,7 +344,7 @@ namespace CharacterPanelRefined {
         private unsafe double CalcPiety(UIState* uiState) {
             var pie = uiState->PlayerState.Attributes[(int)Attributes.Piety];
             var lvl = uiState->PlayerState.CurrentLevel;
-            return Math.Floor(150d * (pie - LevelModifiers.LevelTable[lvl].Main) / LevelModifiers.LevelTable[lvl].Div);
+            return 200 + Math.Floor(150d * (pie - LevelModifiers.LevelTable[lvl].Main) / LevelModifiers.LevelTable[lvl].Div);
         }
 
         private unsafe double CalcSkillSpeed(UIState* uiState) {

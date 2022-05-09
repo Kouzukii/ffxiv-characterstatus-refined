@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.InteropServices;
 using CharacterPanelRefined.Jobs;
 using Dalamud.Game;
@@ -363,9 +364,12 @@ namespace CharacterPanelRefined {
             var lvl = uiState->PlayerState.CurrentLevel;
             var ap = uiState->PlayerState.Attributes[(int)(jobId.IsCaster() ? Attributes.AttackMagicPotency : Attributes.AttackPower)];
             var main = LevelModifiers.LevelTable[lvl].Main;
-            var equippedWeapon = InventoryManager.Instance()->GetInventoryContainer(InventoryType.EquippedItems)->Items[0].ItemID;
-            var weaponItem = Service.DataManager.GetExcelSheet<Item>()?.GetRow(equippedWeapon);
+            var equippedWeapon = InventoryManager.Instance()->GetInventoryContainer(InventoryType.EquippedItems)->Items[0];
+            var weaponItem = Service.DataManager.GetExcelSheet<Item>()?.GetRow(equippedWeapon.ItemID);
             var weaponBaseDamage = (jobId.IsCaster() ? weaponItem?.DamageMag : weaponItem?.DamagePhys) ?? 0;
+            if (equippedWeapon.Flags.HasFlag(InventoryItem.ItemFlags.HQ)) {
+                weaponBaseDamage += (ushort) (weaponItem?.UnkData73.FirstOrDefault(d => d.BaseParamSpecial == 12)?.BaseParamValueSpecial ?? 0);
+            }
             var weaponDamage = Math.Floor(main * jobId.AttackModifier() / 1000.0 + weaponBaseDamage) / 100.0;
             var atk = Math.Floor(LevelModifiers.AttackModifier(lvl) * (ap - main) / main + 100) / 100.0;
             var rawDamage = Math.Floor(100 * atk * weaponDamage * (1 + det) * jobId.TraitModifiers(lvl) * (1 + (critDmg - 1) * critRate) * (1 + dh * 0.25));

@@ -13,23 +13,21 @@
         <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <AssemblyVersion>1.1.1.0</AssemblyVersion>
-        <FileVersion>1.1.1.0</FileVersion>
+        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+        <AssemblyVersion>1.1.2.0</AssemblyVersion>
+        <FileVersion>1.1.2.0</FileVersion>
     </PropertyGroup>
 
     <!-- Dalamud Configuration -->
-    <PropertyGroup>
-        <DalamudVersion>dev</DalamudVersion>
-        <DalamudLocal>../dalamud/</DalamudLocal>
-        <DalamudXIVLauncher>$(APPDATA)\XIVLauncher\addon\Hooks\$(DalamudVersion)</DalamudXIVLauncher>
+    <PropertyGroup>	
+        <DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
     </PropertyGroup>
 
     <!-- Assembly Reference Locations -->
     <PropertyGroup>
         <AssemblySearchPaths>
             $(AssemblySearchPaths);
-            $(DalamudLocal);
-            $(DalamudXIVLauncher);
+            $(DalamudLibPath);
         </AssemblySearchPaths>
     </PropertyGroup>
 
@@ -58,7 +56,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="DalamudPackager" Version="2.1.5" />
+        <PackageReference Include="DalamudPackager" Version="2.1.7" />
     </ItemGroup>
 
     <ItemGroup>

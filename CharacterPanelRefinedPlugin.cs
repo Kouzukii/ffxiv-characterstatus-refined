@@ -7,7 +7,6 @@ using Dalamud.Hooking;
 using Dalamud.Logging;
 using Dalamud.Memory;
 using Dalamud.Plugin;
-using DeathRecap;
 using FFXIVClientStructs.FFXIV.Client.Game;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using FFXIVClientStructs.FFXIV.Client.Graphics;

@@ -8,6 +8,6 @@ Character Panel Refined cuts away useless information from the character panel, 
 
 ## Installation
 
-You can install it as an experimental plugin through the dalamud plugin browser or 
+Available for install via [Dalamud](https://github.com/goatcorp/FFXIVQuickLauncher)'s built-in plugin installer.
 
-Check https://github.com/Kouzukii/DalamudPlugins on how to install my plugins.
+Alternatively check https://github.com/Kouzukii/DalamudPlugins on how to install my plugins directly.

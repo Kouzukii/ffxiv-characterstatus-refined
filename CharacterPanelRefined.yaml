@@ -1,9 +1,14 @@
 name: Character Panel Refined
 author: Kouzukii
-description: "Refine the character panel to display useful information like crit and direct hit chance"
+description: "Character Panel Refined cuts away useless information from the character panel, while adding useful stats like critical hit and direct hit percentages as well as estimates damage output to allow for easier comparison of gear."
 repo_url: https://github.com/Kouzukii/ffxiv-characterstatus-refined
 icon_url: https://raw.githubusercontent.com/Kouzukii/ffxiv-characterstatus-refined/master/images/icon.png
 image_urls: 
   - https://raw.githubusercontent.com/Kouzukii/ffxiv-characterstatus-refined/master/images/image1.png
   - https://raw.githubusercontent.com/Kouzukii/ffxiv-characterstatus-refined/master/images/image2.png
+tags:
+  - character
+  - stats
+category_tags:
+  - ui
 dalamud_api_level: 6

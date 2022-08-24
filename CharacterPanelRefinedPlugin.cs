@@ -83,7 +83,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
                 pieManaPtr->SetText($"{CalcPiety(uiState):N0}");
                 var ten = CalcTenacity(uiState);
                 tenMitPtr->SetText($"{ten:P1}");
-                var jobId = (JobId)uiState->PlayerState.CurrentClassJobId;
+                var jobId = (JobId)(*((byte*)&uiState->PlayerState + 0x6E));
                 expectedDamagePtr->SetText($"{CalcRawDamage(uiState, jobId, det, critDmg, critRate, dh):N0}");
                 if (jobId != lastJob) {
                     UpdateCharacterPanelForJob(jobId);

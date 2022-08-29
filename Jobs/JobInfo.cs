@@ -105,6 +105,51 @@ public static class JobInfo {
             _ => 0
         };
 
+    public static int HpModifier(this JobId id) =>
+        id switch {
+            JobId.GLA => 130,
+            JobId.PGL => 105,
+            JobId.MRD => 135,
+            JobId.LNC => 110,
+            JobId.ARC => 100,
+            JobId.CNJ => 100,
+            JobId.THM => 100,
+            JobId.CRP => 100,
+            JobId.BSM => 100,
+            JobId.ARM => 100,
+            JobId.GSM => 100,
+            JobId.LTW => 100,
+            JobId.WVR => 100,
+            JobId.ALC => 100,
+            JobId.CUL => 100,
+            JobId.MIN => 100,
+            JobId.BTN => 100,
+            JobId.FSH => 100,
+            JobId.PLD => 140,
+            JobId.MNK => 110,
+            JobId.WAR => 145,
+            JobId.DRG => 115,
+            JobId.BRD => 105,
+            JobId.WHM => 105,
+            JobId.BLM => 105,
+            JobId.ACN => 100,
+            JobId.SMN => 105,
+            JobId.SCH => 105,
+            JobId.ROG => 103,
+            JobId.NIN => 108,
+            JobId.MCH => 105,
+            JobId.DRK => 140,
+            JobId.AST => 105,
+            JobId.SAM => 109,
+            JobId.RDM => 105,
+            JobId.BLU => 105,
+            JobId.GNB => 140,
+            JobId.DNC => 105,
+            JobId.RPR => 115,
+            JobId.SGE => 105,
+            _ => 0
+        };
+
     public static double TraitModifiers(this JobId id, int level) {
         if (id is JobId.BLU) {
             return level switch {

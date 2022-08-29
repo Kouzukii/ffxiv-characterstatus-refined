@@ -86,13 +86,13 @@ public class Equations {
         statInfo.NextTier = (int)Math.Ceiling((cVal + 0.001) * 1000d * lvlModifier.Div / 130d + lvlModifier.Sub);
         gcd25.CurrentValue = speed;
         cVal = gcd25.DisplayValue = Math.Floor(2500d * (1000d + Math.Ceiling(130d * (lvlModifier.Sub - speed) / lvlModifier.Div)) / 10000d) / 100d;
-        gcd25.PrevTier = -(int)Math.Floor(Math.Ceiling((cVal + 0.01) * 100d * 10000d / 2500d - 1001d) * lvlModifier.Div / 130d - lvlModifier.Sub);
-        gcd25.NextTier = -(int)Math.Floor(Math.Ceiling(cVal * 100d * 10000d / 2500d - 1001d) * lvlModifier.Div / 130d - lvlModifier.Sub);
+        gcd25.PrevTier = -(int)Math.Floor(((cVal + 0.01) * 100d * 10000d / 2500d - 1001d) * lvlModifier.Div / 130d - lvlModifier.Sub);
+        gcd25.NextTier = -(int)Math.Floor((cVal * 100d * 10000d / 2500d - 1001d) * lvlModifier.Div / 130d - lvlModifier.Sub);
         if (show28) {
             gcd28.CurrentValue = speed;
             cVal = gcd28.DisplayValue = Math.Floor(2800d * (1000d + Math.Ceiling(130d * (lvlModifier.Sub - speed) / lvlModifier.Div)) / 10000d) / 100d;
-            gcd28.PrevTier = -(int)Math.Floor(Math.Ceiling((cVal + 0.01) * 100d * 10000d / 2800d - 1001d) * lvlModifier.Div / 130d - lvlModifier.Sub);
-            gcd28.NextTier = -(int)Math.Floor(Math.Ceiling(cVal * 100d * 10000d / 2800d - 1001d) * lvlModifier.Div / 130d - lvlModifier.Sub);
+            gcd28.PrevTier = -(int)Math.Floor(((cVal + 0.01) * 100d * 10000d / 2800d - 1001d) * lvlModifier.Div / 130d - lvlModifier.Sub);
+            gcd28.NextTier = -(int)Math.Floor((cVal * 100d * 10000d / 2800d - 1001d) * lvlModifier.Div / 130d - lvlModifier.Sub);
         }
     }
 

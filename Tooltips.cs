@@ -24,7 +24,7 @@ public class Tooltips : IDisposable {
         }, {
             Entry.Determination,
             new(new C(8), new T("Determination"), new C(0),
-                new T(" increases damage dealt by attacks as well as HP restored by healing actions.\n\nDetermination increases damage by 0.1% approx. every "),
+                new T(" increases damage dealt by attacks as well as HP restored by healing actions.\n\nDetermination's effect increases by 0.1% approx. every "),
                 new T("0"), new T(" points.\nYou are currently wasting "), new C(0), new T("0"), new C(0),
                 new T(" point(s).\nTo reach the next tier you need "),
                 new C(33), new T("0"), new C(0), new T(" point(s)."))
@@ -39,7 +39,7 @@ public class Tooltips : IDisposable {
             Entry.Speed,
             new(new C(8), new T("Skill/Spell Speed"), new C(0),
                 new T(" shortens cast times and recast timers as well as increase damage done by damage over time effects.\n\nA 2.5s GCD is sped up by 0.01s approx. every "),
-                new T("0"), new T(" points.\nYour are currently wasting "), new C(0), new T("0"), new C(0),
+                new T("0"), new T(" points.\nYou are currently wasting "), new C(0), new T("0"), new C(0),
                 new T(" point(s).\nTo reach the next tier you need "),
                 new C(33), new T("0"), new C(0), new T(" point(s).\n\nDoT damage increases by 0.1% approx. every "), new T("0"),
                 new T(" points.\nYou are currently wasting "), new C(0), new T("0"), new C(0), new T(" point(s).\nTo reach the next tier you need "),
@@ -49,7 +49,7 @@ public class Tooltips : IDisposable {
             Entry.Speed28,
             new(new C(8), new T("Spell Speed"), new C(0),
                 new T(" shortens cast times and recast timers as well as increase damage done by damage over time effects.\n\nA 2.5s GCD is sped up by 0.01s approx. every "),
-                new T("0"), new T(" points.\nYour are currently wasting "), new C(0), new T("0"), new C(0),
+                new T("0"), new T(" points.\nYou are currently wasting "), new C(0), new T("0"), new C(0),
                 new T(" point(s).\nTo reach the next tier you need "),
                 new C(33), new T("0"), new C(0), new T(" point(s).\n\nA 2.8s GCD is sped up by 0.01s approx. every "), new T("0"),
                 new T(" points.\nYou are currently wasting "), new C(0), new T("0"), new C(0), new T(" point(s).\nTo reach the next tier you need "),

@@ -100,7 +100,6 @@ public static class LevelModifiers {
     };
 
     // this seems to be the modifiers after some testing..
-    // it is yet missing the adjustment for tanks however
     public static double AttackModifier(int level) {
         if (level <= 50) {
             return 75;
@@ -115,5 +114,21 @@ public static class LevelModifiers {
         }
 
         return (level - 80) * 3 + 165;
+    }
+
+    public static double TankAttackModifier(int level) {
+        if (level <= 80) {
+            return level + 35;
+        }
+
+        return (level - 80) * 4.1 + 115; // goes from 115 at 80 to 156 at 90 ?
+    }
+
+    public static double HpModifier(int level) {
+        return 4.5 + 0.22 * level;
+    }
+
+    public static double TankHpModifier(int level) {
+        return 6.7 + 0.31 * level;
     }
 }

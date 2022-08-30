@@ -1,4 +1,4 @@
-namespace CharacterPanelRefined.Jobs; 
+namespace CharacterPanelRefined; 
 
 public static class JobInfo {
     public static bool IsCrafter(this JobId id) =>

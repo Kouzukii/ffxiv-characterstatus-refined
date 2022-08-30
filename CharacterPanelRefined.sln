@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterPanelRefined", "CharacterPanelRefined.csproj", "{CA9F0CA0-C2C4-4C51-85DA-8400E3CB1352}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterPanelRefined.Tests", "CharacterPanelRefined.Tests\CharacterPanelRefined.Tests.csproj", "{9D459A82-19DE-4C5D-BC29-6D5A604D10D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Release|x64 = Release|x64
@@ -12,5 +14,9 @@ Global
 		{CA9F0CA0-C2C4-4C51-85DA-8400E3CB1352}.Release|x64.Build.0 = Release|x64
 		{CA9F0CA0-C2C4-4C51-85DA-8400E3CB1352}.Debug|x64.ActiveCfg = Debug|x64
 		{CA9F0CA0-C2C4-4C51-85DA-8400E3CB1352}.Debug|x64.Build.0 = Debug|x64
+		{9D459A82-19DE-4C5D-BC29-6D5A604D10D2}.Release|x64.ActiveCfg = Release|Any CPU
+		{9D459A82-19DE-4C5D-BC29-6D5A604D10D2}.Release|x64.Build.0 = Release|Any CPU
+		{9D459A82-19DE-4C5D-BC29-6D5A604D10D2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9D459A82-19DE-4C5D-BC29-6D5A604D10D2}.Debug|x64.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal

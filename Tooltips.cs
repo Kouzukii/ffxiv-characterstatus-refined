@@ -60,7 +60,7 @@ public class Tooltips : IDisposable {
                 new T("0"), new C(0), new T(" point(s)."))
         }, {
             Entry.ExpectedDamage,
-            new(new T("Average damage of a 100 potency skill, including critical and direct hits.\nDoes not include non-permanent buffs and traits (such as Enochian or Dance Partner).\n\n" +
+            new(new T("Average damage of a 100 potency skill, including critical and direct hits as well as passive traits such as Maim and Mend.\n\n" +
                       "Damage is multiplied by Potency, Weapon Damage, Main Stat (Str/Int/Dex/Mnd) and all other damage modifiers (such as Direct Hit +25%, Brotherhood +5%) and always has a variance of ±5%."))
         },
         {

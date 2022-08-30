@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace CharacterPanelRefined.Jobs; 
+namespace CharacterPanelRefined; 
 
 [SuppressMessage("ReSharper", "InconsistentNaming")]
 public enum JobId : byte {

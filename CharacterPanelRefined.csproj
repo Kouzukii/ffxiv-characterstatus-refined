@@ -61,6 +61,7 @@
 
     <ItemGroup>
       <Folder Include="images" />
+      <Folder Remove="CharacterPanelRefined.Tests" />
     </ItemGroup>
 
     <ItemGroup>
@@ -73,6 +74,8 @@
       <Content Include="images\image2.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+      <Compile Remove="CharacterPanelRefined.Tests\**" />
+      <None Remove="CharacterPanelRefined.Tests\**" />
     </ItemGroup>
 
     <PropertyGroup Condition="'$(Configuration)' == 'Debug' ">

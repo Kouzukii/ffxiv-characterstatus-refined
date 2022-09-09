@@ -1,0 +1,145 @@
+﻿<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Tooltips_tooltips_Critical_Hit" xml:space="preserve">
+        <value>Kritischer Treffer</value>
+    </data>
+    <data name="Crit_Chance" xml:space="preserve">
+        <value>Krit Chance</value>
+    </data>
+    <data name="Crit_Damage" xml:space="preserve">
+        <value>Krit Schaden</value>
+    </data>
+    <data name="Damage_Increase" xml:space="preserve">
+        <value>Schadenserhöhung</value>
+    </data>
+    <data name="Damage_per_100_Potency" xml:space="preserve">
+        <value>Schaden je 100 Wert</value>
+    </data>
+    <data name="Damage___Mitigation" xml:space="preserve">
+        <value>Schaden &amp; Abwehr</value>
+    </data>
+    <data name="Tooltips_tooltips_Determination" xml:space="preserve">
+        <value>Entschlossenheit </value>
+    </data>
+    <data name="Direct_Hit_Chance" xml:space="preserve">
+        <value>Direkt Chance</value>
+    </data>
+    <data name="Fire_IV_GCD" xml:space="preserve">
+        <value>Feuka Reaktivierung</value>
+    </data>
+    <data name="GCD" xml:space="preserve">
+        <value>Reaktivierungszeit</value>
+    </data>
+    <data name="Magic_Mitigation" xml:space="preserve">
+        <value>Mag. Minderung</value>
+    </data>
+    <data name="Mana_per_Tick" xml:space="preserve">
+        <value>Mana je Tick</value>
+    </data>
+    <data name="Physical_Mitigation" xml:space="preserve">
+        <value>Phys. Minderung</value>
+    </data>
+    <data name="Skill_Speed_Increase" xml:space="preserve">
+        <value>Geschw. Erhöhung</value>
+    </data>
+    <data name="Speed_Properties" xml:space="preserve">
+        <value>Geschw. Eigenschaften</value>
+    </data>
+    <data name="Tooltips_tooltips_Direct_Hit_Rate" xml:space="preserve">
+        <value>Direkte Treffer Rate </value>
+    </data>
+    <data name="Tooltips_tooltips_Crit_Tooltip" xml:space="preserve">
+        <value> beeinflusst die Rate, mit der deine Angriffe und Heilungen kritische Treffer erzielen können, sowie den Schaden und die wiederhergestellten LP bei einem kritischen Treffer.
+
+Die Rate der kritischen Treffer und der Schaden erhöhen sich um 0,1% alle ca. </value>
+    </data>
+    <data name="Tooltips_tooltips_Currently_Wasting" xml:space="preserve">
+        <value> Punkte. Du verschwendest momentan </value>
+    </data>
+    <data name="Tooltips_tooltips_Defense" xml:space="preserve">
+        <value>Verteidigung</value>
+    </data>
+    <data name="Tooltips_tooltips_Vitality_Tooltip_4" xml:space="preserve">
+        <value> Grund LP.</value>
+    </data>
+    <data name="Tooltips_tooltips_Vitality_Tooltip_3" xml:space="preserve">
+        <value> hast du </value>
+    </data>
+    <data name="Tooltips_tooltips_Vitality" xml:space="preserve">
+        <value>Konstitution </value>
+    </data>
+    <data name="Tooltips_tooltips_Vitality_Tooltip_1" xml:space="preserve">
+        <value>erhöht die maximalen LP um </value>
+    </data>
+    <data name="Tooltips_tooltips_Vitality_Tooltip_2" xml:space="preserve">
+        <value> für jeden Punkt. Als </value>
+    </data>
+    <data name="Tooltips_tooltips_Defense_Tooltip" xml:space="preserve">
+        <value> verringert erlittenen physischen Schaden um 1% alle ca.  </value>
+    </data>
+    <data name="Tooltips_tooltips_Determination_Tooltip" xml:space="preserve">
+        <value>erhöht den verursachten Schaden durch Angriffe sowie die Stärke von  Heilungszaubern. Der Effekt von Entschlossenheit erhöht sich um 0.1% alle ca. </value>
+    </data>
+    <data name="Tooltips_tooltips_Tenacity" xml:space="preserve">
+        <value>Unbeugsamkeit</value>
+    </data>
+    <data name="Tooltips_tooltips_Tenacity_Tooltip" xml:space="preserve">
+        <value>erhöht den verursachten Schaden sowie die Heilung durch die eigenen Fähigkeiten, zudem wird der erlittene Schaden reduziert. Der Effekt von Unbeugsamkeit erhöht sich um 0.1% alle ca.  </value>
+    </data>
+    <data name="Tooltips_tooltips_Spell_Speed_GCD" xml:space="preserve">
+        <value> Punkt(e). Eine Reaktivierungszeit von 2.8s wird um 0.01s alle ca. </value>
+    </data>
+    <data name="Tooltips_tooltips_Spell_Speed" xml:space="preserve">
+        <value>Zaubertempo</value>
+    </data>
+    <data name="Tooltips_tooltips_Skill_Spell_Speed_Tooltip" xml:space="preserve">
+        <value> senkt die (Re-)Aktivierungszeiten von Angriffen und erhöht den Schaden von Schaden über Zeit Effekten. Eine Reaktivierungszeit von 2.5s wird um 0.01 verkürzt alle ca. </value>
+    </data>
+    <data name="Tooltips_tooltips_points" xml:space="preserve">
+        <value> Punkt(e).</value>
+    </data>
+    <data name="Tooltips_tooltips_Skill_Spell_Speed" xml:space="preserve">
+        <value>Zaubertempo/Schnelligkeit</value>
+    </data>
+    <data name="Tooltips_tooltips_Skill_Spell_Speed_DoT_Increase" xml:space="preserve">
+        <value> Punkt(e). Schaden über Zeit wird um 0.1% alle ca. </value>
+    </data>
+    <data name="Tooltips_tooltips_Direct_Hit_Tooltip" xml:space="preserve">
+        <value> beeinflusst die Rate in der deine Agriffe zu Direkten Treffern werden. Ein Direkter Treffer erhöht den verursachten schaden um 25%. Die Direkte Treffer Rate erhöht sich um 0.1% alle ca. </value>
+    </data>
+    <data name="Tooltips_tooltips_Piety_Tooltip" xml:space="preserve">
+        <value>erhöht die </value>
+    </data>
+    <data name="Tooltips_tooltips_Expected_Damage" xml:space="preserve">
+        <value>Durchschnittlicher Schaden einer 100 Attacke-Wert Fähigkeit, inklusive kritischer und direkter Treffer, sowie passiven Fertigkeiten wie Verbesserte Kommandos. Der Schaden wird mit dem Attacke-Wert, Waffenschaden, dem Hauptattribut, sowie allen anderen Schadensmodifikatoren berechnet und hat immer eine Varianz von ±5%. </value>
+    </data>
+    <data name="Tooltips_tooltips_Magic_Defense" xml:space="preserve">
+        <value>Magieabwehr</value>
+    </data>
+    <data name="Tooltips_tooltips_Magic_Defense_Tooltip" xml:space="preserve">
+        <value> verringert erlittenen physischen Schaden um 1% alle ca. </value>
+    </data>
+    <data name="Tooltips_tooltips_Main_Stat_Tooltip" xml:space="preserve">
+        <value>erhöht den verursachten Schaden durch Angriffe sowie die Stärke von  Heilungszaubern. Eine Erhöhung des Hauptattributes von 10% enstpricht einer Schadens- und Heilungserhöhung von 10%. Die einzige Ausnahme stellt Physick vom BSW dar, da es mit Willenskraft statt Intelligenz skaliert.</value>
+    </data>
+    <data name="Tooltips_tooltips_Main_Stat" xml:space="preserve">
+        <value>Hauptattribut </value>
+    </data>
+    <data name="Tooltips_tooltips_Next_Tier" xml:space="preserve">
+        <value> Punkt(e). Um die nächste Stufe zu erreichen benötigst du </value>
+    </data>
+    <data name="Tooltips_tooltips_Piety" xml:space="preserve">
+        <value>Frömmigkeit </value>
+    </data>
+</root>

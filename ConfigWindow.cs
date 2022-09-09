@@ -1,3 +1,5 @@
+using System.Globalization;
+using Dalamud;
 using Dalamud.Interface;
 using ImGuiNET;
 
@@ -19,12 +21,22 @@ public class ConfigWindow {
         var bShowConfig = ShowConfig;
         ImGui.SetNextWindowSize(ImGuiHelpers.ScaledVector2(300, 100));
         if (ImGui.Begin("Character Panel Refined Config", ref bShowConfig, ImGuiWindowFlags.NoCollapse)) {
+            
+            
             var bShowTooltips = conf.ShowTooltips;
             if (ImGui.Checkbox("Override default tooltips", ref bShowTooltips)) {
                 conf.ShowTooltips = bShowTooltips;
                 conf.Save();
             }
             ShowTooltipsTooltip();
+            
+            
+            var bUseGameLanguage = conf.UseGameLanguage;
+            if (ImGui.Checkbox("Use Game Language if available", ref bUseGameLanguage)) {
+                conf.UseGameLanguage = bUseGameLanguage;
+                conf.Save();
+            }
+            
 
             ImGui.End();
 

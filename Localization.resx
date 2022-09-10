@@ -179,4 +179,20 @@ An increase of 10% main stat constitutes a 10% increase in damage and healing.
 
 SMNs physick is the only exception since it scales with MND instead of INT.</value>
     </data>
+    <data name="Config_Character_Panel_Refined_Config" xml:space="preserve">
+        <value>Character Panel Refined Config</value>
+    </data>
+    <data name="Config_Override_default_tooltips" xml:space="preserve">
+        <value>Override default tooltips</value>
+    </data>
+    <data name="Config_Use_Game_Language_if_available" xml:space="preserve">
+        <value>Use Game Language if available</value>
+    </data>
+    <data name="Config_Override_default_tooltips_tooltip" xml:space="preserve">
+        <value>Override the default tooltips for all stats.</value>
+    </data>
+    <data name="Config_Window_Use_Game_Language_Tooltip" xml:space="preserve">
+        <value>Use the internal game language for this plugin if available. 
+ Currently Available: English, German</value>
+    </data>
 </root>

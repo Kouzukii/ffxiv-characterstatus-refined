@@ -20,11 +20,11 @@ public class ConfigWindow {
         var conf = plugin.Configuration;
         var bShowConfig = ShowConfig;
         ImGui.SetNextWindowSize(ImGuiHelpers.ScaledVector2(300, 100));
-        if (ImGui.Begin("Character Panel Refined Config", ref bShowConfig, ImGuiWindowFlags.NoCollapse)) {
+        if (ImGui.Begin(Localization.Config_Character_Panel_Refined_Config, ref bShowConfig, ImGuiWindowFlags.NoCollapse)) {
             
             
             var bShowTooltips = conf.ShowTooltips;
-            if (ImGui.Checkbox("Override default tooltips", ref bShowTooltips)) {
+            if (ImGui.Checkbox(Localization.Config_Override_default_tooltips, ref bShowTooltips)) {
                 conf.ShowTooltips = bShowTooltips;
                 conf.Save();
             }
@@ -32,10 +32,11 @@ public class ConfigWindow {
             
             
             var bUseGameLanguage = conf.UseGameLanguage;
-            if (ImGui.Checkbox("Use Game Language if available", ref bUseGameLanguage)) {
+            if (ImGui.Checkbox(Localization.Config_Use_Game_Language_if_available, ref bUseGameLanguage)) {
                 conf.UseGameLanguage = bUseGameLanguage;
                 conf.Save();
             }
+            UseGameLanguageTooltip();
             
 
             ImGui.End();
@@ -47,7 +48,15 @@ public class ConfigWindow {
     private void ShowTooltipsTooltip() {
         if (ImGui.IsItemHovered()) {
             ImGui.BeginTooltip();
-            ImGui.TextUnformatted("Override the default tooltips for all stats. Currently only english language available.");
+            ImGui.TextUnformatted(Localization.Config_Override_default_tooltips_tooltip);
+            ImGui.EndTooltip();
+        }
+    }
+    
+    private void UseGameLanguageTooltip() {
+        if (ImGui.IsItemHovered()) {
+            ImGui.BeginTooltip();
+            ImGui.TextUnformatted(Localization.Config_Window_Use_Game_Language_Tooltip);
             ImGui.EndTooltip();
         }
     }

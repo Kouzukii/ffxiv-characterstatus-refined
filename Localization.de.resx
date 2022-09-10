@@ -65,7 +65,8 @@
 Die Rate der kritischen Treffer und der Schaden erhöhen sich um 0,1% alle ca. </value>
     </data>
     <data name="Tooltips_tooltips_Currently_Wasting" xml:space="preserve">
-        <value> Punkte. Du verschwendest momentan </value>
+        <value> Punkte.
+Du verschwendest momentan </value>
     </data>
     <data name="Tooltips_tooltips_Defense" xml:space="preserve">
         <value>Verteidigung</value>
@@ -141,5 +142,21 @@ Die Rate der kritischen Treffer und der Schaden erhöhen sich um 0,1% alle ca. <
     </data>
     <data name="Tooltips_tooltips_Piety" xml:space="preserve">
         <value>Frömmigkeit</value>
+    </data>
+    <data name="Config_Character_Panel_Refined_Config" xml:space="preserve">
+        <value>Character Panel Refined Konfiguration</value>
+    </data>
+    <data name="Config_Override_default_tooltips" xml:space="preserve">
+        <value>Überschreibe Standard Tooltips</value>
+    </data>
+    <data name="Config_Override_default_tooltips_tooltip" xml:space="preserve">
+        <value>Überscheibe die Standard Tooltips für sämtliche Attribute.</value>
+    </data>
+    <data name="Config_Use_Game_Language_if_available" xml:space="preserve">
+        <value>Verwende Spielsprache wenn möglich</value>
+    </data>
+    <data name="Config_Window_Use_Game_Language_Tooltip" xml:space="preserve">
+        <value>Verwende die interne Spielsprache für dieses Plugin, sollte sie verfügbar sein. 
+Verfügbar: Englisch, Deutsch</value>
     </data>
 </root>

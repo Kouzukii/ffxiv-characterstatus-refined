@@ -61,6 +61,52 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Character Panel Refined Config.
+        /// </summary>
+        internal static string Config_Character_Panel_Refined_Config {
+            get {
+                return ResourceManager.GetString("Config_Character_Panel_Refined_Config", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Override default tooltips.
+        /// </summary>
+        internal static string Config_Override_default_tooltips {
+            get {
+                return ResourceManager.GetString("Config_Override_default_tooltips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Override the default tooltips for all stats..
+        /// </summary>
+        internal static string Config_Override_default_tooltips_tooltip {
+            get {
+                return ResourceManager.GetString("Config_Override_default_tooltips_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Game Language if available.
+        /// </summary>
+        internal static string Config_Use_Game_Language_if_available {
+            get {
+                return ResourceManager.GetString("Config_Use_Game_Language_if_available", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use the internal game language for this plugin if available. 
+        /// Currently Available: English, German.
+        /// </summary>
+        internal static string Config_Window_Use_Game_Language_Tooltip {
+            get {
+                return ResourceManager.GetString("Config_Window_Use_Game_Language_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Crit Chance.
         /// </summary>
         internal static string Crit_Chance {

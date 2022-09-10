@@ -80,7 +80,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         pluginInterface.UiBuilder.OpenConfigUi += () => ConfigWindow.ShowConfig = true;
     }
     
-    private void LoadLocalization() {
+    public void LoadLocalization() {
         var lang = "";
         
         if (Configuration.UseGameLanguage)
@@ -298,9 +298,6 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
     
 
     private unsafe void* CharacterStatusOnSetup(AtkUnitBase* atkUnitBase, int a2, void* a3) {
-        
-        LoadLocalization();
-        
         var val = characterStatusOnSetup.Original(atkUnitBase, a2, a3);
 
         try {

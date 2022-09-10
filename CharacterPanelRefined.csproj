@@ -81,30 +81,12 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>strings.resx</DependentUpon>
       </Compile>
-      <Compile Update="Languages.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Languages.resx</DependentUpon>
-      </Compile>
-      <Compile Update="Languages.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Languages.resx</DependentUpon>
-      </Compile>
     </ItemGroup>
 
     <ItemGroup>
       <EmbeddedResource Update="Localization.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>Localization.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-      <EmbeddedResource Update="Languages.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>Languages.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-      <EmbeddedResource Update="Languages.resx">
-        <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>Languages.Designer.cs</LastGenOutput>
       </EmbeddedResource>
     </ItemGroup>
 

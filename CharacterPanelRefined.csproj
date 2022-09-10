@@ -76,7 +76,7 @@
       </Content>
       <Compile Remove="CharacterPanelRefined.Tests\**" />
       <None Remove="CharacterPanelRefined.Tests\**" />
-      <Compile Update="Languages.Designer.cs">
+      <Compile Update="Localization.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
         <DependentUpon>strings.resx</DependentUpon>
@@ -94,9 +94,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Update="Languages.resx">
+      <EmbeddedResource Update="Localization.resx">
         <Generator>ResXFileCodeGenerator</Generator>
-        <LastGenOutput>Languages.Designer.cs</LastGenOutput>
+        <LastGenOutput>Localization.Designer.cs</LastGenOutput>
       </EmbeddedResource>
       <EmbeddedResource Update="Languages.resx">
         <Generator>ResXFileCodeGenerator</Generator>

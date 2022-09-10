@@ -17,95 +17,95 @@ public class Tooltips : IDisposable {
     private readonly Dictionary<Entry, SeString> tooltips = new() {
         {
             Entry.Crit,
-            new(new C(8), new T(Localization.Tooltips_tooltips_Critical_Hit), new C(0),
-                new T(Localization.Tooltips_tooltips_Crit_Tooltip),
-                new T("0"), new T(Localization.Tooltips_tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
-                new T(Localization.Tooltips_tooltips_Next_Tier),
-                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_tooltips_points))
+            new(new C(8), new T(Localization.Tooltips_Critical_Hit), new C(0),
+                new T(Localization.Tooltips_Crit_Tooltip),
+                new T("0"), new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
+                new T(Localization.Tooltips_Next_Tier),
+                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_points))
         }, {
             Entry.Determination,
-            new(new C(8), new T(Localization.Tooltips_tooltips_Determination), new C(0),
-                new T(Localization.Tooltips_tooltips_Determination_Tooltip),
-                new T("0"), new T(Localization.Tooltips_tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
-                new T(Localization.Tooltips_tooltips_Next_Tier),
-                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_tooltips_points))
+            new(new C(8), new T(Localization.Tooltips_Determination), new C(0),
+                new T(Localization.Tooltips_Determination_Tooltip),
+                new T("0"), new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
+                new T(Localization.Tooltips_Next_Tier),
+                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_points))
         }, {
             Entry.DirectHit,
-            new(new C(8), new T(Localization.Tooltips_tooltips_Direct_Hit_Rate), new C(0),
-                new T(Localization.Tooltips_tooltips_Direct_Hit_Tooltip),
-                new T("0"), new T(Localization.Tooltips_tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
-                new T(Localization.Tooltips_tooltips_Next_Tier),
-                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_tooltips_points))
+            new(new C(8), new T(Localization.Tooltips_Direct_Hit_Rate), new C(0),
+                new T(Localization.Tooltips_Direct_Hit_Tooltip),
+                new T("0"), new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
+                new T(Localization.Tooltips_Next_Tier),
+                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_points))
         }, {
             Entry.Speed,
-            new(new C(8), new T(Localization.Tooltips_tooltips_Skill_Spell_Speed), new C(0),
-                new T(Localization.Tooltips_tooltips_Skill_Spell_Speed_Tooltip),
-                new T("0"), new T(Localization.Tooltips_tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
-                new T(Localization.Tooltips_tooltips_Next_Tier),
-                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_tooltips_Skill_Spell_Speed_DoT_Increase), new T("0"),
-                new T(Localization.Tooltips_tooltips_Currently_Wasting), new C(0), new T("0"), new C(0), new T(Localization.Tooltips_tooltips_Next_Tier),
+            new(new C(8), new T(Localization.Tooltips_Skill_Spell_Speed), new C(0),
+                new T(Localization.Tooltips_Skill_Spell_Speed_Tooltip),
+                new T("0"), new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
+                new T(Localization.Tooltips_Next_Tier),
+                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_Skill_Spell_Speed_DoT_Increase), new T("0"),
+                new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0), new T(Localization.Tooltips_Next_Tier),
                 new C(33),
-                new T("0"), new C(0), new T(Localization.Tooltips_tooltips_points))
+                new T("0"), new C(0), new T(Localization.Tooltips_points))
         }, {
             Entry.Speed28,
-            new(new C(8), new T(Localization.Tooltips_tooltips_Spell_Speed), new C(0),
-                new T(Localization.Tooltips_tooltips_Skill_Spell_Speed_Tooltip),
-                new T("0"), new T(Localization.Tooltips_tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
-                new T(Localization.Tooltips_tooltips_Next_Tier),
-                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_tooltips_Spell_Speed_GCD), new T("0"),
-                new T(Localization.Tooltips_tooltips_Currently_Wasting), new C(0), new T("0"), new C(0), new T(Localization.Tooltips_tooltips_Next_Tier),
+            new(new C(8), new T(Localization.Tooltips_Spell_Speed), new C(0),
+                new T(Localization.Tooltips_Skill_Spell_Speed_Tooltip),
+                new T("0"), new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
+                new T(Localization.Tooltips_Next_Tier),
+                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_Spell_Speed_GCD), new T("0"),
+                new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0), new T(Localization.Tooltips_Next_Tier),
                 new C(33),
-                new T("0"), new C(0), new T(Localization.Tooltips_tooltips_Skill_Spell_Speed_DoT_Increase), new T("0"),
-                new T(Localization.Tooltips_tooltips_Currently_Wasting), new C(0), new T("0"), new C(0), new T(Localization.Tooltips_tooltips_Next_Tier),
+                new T("0"), new C(0), new T(Localization.Tooltips_Skill_Spell_Speed_DoT_Increase), new T("0"),
+                new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0), new T(Localization.Tooltips_Next_Tier),
                 new C(33),
-                new T("0"), new C(0), new T(Localization.Tooltips_tooltips_points))
+                new T("0"), new C(0), new T(Localization.Tooltips_points))
         }, {
             Entry.ExpectedDamage,
-            new(new T(Localization.Tooltips_tooltips_Expected_Damage))
+            new(new T(Localization.Tooltips_Expected_Damage))
         },
         {
             Entry.Tenacity,
-            new(new C(8), new T(Localization.Tooltips_tooltips_Tenacity), new C(0),
-                new T(Localization.Tooltips_tooltips_Tenacity_Tooltip),
-                new T("0"), new T(Localization.Tooltips_tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
-                new T(Localization.Tooltips_tooltips_Next_Tier),
-                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_tooltips_points))
+            new(new C(8), new T(Localization.Tooltips_Tenacity), new C(0),
+                new T(Localization.Tooltips_Tenacity_Tooltip),
+                new T("0"), new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
+                new T(Localization.Tooltips_Next_Tier),
+                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_points))
         },
         {
             Entry.Piety,
-            new(new C(8), new T(Localization.Tooltips_tooltips_Piety), new C(0),
-                new T(Localization.Tooltips_tooltips_Piety_Tooltip),
-                new T("0"), new T(Localization.Tooltips_tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
-                new T(Localization.Tooltips_tooltips_Next_Tier),
-                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_tooltips_points))
+            new(new C(8), new T(Localization.Tooltips_Piety), new C(0),
+                new T(Localization.Tooltips_Piety_Tooltip),
+                new T("0"), new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
+                new T(Localization.Tooltips_Next_Tier),
+                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_points))
         },
         {
             Entry.Defense,
-            new(new C(8), new T(Localization.Tooltips_tooltips_Defense), new C(0),
-                new T(Localization.Tooltips_tooltips_Defense_Tooltip),
-                new T("0"), new T(Localization.Tooltips_tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
-                new T(Localization.Tooltips_tooltips_Next_Tier),
-                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_tooltips_points))
+            new(new C(8), new T(Localization.Tooltips_Defense), new C(0),
+                new T(Localization.Tooltips_Defense_Tooltip),
+                new T("0"), new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
+                new T(Localization.Tooltips_Next_Tier),
+                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_points))
             
         },
         {
             Entry.MagicDefense,
-            new(new C(8), new T(Localization.Tooltips_tooltips_Magic_Defense), new C(0),
-                new T(Localization.Tooltips_tooltips_Magic_Defense_Tooltip),
-                new T("0"), new T(Localization.Tooltips_tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
-                new T(Localization.Tooltips_tooltips_Next_Tier),
-                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_tooltips_points))
+            new(new C(8), new T(Localization.Tooltips_Magic_Defense), new C(0),
+                new T(Localization.Tooltips_Magic_Defense_Tooltip),
+                new T("0"), new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
+                new T(Localization.Tooltips_Next_Tier),
+                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_points))
             
         },
         {
             Entry.Vitality,
-            new(new C(8), new T(Localization.Tooltips_tooltips_Vitality), new C(0), new T(Localization.Tooltips_tooltips_Vitality_Tooltip_1), new T("0"), new T(Localization.Tooltips_tooltips_Vitality_Tooltip_2), new T(""), 
-                new T(Localization.Tooltips_tooltips_Vitality_Tooltip_3), new T("0"), new T(Localization.Tooltips_tooltips_Vitality_Tooltip_4))
+            new(new C(8), new T(Localization.Tooltips_Vitality), new C(0), new T(Localization.Tooltips_Vitality_Tooltip_1), new T("0"), new T(Localization.Tooltips_Vitality_Tooltip_2), new T(""), 
+                new T(Localization.Tooltips_Vitality_Tooltip_3), new T("0"), new T(Localization.Tooltips_Vitality_Tooltip_4))
         },
         {
             Entry.MainStat,            
-            new(new C(8), new T(Localization.Tooltips_tooltips_Main_Stat), new C(0), 
-                new T(Localization.Tooltips_tooltips_Main_Stat_Tooltip))
+            new(new C(8), new T(Localization.Tooltips_Main_Stat), new C(0), 
+                new T(Localization.Tooltips_Main_Stat_Tooltip))
         }
     };
 

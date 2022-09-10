@@ -21,159 +21,159 @@
     <data name="ERROR_Failed_to_modify_character" xml:space="preserve">
         <value>Failed to modify character</value>
     </data>
-    <data name="Tooltips_tooltips_Critical_Hit" xml:space="preserve">
+    <data name="Tooltips_Critical_Hit" xml:space="preserve">
         <value>Critical Hit</value>
     </data>
-    <data name="Crit_Chance" xml:space="preserve">
+    <data name="Panel_Crit_Chance" xml:space="preserve">
         <value>Crit Chance</value>
     </data>
-    <data name="Crit_Damage" xml:space="preserve">
+    <data name="Panel_Crit_Damage" xml:space="preserve">
         <value>Crit Damage</value>
     </data>
-    <data name="Damage_Increase" xml:space="preserve">
+    <data name="Panel_Damage_Increase" xml:space="preserve">
         <value>Damage Increase</value>
     </data>
-    <data name="Damage_per_100_Potency" xml:space="preserve">
+    <data name="Panel_Damage_per_100_Potency" xml:space="preserve">
         <value>Damage per 100 Pot</value>
     </data>
-    <data name="Damage___Mitigation" xml:space="preserve">
+    <data name="Panel_Damage_and_Mitigation" xml:space="preserve">
         <value>Damage &amp; Mitigation</value>
     </data>
-    <data name="Tooltips_tooltips_Determination" xml:space="preserve">
+    <data name="Tooltips_Determination" xml:space="preserve">
         <value>Determination</value>
     </data>
-    <data name="Direct_Hit_Chance" xml:space="preserve">
+    <data name="Panel_Direct_Hit_Chance" xml:space="preserve">
         <value>Direct Hit Chance</value>
     </data>
     <data name="ERROR_Failed_to_update_CharacterStatus" xml:space="preserve">
         <value>Failed to update CharacterStatus</value>
     </data>
-    <data name="Fire_IV_GCD" xml:space="preserve">
+    <data name="Panel_Fire_IV_GCD" xml:space="preserve">
         <value>Fire IV GCD</value>
     </data>
-    <data name="GCD" xml:space="preserve">
+    <data name="Panel_GCD" xml:space="preserve">
         <value>GCD</value>
     </data>
-    <data name="Magic_Mitigation" xml:space="preserve">
+    <data name="Panel_Magic_Mitigation" xml:space="preserve">
         <value>Magic Mitigation</value>
     </data>
-    <data name="Mana_per_Tick" xml:space="preserve">
+    <data name="Panel_Mana_per_Tick" xml:space="preserve">
         <value>Mana per Tick</value>
     </data>
-    <data name="Physical_Mitigation" xml:space="preserve">
+    <data name="Panel_Physical_Mitigation" xml:space="preserve">
         <value>Physical Mitigation</value>
     </data>
-    <data name="Skill_Speed_Increase" xml:space="preserve">
+    <data name="Panel_Skill_Speed_Increase" xml:space="preserve">
         <value>Speed Increase</value>
     </data>
-    <data name="Speed_Properties" xml:space="preserve">
+    <data name="Panel_Speed_Properties" xml:space="preserve">
         <value>Speed Properties</value>
     </data>
-    <data name="Tooltips_tooltips_Crit_Tooltip" xml:space="preserve">
+    <data name="Tooltips_Crit_Tooltip" xml:space="preserve">
         <value> affects the rate at which your attacks and heals can critically hit as well as the damage dealt and HP restored by a critical hit.
 
 Critical Hit Rate and Damage increase by 0.1% approx. every </value>
     </data>
-    <data name="Tooltips_tooltips_Currently_Wasting" xml:space="preserve">
+    <data name="Tooltips_Currently_Wasting" xml:space="preserve">
         <value> points.
 You are currently wasting </value>
     </data>
-    <data name="Tooltips_tooltips_Direct_Hit_Rate" xml:space="preserve">
+    <data name="Tooltips_Direct_Hit_Rate" xml:space="preserve">
         <value>Direct Hit Rate</value>
     </data>
-    <data name="Tooltips_tooltips_Next_Tier" xml:space="preserve">
+    <data name="Tooltips_Next_Tier" xml:space="preserve">
         <value> point(s).
 To reach the next tier you need </value>
     </data>
-    <data name="Tooltips_tooltips_points" xml:space="preserve">
+    <data name="Tooltips_points" xml:space="preserve">
         <value> point(s).</value>
     </data>
-    <data name="Tooltips_tooltips_Determination_Tooltip" xml:space="preserve">
+    <data name="Tooltips_Determination_Tooltip" xml:space="preserve">
         <value> increases damage dealt by attacks as well as HP restored by healing actions.
 
 Determination's effect increases by 0.1% approx. every </value>
     </data>
-    <data name="Tooltips_tooltips_Direct_Hit_Tooltip" xml:space="preserve">
+    <data name="Tooltips_Direct_Hit_Tooltip" xml:space="preserve">
         <value> affects the rate at which your attacks can direct hit.
 A direct hit increases damage done by 25%.
 
 Direct Hit Rate increases by 0.1% approx. every </value>
     </data>
-    <data name="Tooltips_tooltips_Skill_Spell_Speed" xml:space="preserve">
+    <data name="Tooltips_Skill_Spell_Speed" xml:space="preserve">
         <value>Skill/Spell Speed</value>
     </data>
-    <data name="Tooltips_tooltips_Skill_Spell_Speed_Tooltip" xml:space="preserve">
+    <data name="Tooltips_Skill_Spell_Speed_Tooltip" xml:space="preserve">
         <value> shortens cast times and recast timers as well as increase damage done by damage over time effects.
 
 A 2.5s GCD is sped up by 0.01s approx. every </value>
     </data>
-    <data name="Tooltips_tooltips_Skill_Spell_Speed_DoT_Increase" xml:space="preserve">
+    <data name="Tooltips_Skill_Spell_Speed_DoT_Increase" xml:space="preserve">
         <value> point(s).
 
 DoT damage increases by 0.1% approx. every </value>
     </data>
-    <data name="Tooltips_tooltips_Spell_Speed_GCD" xml:space="preserve">
+    <data name="Tooltips_Spell_Speed_GCD" xml:space="preserve">
         <value> point(s).
 
 A 2.8s GCD is sped up by 0.01s approx. every </value>
     </data>
-    <data name="Tooltips_tooltips_Spell_Speed" xml:space="preserve">
+    <data name="Tooltips_Spell_Speed" xml:space="preserve">
         <value>Spell Speed</value>
     </data>
-    <data name="Tooltips_tooltips_Expected_Damage" xml:space="preserve">
+    <data name="Tooltips_Expected_Damage" xml:space="preserve">
         <value>Average damage of a 100 potency skill, including critical and direct hits as well as passive traits such as Maim and Mend.
 
 Damage is multiplied by Potency, Weapon Damage, Main Stat (Str/Int/Dex/Mnd) and all other damage modifiers (such as Direct Hit +25%, Brotherhood +5%) and always has a variance of ±5%.</value>
     </data>
-    <data name="Tooltips_tooltips_Tenacity" xml:space="preserve">
+    <data name="Tooltips_Tenacity" xml:space="preserve">
         <value>Tenacity</value>
     </data>
-    <data name="Tooltips_tooltips_Tenacity_Tooltip" xml:space="preserve">
+    <data name="Tooltips_Tenacity_Tooltip" xml:space="preserve">
         <value> increases damage dealt and HP restored by your own actions as well as reducing damage taken.
 
 Tenacity's effect increases by 0.1% approx. every </value>
     </data>
-    <data name="Tooltips_tooltips_Piety" xml:space="preserve">
+    <data name="Tooltips_Piety" xml:space="preserve">
         <value>Piety</value>
     </data>
-    <data name="Tooltips_tooltips_Piety_Tooltip" xml:space="preserve">
+    <data name="Tooltips_Piety_Tooltip" xml:space="preserve">
         <value> increases the amount of MP gained per server tick (every 3s).
 By default you will gain 200 MP per tick.
 
 Piety gives 1 extra MP approx. every </value>
     </data>
-    <data name="Tooltips_tooltips_Defense" xml:space="preserve">
+    <data name="Tooltips_Defense" xml:space="preserve">
         <value>Defense</value>
     </data>
-    <data name="Tooltips_tooltips_Defense_Tooltip" xml:space="preserve">
+    <data name="Tooltips_Defense_Tooltip" xml:space="preserve">
         <value> reduces physical damage taken by 1% approx. every </value>
     </data>
-    <data name="Tooltips_tooltips_Magic_Defense" xml:space="preserve">
+    <data name="Tooltips_Magic_Defense" xml:space="preserve">
         <value>Magic Defense</value>
     </data>
-    <data name="Tooltips_tooltips_Magic_Defense_Tooltip" xml:space="preserve">
+    <data name="Tooltips_Magic_Defense_Tooltip" xml:space="preserve">
         <value> reduces magic damage taken by 1% approx. every </value>
     </data>
-    <data name="Tooltips_tooltips_Vitality" xml:space="preserve">
+    <data name="Tooltips_Vitality" xml:space="preserve">
         <value>Vitality</value>
     </data>
-    <data name="Tooltips_tooltips_Vitality_Tooltip_1" xml:space="preserve">
+    <data name="Tooltips_Vitality_Tooltip_1" xml:space="preserve">
         <value> increases max HP by </value>
     </data>
-    <data name="Tooltips_tooltips_Vitality_Tooltip_2" xml:space="preserve">
+    <data name="Tooltips_Vitality_Tooltip_2" xml:space="preserve">
         <value> every point.
 As a </value>
     </data>
-    <data name="Tooltips_tooltips_Vitality_Tooltip_3" xml:space="preserve">
+    <data name="Tooltips_Vitality_Tooltip_3" xml:space="preserve">
         <value> you have </value>
     </data>
-    <data name="Tooltips_tooltips_Vitality_Tooltip_4" xml:space="preserve">
+    <data name="Tooltips_Vitality_Tooltip_4" xml:space="preserve">
         <value> base HP.</value>
     </data>
-    <data name="Tooltips_tooltips_Main_Stat" xml:space="preserve">
+    <data name="Tooltips_Main_Stat" xml:space="preserve">
         <value>Main Stat</value>
     </data>
-    <data name="Tooltips_tooltips_Main_Stat_Tooltip" xml:space="preserve">
+    <data name="Tooltips_Main_Stat_Tooltip" xml:space="preserve">
         <value> increases damage dealt as well as HP restored by your actions.
 An increase of 10% main stat constitutes a 10% increase in damage and healing.
 

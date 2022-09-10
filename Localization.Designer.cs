@@ -107,60 +107,6 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Crit Chance.
-        /// </summary>
-        internal static string Crit_Chance {
-            get {
-                return ResourceManager.GetString("Crit_Chance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Crit Damage.
-        /// </summary>
-        internal static string Crit_Damage {
-            get {
-                return ResourceManager.GetString("Crit_Damage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Damage &amp; Mitigation.
-        /// </summary>
-        internal static string Damage___Mitigation {
-            get {
-                return ResourceManager.GetString("Damage___Mitigation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Damage Increase.
-        /// </summary>
-        internal static string Damage_Increase {
-            get {
-                return ResourceManager.GetString("Damage_Increase", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Damage per 100 Pot.
-        /// </summary>
-        internal static string Damage_per_100_Potency {
-            get {
-                return ResourceManager.GetString("Damage_per_100_Potency", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Direct Hit Chance.
-        /// </summary>
-        internal static string Direct_Hit_Chance {
-            get {
-                return ResourceManager.GetString("Direct_Hit_Chance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Failed to modify character.
         /// </summary>
         internal static string ERROR_Failed_to_modify_character {
@@ -179,65 +125,119 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Crit Chance.
+        /// </summary>
+        internal static string Panel_Crit_Chance {
+            get {
+                return ResourceManager.GetString("Panel_Crit_Chance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crit Damage.
+        /// </summary>
+        internal static string Panel_Crit_Damage {
+            get {
+                return ResourceManager.GetString("Panel_Crit_Damage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Damage &amp; Mitigation.
+        /// </summary>
+        internal static string Panel_Damage_and_Mitigation {
+            get {
+                return ResourceManager.GetString("Panel_Damage_and_Mitigation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Damage Increase.
+        /// </summary>
+        internal static string Panel_Damage_Increase {
+            get {
+                return ResourceManager.GetString("Panel_Damage_Increase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Damage per 100 Pot.
+        /// </summary>
+        internal static string Panel_Damage_per_100_Potency {
+            get {
+                return ResourceManager.GetString("Panel_Damage_per_100_Potency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Direct Hit Chance.
+        /// </summary>
+        internal static string Panel_Direct_Hit_Chance {
+            get {
+                return ResourceManager.GetString("Panel_Direct_Hit_Chance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fire IV GCD.
         /// </summary>
-        internal static string Fire_IV_GCD {
+        internal static string Panel_Fire_IV_GCD {
             get {
-                return ResourceManager.GetString("Fire_IV_GCD", resourceCulture);
+                return ResourceManager.GetString("Panel_Fire_IV_GCD", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to GCD.
         /// </summary>
-        internal static string GCD {
+        internal static string Panel_GCD {
             get {
-                return ResourceManager.GetString("GCD", resourceCulture);
+                return ResourceManager.GetString("Panel_GCD", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Magic Mitigation.
         /// </summary>
-        internal static string Magic_Mitigation {
+        internal static string Panel_Magic_Mitigation {
             get {
-                return ResourceManager.GetString("Magic_Mitigation", resourceCulture);
+                return ResourceManager.GetString("Panel_Magic_Mitigation", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Mana per Tick.
         /// </summary>
-        internal static string Mana_per_Tick {
+        internal static string Panel_Mana_per_Tick {
             get {
-                return ResourceManager.GetString("Mana_per_Tick", resourceCulture);
+                return ResourceManager.GetString("Panel_Mana_per_Tick", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Physical Mitigation.
         /// </summary>
-        internal static string Physical_Mitigation {
+        internal static string Panel_Physical_Mitigation {
             get {
-                return ResourceManager.GetString("Physical_Mitigation", resourceCulture);
+                return ResourceManager.GetString("Panel_Physical_Mitigation", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Speed Increase.
         /// </summary>
-        internal static string Skill_Speed_Increase {
+        internal static string Panel_Skill_Speed_Increase {
             get {
-                return ResourceManager.GetString("Skill_Speed_Increase", resourceCulture);
+                return ResourceManager.GetString("Panel_Skill_Speed_Increase", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Speed Properties.
         /// </summary>
-        internal static string Speed_Properties {
+        internal static string Panel_Speed_Properties {
             get {
-                return ResourceManager.GetString("Speed_Properties", resourceCulture);
+                return ResourceManager.GetString("Panel_Speed_Properties", resourceCulture);
             }
         }
         
@@ -246,18 +246,18 @@ namespace CharacterPanelRefined {
         ///
         ///Critical Hit Rate and Damage increase by 0.1% approx. every .
         /// </summary>
-        internal static string Tooltips_tooltips_Crit_Tooltip {
+        internal static string Tooltips_Crit_Tooltip {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Crit_Tooltip", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Crit_Tooltip", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Critical Hit.
         /// </summary>
-        internal static string Tooltips_tooltips_Critical_Hit {
+        internal static string Tooltips_Critical_Hit {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Critical_Hit", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Critical_Hit", resourceCulture);
             }
         }
         
@@ -265,36 +265,36 @@ namespace CharacterPanelRefined {
         ///   Looks up a localized string similar to  points.
         ///You are currently wasting .
         /// </summary>
-        internal static string Tooltips_tooltips_Currently_Wasting {
+        internal static string Tooltips_Currently_Wasting {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Currently_Wasting", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Currently_Wasting", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Defense.
         /// </summary>
-        internal static string Tooltips_tooltips_Defense {
+        internal static string Tooltips_Defense {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Defense", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Defense", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to  reduces physical damage taken by 1% approx. every .
         /// </summary>
-        internal static string Tooltips_tooltips_Defense_Tooltip {
+        internal static string Tooltips_Defense_Tooltip {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Defense_Tooltip", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Defense_Tooltip", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Determination.
         /// </summary>
-        internal static string Tooltips_tooltips_Determination {
+        internal static string Tooltips_Determination {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Determination", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Determination", resourceCulture);
             }
         }
         
@@ -303,18 +303,18 @@ namespace CharacterPanelRefined {
         ///
         ///Determination&apos;s effect increases by 0.1% approx. every .
         /// </summary>
-        internal static string Tooltips_tooltips_Determination_Tooltip {
+        internal static string Tooltips_Determination_Tooltip {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Determination_Tooltip", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Determination_Tooltip", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Direct Hit Rate.
         /// </summary>
-        internal static string Tooltips_tooltips_Direct_Hit_Rate {
+        internal static string Tooltips_Direct_Hit_Rate {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Direct_Hit_Rate", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Direct_Hit_Rate", resourceCulture);
             }
         }
         
@@ -324,9 +324,9 @@ namespace CharacterPanelRefined {
         ///
         ///Direct Hit Rate increases by 0.1% approx. every .
         /// </summary>
-        internal static string Tooltips_tooltips_Direct_Hit_Tooltip {
+        internal static string Tooltips_Direct_Hit_Tooltip {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Direct_Hit_Tooltip", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Direct_Hit_Tooltip", resourceCulture);
             }
         }
         
@@ -335,36 +335,36 @@ namespace CharacterPanelRefined {
         ///
         ///Damage is multiplied by Potency, Weapon Damage, Main Stat (Str/Int/Dex/Mnd) and all other damage modifiers (such as Direct Hit +25%, Brotherhood +5%) and always has a variance of ±5%..
         /// </summary>
-        internal static string Tooltips_tooltips_Expected_Damage {
+        internal static string Tooltips_Expected_Damage {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Expected_Damage", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Expected_Damage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Magic Defense.
         /// </summary>
-        internal static string Tooltips_tooltips_Magic_Defense {
+        internal static string Tooltips_Magic_Defense {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Magic_Defense", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Magic_Defense", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to  reduces magic damage taken by 1% approx. every .
         /// </summary>
-        internal static string Tooltips_tooltips_Magic_Defense_Tooltip {
+        internal static string Tooltips_Magic_Defense_Tooltip {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Magic_Defense_Tooltip", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Magic_Defense_Tooltip", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Main Stat.
         /// </summary>
-        internal static string Tooltips_tooltips_Main_Stat {
+        internal static string Tooltips_Main_Stat {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Main_Stat", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Main_Stat", resourceCulture);
             }
         }
         
@@ -374,9 +374,9 @@ namespace CharacterPanelRefined {
         ///
         ///SMNs physick is the only exception since it scales with MND instead of INT..
         /// </summary>
-        internal static string Tooltips_tooltips_Main_Stat_Tooltip {
+        internal static string Tooltips_Main_Stat_Tooltip {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Main_Stat_Tooltip", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Main_Stat_Tooltip", resourceCulture);
             }
         }
         
@@ -384,18 +384,18 @@ namespace CharacterPanelRefined {
         ///   Looks up a localized string similar to  point(s).
         ///To reach the next tier you need .
         /// </summary>
-        internal static string Tooltips_tooltips_Next_Tier {
+        internal static string Tooltips_Next_Tier {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Next_Tier", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Next_Tier", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Piety.
         /// </summary>
-        internal static string Tooltips_tooltips_Piety {
+        internal static string Tooltips_Piety {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Piety", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Piety", resourceCulture);
             }
         }
         
@@ -405,27 +405,27 @@ namespace CharacterPanelRefined {
         ///
         ///Piety gives 1 extra MP approx. every .
         /// </summary>
-        internal static string Tooltips_tooltips_Piety_Tooltip {
+        internal static string Tooltips_Piety_Tooltip {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Piety_Tooltip", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Piety_Tooltip", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to  point(s)..
         /// </summary>
-        internal static string Tooltips_tooltips_points {
+        internal static string Tooltips_points {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_points", resourceCulture);
+                return ResourceManager.GetString("Tooltips_points", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Skill/Spell Speed.
         /// </summary>
-        internal static string Tooltips_tooltips_Skill_Spell_Speed {
+        internal static string Tooltips_Skill_Spell_Speed {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Skill_Spell_Speed", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Skill_Spell_Speed", resourceCulture);
             }
         }
         
@@ -434,9 +434,9 @@ namespace CharacterPanelRefined {
         ///
         ///DoT damage increases by 0.1% approx. every .
         /// </summary>
-        internal static string Tooltips_tooltips_Skill_Spell_Speed_DoT_Increase {
+        internal static string Tooltips_Skill_Spell_Speed_DoT_Increase {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Skill_Spell_Speed_DoT_Increase", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Skill_Spell_Speed_DoT_Increase", resourceCulture);
             }
         }
         
@@ -445,18 +445,18 @@ namespace CharacterPanelRefined {
         ///
         ///A 2.5s GCD is sped up by 0.01s approx. every .
         /// </summary>
-        internal static string Tooltips_tooltips_Skill_Spell_Speed_Tooltip {
+        internal static string Tooltips_Skill_Spell_Speed_Tooltip {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Skill_Spell_Speed_Tooltip", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Skill_Spell_Speed_Tooltip", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Spell Speed.
         /// </summary>
-        internal static string Tooltips_tooltips_Spell_Speed {
+        internal static string Tooltips_Spell_Speed {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Spell_Speed", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Spell_Speed", resourceCulture);
             }
         }
         
@@ -465,18 +465,18 @@ namespace CharacterPanelRefined {
         ///
         ///A 2.8s GCD is sped up by 0.01s approx. every .
         /// </summary>
-        internal static string Tooltips_tooltips_Spell_Speed_GCD {
+        internal static string Tooltips_Spell_Speed_GCD {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Spell_Speed_GCD", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Spell_Speed_GCD", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Tenacity.
         /// </summary>
-        internal static string Tooltips_tooltips_Tenacity {
+        internal static string Tooltips_Tenacity {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Tenacity", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Tenacity", resourceCulture);
             }
         }
         
@@ -485,27 +485,27 @@ namespace CharacterPanelRefined {
         ///
         ///Tenacity&apos;s effect increases by 0.1% approx. every .
         /// </summary>
-        internal static string Tooltips_tooltips_Tenacity_Tooltip {
+        internal static string Tooltips_Tenacity_Tooltip {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Tenacity_Tooltip", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Tenacity_Tooltip", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Vitality.
         /// </summary>
-        internal static string Tooltips_tooltips_Vitality {
+        internal static string Tooltips_Vitality {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Vitality", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Vitality", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to  increases max HP by .
         /// </summary>
-        internal static string Tooltips_tooltips_Vitality_Tooltip_1 {
+        internal static string Tooltips_Vitality_Tooltip_1 {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Vitality_Tooltip_1", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Vitality_Tooltip_1", resourceCulture);
             }
         }
         
@@ -513,27 +513,27 @@ namespace CharacterPanelRefined {
         ///   Looks up a localized string similar to  every point.
         ///As a .
         /// </summary>
-        internal static string Tooltips_tooltips_Vitality_Tooltip_2 {
+        internal static string Tooltips_Vitality_Tooltip_2 {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Vitality_Tooltip_2", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Vitality_Tooltip_2", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to  you have .
         /// </summary>
-        internal static string Tooltips_tooltips_Vitality_Tooltip_3 {
+        internal static string Tooltips_Vitality_Tooltip_3 {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Vitality_Tooltip_3", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Vitality_Tooltip_3", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to  base HP..
         /// </summary>
-        internal static string Tooltips_tooltips_Vitality_Tooltip_4 {
+        internal static string Tooltips_Vitality_Tooltip_4 {
             get {
-                return ResourceManager.GetString("Tooltips_tooltips_Vitality_Tooltip_4", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Vitality_Tooltip_4", resourceCulture);
             }
         }
     }

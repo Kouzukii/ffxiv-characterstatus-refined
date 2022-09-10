@@ -90,22 +90,30 @@ Du verschwendest momentan </value>
         <value> verringert erlittenen physischen Schaden um 1% alle ca. </value>
     </data>
     <data name="Tooltips_tooltips_Determination_Tooltip" xml:space="preserve">
-        <value>erhöht den verursachten Schaden durch Angriffe sowie die Stärke von  Heilungszaubern. Der Effekt von Entschlossenheit erhöht sich um 0.1% alle ca. </value>
+        <value>erhöht den verursachten Schaden durch Angriffe sowie die Stärke von  Heilungszaubern.
+
+Der Effekt von Entschlossenheit erhöht sich um 0.1% alle ca. </value>
     </data>
     <data name="Tooltips_tooltips_Tenacity" xml:space="preserve">
         <value>Unbeugsamkeit </value>
     </data>
     <data name="Tooltips_tooltips_Tenacity_Tooltip" xml:space="preserve">
-        <value>erhöht den verursachten Schaden sowie die Heilung durch die eigenen Fähigkeiten, zudem wird der erlittene Schaden reduziert. Der Effekt von Unbeugsamkeit erhöht sich um 0.1% alle ca. </value>
+        <value>erhöht den verursachten Schaden sowie die Heilung durch die eigenen Fähigkeiten, zudem wird der erlittene Schaden reduziert.
+
+Der Effekt von Unbeugsamkeit erhöht sich um 0.1% alle ca. </value>
     </data>
     <data name="Tooltips_tooltips_Spell_Speed_GCD" xml:space="preserve">
-        <value> Punkt(e). Eine Reaktivierungszeit von 2.8s wird um 0.01s alle ca. </value>
+        <value> Punkt(e).
+
+Eine Reaktivierungszeit von 2.8s wird um 0.01s alle ca. </value>
     </data>
     <data name="Tooltips_tooltips_Spell_Speed" xml:space="preserve">
         <value>Zaubertempo</value>
     </data>
     <data name="Tooltips_tooltips_Skill_Spell_Speed_Tooltip" xml:space="preserve">
-        <value> senkt die (Re-)Aktivierungszeiten von Angriffen und erhöht den Schaden von Schaden über Zeit Effekten. Eine Reaktivierungszeit von 2.5s wird um 0.01 verkürzt alle ca. </value>
+        <value> senkt die (Re-)Aktivierungszeiten von Angriffen und erhöht den Schaden von Schaden über Zeit Effekten.
+
+Eine Reaktivierungszeit von 2.5s wird um 0.01 verkürzt alle ca. </value>
     </data>
     <data name="Tooltips_tooltips_points" xml:space="preserve">
         <value> Punkt(e).</value>
@@ -114,13 +122,19 @@ Du verschwendest momentan </value>
         <value>Zaubertempo/Schnelligkeit</value>
     </data>
     <data name="Tooltips_tooltips_Skill_Spell_Speed_DoT_Increase" xml:space="preserve">
-        <value> Punkt(e). Schaden über Zeit wird um 0.1% alle ca. </value>
+        <value> Punkt(e).
+
+Schaden über Zeit wird um 0.1% alle ca. </value>
     </data>
     <data name="Tooltips_tooltips_Direct_Hit_Tooltip" xml:space="preserve">
-        <value> beeinflusst die Rate in der deine Agriffe zu Direkten Treffern werden. Ein Direkter Treffer erhöht den verursachten schaden um 25%. Die Direkte Treffer Rate erhöht sich um 0.1% alle ca. </value>
+        <value> beeinflusst die Rate in der deine Agriffe zu Direkten Treffern werden. Ein Direkter Treffer erhöht den verursachten schaden um 25%.
+
+Die Direkte Treffer Rate erhöht sich um 0.1% alle ca. </value>
     </data>
     <data name="Tooltips_tooltips_Piety_Tooltip" xml:space="preserve">
-        <value> erhöht die Menge an MP welche je Server Tick regeneriert werden (alle 3s). Der Standardwert liegt bei 200 MP je tick. Frömmigkeit erhöht dies um 1 alle ca. </value>
+        <value> erhöht die Menge an MP welche je Server Tick regeneriert werden (alle 3s). Der Standardwert liegt bei 200 MP je tick.
+
+Frömmigkeit erhöht dies um 1 alle ca. </value>
     </data>
     <data name="Tooltips_tooltips_Expected_Damage" xml:space="preserve">
         <value>Durchschnittlicher Schaden einer 100 Attacke-Wert Fähigkeit, inklusive kritischer und direkter Treffer, sowie passiven Fertigkeiten wie Verbesserte Kommandos. Der Schaden wird mit dem Attacke-Wert, Waffenschaden, dem Hauptattribut, sowie allen anderen Schadensmodifikatoren berechnet und hat immer eine Varianz von ±5%. </value>
@@ -132,7 +146,9 @@ Du verschwendest momentan </value>
         <value> verringert erlittenen physischen Schaden um 1% alle ca. </value>
     </data>
     <data name="Tooltips_tooltips_Main_Stat_Tooltip" xml:space="preserve">
-        <value>erhöht den verursachten Schaden durch Angriffe sowie die Stärke von  Heilungszaubern. Eine Erhöhung des Hauptattributes von 10% enstpricht einer Schadens- und Heilungserhöhung von 10%. Die einzige Ausnahme stellt Physick vom BSW dar, da es mit Willenskraft statt Intelligenz skaliert.</value>
+        <value>erhöht den verursachten Schaden durch Angriffe sowie die Stärke von  Heilungszaubern. Eine Erhöhung des Hauptattributes von 10% enstpricht einer Schadens- und Heilungserhöhung von 10%.
+
+Die einzige Ausnahme stellt Physick vom BSW dar, da es mit Willenskraft statt Intelligenz skaliert.</value>
     </data>
     <data name="Tooltips_tooltips_Main_Stat" xml:space="preserve">
         <value>Hauptattribut </value>

@@ -61,7 +61,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         Configuration = Configuration.Get(pluginInterface);
         ConfigWindow = new ConfigWindow(this);
         
-        
+        LoadLocalization();
 
         var characterStatusOnSetupPtr =
             Service.SigScanner.ScanText("4C 8B DC 55 53 41 56 49 8D 6B A1 48 81 EC F0 00 00 00 48 8B 05 ?? ?? ?? ?? 48 33 C4 48 89 45 07");

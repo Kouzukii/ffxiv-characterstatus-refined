@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.Runtime.InteropServices;
+using Dalamud;
 using Dalamud.Hooking;
 using Dalamud.Logging;
 using Dalamud.Memory;
@@ -8,6 +10,7 @@ using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using FFXIVClientStructs.FFXIV.Client.Graphics;
 using FFXIVClientStructs.FFXIV.Component.GUI;
 using FFXIVClientStructs.STD;
+using Lumina.Data;
 
 namespace CharacterPanelRefined;
 
@@ -52,10 +55,13 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
     private JobId lastJob;
 
     public CharacterPanelRefinedPlugin(DalamudPluginInterface pluginInterface) {
+        
         Service.Initialize(pluginInterface);
 
         Configuration = Configuration.Get(pluginInterface);
         ConfigWindow = new ConfigWindow(this);
+        
+        LoadLocalization();
 
         var characterStatusOnSetupPtr =
             Service.SigScanner.ScanText("4C 8B DC 55 53 41 56 49 8D 6B A1 48 81 EC F0 00 00 00 48 8B 05 ?? ?? ?? ?? 48 33 C4 48 89 45 07");
@@ -72,6 +78,25 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
 
         pluginInterface.UiBuilder.Draw += ConfigWindow.Draw;
         pluginInterface.UiBuilder.OpenConfigUi += () => ConfigWindow.ShowConfig = true;
+    }
+    
+    public void LoadLocalization() {
+        var lang = "";
+        
+        if (Configuration.UseGameLanguage)
+        {
+            lang = Service.ClientState.ClientLanguage switch {
+                ClientLanguage.English => "",
+                ClientLanguage.French => "fr",
+                ClientLanguage.German => "de",
+                ClientLanguage.Japanese => "ja",
+                _ => ""
+            };
+        }
+        
+        PluginLog.LogInformation("lang: " + lang);
+        
+        Localization.Culture = new CultureInfo(lang);
     }
 
     private unsafe void* CharacterStatusRequestUpdate(AtkUnitBase* atkUnitBase, void* a2) {
@@ -142,7 +167,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
                 ClearPointers();
             }
         } catch (Exception e) {
-            PluginLog.LogError(e, "Failed to update CharacterStatus");
+            PluginLog.LogError(e, Localization.ERROR_Failed_to_update_CharacterStatus);
         }
 
         return characterStatusRequestUpdate.Original(atkUnitBase, a2);
@@ -269,6 +294,8 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
 
         return default;
     }
+    
+    
 
     private unsafe void* CharacterStatusOnSetup(AtkUnitBase* atkUnitBase, int a2, void* a3) {
         var val = characterStatusOnSetup.Original(atkUnitBase, a2, a3);
@@ -294,7 +321,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
             gearProp->Y = 80;
             var avgItemLvlNode = gearProp->ChildNode;
             avgItemLvlNode->PrevSiblingNode->ToggleVisibility(false); // header
-            expectedDamagePtr = AddStatRow((AtkComponentNode*)avgItemLvlNode, "Damage per 100 Pot");
+            expectedDamagePtr = AddStatRow((AtkComponentNode*)avgItemLvlNode, Localization.Panel_Damage_per_100_Potency);
             expectedDamagePtr->AtkResNode.NextSiblingNode->ToggleVisibility(false);
             expectedDamagePtr->AtkResNode.NextSiblingNode->NextSiblingNode->SetScale(0, 0); // toggle visibility doesn't work?
             SetTooltip(expectedDamagePtr, Tooltips.Entry.ExpectedDamage);
@@ -310,25 +337,25 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
             offensivePtr->Y = 150;
             var dh = offensivePtr->ChildNode;
             dh->Y = 120;
-            dhChancePtr = AddStatRow((AtkComponentNode*)dh, "Direct Hit Chance");
+            dhChancePtr = AddStatRow((AtkComponentNode*)dh, Localization.Panel_Direct_Hit_Chance);
             SetTooltip(dhChancePtr, Tooltips.Entry.DirectHit);
             var det = dh->PrevSiblingNode;
             det->Y = 80;
-            detDmgIncreasePtr = AddStatRow((AtkComponentNode*)det, "Damage Increase");
+            detDmgIncreasePtr = AddStatRow((AtkComponentNode*)det, Localization.Panel_Damage_Increase);
             SetTooltip(detDmgIncreasePtr, Tooltips.Entry.Determination);
             var crit = det->PrevSiblingNode;
-            critChancePtr = AddStatRow((AtkComponentNode*)crit, "Crit Chance");
-            critDmgPtr = AddStatRow((AtkComponentNode*)crit, "Crit Damage");
+            critChancePtr = AddStatRow((AtkComponentNode*)crit, Localization.Panel_Crit_Chance);
+            critDmgPtr = AddStatRow((AtkComponentNode*)crit, Localization.Panel_Crit_Damage);
             SetTooltip(critChancePtr, Tooltips.Entry.Crit);
 
             defensivePtr = atkUnitBase->UldManager.SearchNodeById(44);
             defensivePtr->Y = 150;
             var magicDef = defensivePtr->ChildNode;
             magicDef->Y = 60;
-            magicMitPtr = AddStatRow((AtkComponentNode*)magicDef, "Magic Mitigation");
+            magicMitPtr = AddStatRow((AtkComponentNode*)magicDef, Localization.Panel_Magic_Mitigation);
             SetTooltip(magicMitPtr, Tooltips.Entry.MagicDefense);
             var def = magicDef->PrevSiblingNode;
-            physMitPtr = AddStatRow((AtkComponentNode*)def, "Physical Mitigation");
+            physMitPtr = AddStatRow((AtkComponentNode*)def, Localization.Panel_Physical_Mitigation);
             SetTooltip(physMitPtr, Tooltips.Entry.Defense);
 
             var mentProperties = atkUnitBase->UldManager.SearchNodeById(58);
@@ -338,9 +365,9 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
             spellSpeedPtr->PrevSiblingNode->ToggleVisibility(false); // Magic Attack Potency
             spellSpeedPtr->PrevSiblingNode->PrevSiblingNode->ToggleVisibility(false); // Magic Heal Potency
             spellSpeedPtr->PrevSiblingNode->PrevSiblingNode->PrevSiblingNode->ToggleVisibility(false); // Header
-            spsSpeedIncreasePtr = AddStatRow((AtkComponentNode*)spellSpeedPtr, "Speed Increase");
-            spsGcdPtr = AddStatRow((AtkComponentNode*)spellSpeedPtr, "GCD");
-            sps28GcdPtr = AddStatRow((AtkComponentNode*)spellSpeedPtr, "Fire IV GCD");
+            spsSpeedIncreasePtr = AddStatRow((AtkComponentNode*)spellSpeedPtr, Localization.Panel_Skill_Speed_Increase);
+            spsGcdPtr = AddStatRow((AtkComponentNode*)spellSpeedPtr, Localization.Panel_GCD);
+            sps28GcdPtr = AddStatRow((AtkComponentNode*)spellSpeedPtr, Localization.Panel_Fire_IV_GCD);
             SetTooltip(spsSpeedIncreasePtr, Tooltips.Entry.Speed);
 
             physPropertiesPtr = atkUnitBase->UldManager.SearchNodeById(51);
@@ -348,19 +375,19 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
             skillSpeedPtr = physPropertiesPtr->ChildNode;
             skillSpeedPtr->Y = 20;
             skillSpeedPtr->PrevSiblingNode->ToggleVisibility(false); // Attack Power
-            ((AtkTextNode*)skillSpeedPtr->PrevSiblingNode->PrevSiblingNode->ChildNode->PrevSiblingNode)->SetText("Speed Properties");
-            sksSpeedIncreasePtr = AddStatRow((AtkComponentNode*)skillSpeedPtr, "Speed Increase");
-            sksGcdPtr = AddStatRow((AtkComponentNode*)skillSpeedPtr, "GCD");
+            ((AtkTextNode*)skillSpeedPtr->PrevSiblingNode->PrevSiblingNode->ChildNode->PrevSiblingNode)->SetText(Localization.Panel_Speed_Properties);
+            sksSpeedIncreasePtr = AddStatRow((AtkComponentNode*)skillSpeedPtr, Localization.Panel_Skill_Speed_Increase);
+            sksGcdPtr = AddStatRow((AtkComponentNode*)skillSpeedPtr, Localization.Panel_GCD);
             SetTooltip(sksSpeedIncreasePtr, Tooltips.Entry.Speed);
 
             var roleProp = atkUnitBase->UldManager.SearchNodeById(86);
             roleProp->Y = 60;
             pietyPtr = roleProp->ChildNode;
             pietyPtr->Y = 20;
-            pieManaPtr = AddStatRow((AtkComponentNode*)pietyPtr, "Mana per Tick");
+            pieManaPtr = AddStatRow((AtkComponentNode*)pietyPtr, Localization.Panel_Mana_per_Tick);
             SetTooltip(pieManaPtr, Tooltips.Entry.Piety);
             tenacityPtr = pietyPtr->PrevSiblingNode;
-            tenMitPtr = AddStatRow((AtkComponentNode*)tenacityPtr, "Damage & Mitigation");
+            tenMitPtr = AddStatRow((AtkComponentNode*)tenacityPtr, Localization.Panel_Damage_and_Mitigation);
             tenacityPtr->PrevSiblingNode->ToggleVisibility(false); // header
             SetTooltip(tenMitPtr, Tooltips.Entry.Tenacity);
 
@@ -378,7 +405,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
 
             UpdateCharacterPanelForJob(job);
         } catch (Exception e) {
-            PluginLog.LogError(e, "Failed to modify character");
+            PluginLog.LogError(e, Localization.ERROR_Failed_to_modify_character);
         }
 
         return val;

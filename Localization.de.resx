@@ -1,0 +1,178 @@
+﻿<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Tooltips_Critical_Hit" xml:space="preserve">
+        <value>Kritischer Treffer</value>
+    </data>
+    <data name="Panel_Crit_Chance" xml:space="preserve">
+        <value>Krit Chance</value>
+    </data>
+    <data name="Panel_Crit_Damage" xml:space="preserve">
+        <value>Krit Schaden</value>
+    </data>
+    <data name="Panel_Damage_Increase" xml:space="preserve">
+        <value>Schadenserhöhung</value>
+    </data>
+    <data name="Panel_Damage_per_100_Potency" xml:space="preserve">
+        <value>Schaden je 100 Wert</value>
+    </data>
+    <data name="Panel_Damage_and_Mitigation" xml:space="preserve">
+        <value>Schaden &amp; Abwehr</value>
+    </data>
+    <data name="Tooltips_Determination" xml:space="preserve">
+        <value>Entschlossenheit </value>
+    </data>
+    <data name="Panel_Direct_Hit_Chance" xml:space="preserve">
+        <value>Direkt Chance</value>
+    </data>
+    <data name="Panel_Fire_IV_GCD" xml:space="preserve">
+        <value>Feuka Reaktivierung</value>
+    </data>
+    <data name="Panel_GCD" xml:space="preserve">
+        <value>Reaktivierungszeit</value>
+    </data>
+    <data name="Panel_Magic_Mitigation" xml:space="preserve">
+        <value>Mag. Minderung</value>
+    </data>
+    <data name="Panel_Mana_per_Tick" xml:space="preserve">
+        <value>Mana je Tick</value>
+    </data>
+    <data name="Panel_Physical_Mitigation" xml:space="preserve">
+        <value>Phys. Minderung</value>
+    </data>
+    <data name="Panel_Skill_Speed_Increase" xml:space="preserve">
+        <value>Geschw. Erhöhung</value>
+    </data>
+    <data name="Panel_Speed_Properties" xml:space="preserve">
+        <value>Geschw. Eigenschaften</value>
+    </data>
+    <data name="Tooltips_Direct_Hit_Rate" xml:space="preserve">
+        <value>Direkte Treffer Rate </value>
+    </data>
+    <data name="Tooltips_Crit_Tooltip" xml:space="preserve">
+        <value> beeinflusst die Rate, mit der deine Angriffe und Heilungen kritische Treffer erzielen können, sowie den Schaden und die wiederhergestellten LP bei einem kritischen Treffer.
+
+Die Rate der kritischen Treffer und der Schaden erhöhen sich um 0,1% alle ca. </value>
+    </data>
+    <data name="Tooltips_Currently_Wasting" xml:space="preserve">
+        <value> Punkte.
+Du verschwendest momentan </value>
+    </data>
+    <data name="Tooltips_Defense" xml:space="preserve">
+        <value>Verteidigung</value>
+    </data>
+    <data name="Tooltips_Vitality_Tooltip_4" xml:space="preserve">
+        <value> Grund LP.</value>
+    </data>
+    <data name="Tooltips_Vitality_Tooltip_3" xml:space="preserve">
+        <value> hast du </value>
+    </data>
+    <data name="Tooltips_Vitality" xml:space="preserve">
+        <value>Konstitution </value>
+    </data>
+    <data name="Tooltips_Vitality_Tooltip_1" xml:space="preserve">
+        <value>erhöht die maximalen LP um </value>
+    </data>
+    <data name="Tooltips_Vitality_Tooltip_2" xml:space="preserve">
+        <value> für jeden Punkt. Als </value>
+    </data>
+    <data name="Tooltips_Defense_Tooltip" xml:space="preserve">
+        <value> verringert erlittenen physischen Schaden um 1% alle ca. </value>
+    </data>
+    <data name="Tooltips_Determination_Tooltip" xml:space="preserve">
+        <value>erhöht den verursachten Schaden durch Angriffe sowie die Stärke von  Heilungszaubern.
+
+Der Effekt von Entschlossenheit erhöht sich um 0.1% alle ca. </value>
+    </data>
+    <data name="Tooltips_Tenacity" xml:space="preserve">
+        <value>Unbeugsamkeit </value>
+    </data>
+    <data name="Tooltips_Tenacity_Tooltip" xml:space="preserve">
+        <value>erhöht den verursachten Schaden sowie die Heilung durch die eigenen Fähigkeiten, zudem wird der erlittene Schaden reduziert.
+
+Der Effekt von Unbeugsamkeit erhöht sich um 0.1% alle ca. </value>
+    </data>
+    <data name="Tooltips_Spell_Speed_GCD" xml:space="preserve">
+        <value> Punkt(e).
+
+Eine Reaktivierungszeit von 2.8s wird um 0.01s alle ca. </value>
+    </data>
+    <data name="Tooltips_Spell_Speed" xml:space="preserve">
+        <value>Zaubertempo</value>
+    </data>
+    <data name="Tooltips_Skill_Spell_Speed_Tooltip" xml:space="preserve">
+        <value> senkt die (Re-)Aktivierungszeiten von Angriffen und erhöht den Schaden von Schaden über Zeit Effekten.
+
+Eine Reaktivierungszeit von 2.5s wird um 0.01 verkürzt alle ca. </value>
+    </data>
+    <data name="Tooltips_points" xml:space="preserve">
+        <value> Punkt(e).</value>
+    </data>
+    <data name="Tooltips_Skill_Spell_Speed" xml:space="preserve">
+        <value>Zaubertempo/Schnelligkeit</value>
+    </data>
+    <data name="Tooltips_Skill_Spell_Speed_DoT_Increase" xml:space="preserve">
+        <value> Punkt(e).
+
+Schaden über Zeit wird um 0.1% alle ca. </value>
+    </data>
+    <data name="Tooltips_Direct_Hit_Tooltip" xml:space="preserve">
+        <value> beeinflusst die Rate in der deine Agriffe zu Direkten Treffern werden. Ein Direkter Treffer erhöht den verursachten schaden um 25%.
+
+Die Direkte Treffer Rate erhöht sich um 0.1% alle ca. </value>
+    </data>
+    <data name="Tooltips_Piety_Tooltip" xml:space="preserve">
+        <value> erhöht die Menge an MP welche je Server Tick regeneriert werden (alle 3s). Der Standardwert liegt bei 200 MP je tick.
+
+Frömmigkeit erhöht dies um 1 alle ca. </value>
+    </data>
+    <data name="Tooltips_Expected_Damage" xml:space="preserve">
+        <value>Durchschnittlicher Schaden einer 100 Attacke-Wert Fähigkeit, inklusive kritischer und direkter Treffer, sowie passiven Fertigkeiten wie Verbesserte Kommandos. Der Schaden wird mit dem Attacke-Wert, Waffenschaden, dem Hauptattribut, sowie allen anderen Schadensmodifikatoren berechnet und hat immer eine Varianz von ±5%. </value>
+    </data>
+    <data name="Tooltips_Magic_Defense" xml:space="preserve">
+        <value>Magieabwehr</value>
+    </data>
+    <data name="Tooltips_Magic_Defense_Tooltip" xml:space="preserve">
+        <value> verringert erlittenen physischen Schaden um 1% alle ca. </value>
+    </data>
+    <data name="Tooltips_Main_Stat_Tooltip" xml:space="preserve">
+        <value>erhöht den verursachten Schaden durch Angriffe sowie die Stärke von  Heilungszaubern. Eine Erhöhung des Hauptattributes von 10% enstpricht einer Schadens- und Heilungserhöhung von 10%.
+
+Die einzige Ausnahme stellt Physick vom BSW dar, da es mit Willenskraft statt Intelligenz skaliert.</value>
+    </data>
+    <data name="Tooltips_Main_Stat" xml:space="preserve">
+        <value>Hauptattribut </value>
+    </data>
+    <data name="Tooltips_Next_Tier" xml:space="preserve">
+        <value> Punkt(e). Um die nächste Stufe zu erreichen benötigst du </value>
+    </data>
+    <data name="Tooltips_Piety" xml:space="preserve">
+        <value>Frömmigkeit</value>
+    </data>
+    <data name="Config_Character_Panel_Refined_Config" xml:space="preserve">
+        <value>Character Panel Refined Konfiguration</value>
+    </data>
+    <data name="Config_Override_default_tooltips" xml:space="preserve">
+        <value>Überschreibe Standard Tooltips</value>
+    </data>
+    <data name="Config_Override_default_tooltips_tooltip" xml:space="preserve">
+        <value>Überscheibe die Standard Tooltips für sämtliche Attribute.</value>
+    </data>
+    <data name="Config_Use_Game_Language_if_available" xml:space="preserve">
+        <value>Verwende Spielsprache wenn möglich</value>
+    </data>
+    <data name="Config_Window_Use_Game_Language_Tooltip" xml:space="preserve">
+        <value>Verwende die interne Spielsprache für dieses Plugin, sollte sie verfügbar sein. 
+Verfügbar: Englisch, Deutsch</value>
+    </data>
+</root>

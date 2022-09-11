@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Runtime.InteropServices;
 using Dalamud.Game.Text.SeStringHandling;
 using T = Dalamud.Game.Text.SeStringHandling.Payloads.TextPayload;
@@ -16,97 +17,95 @@ public class Tooltips : IDisposable {
     private readonly Dictionary<Entry, SeString> tooltips = new() {
         {
             Entry.Crit,
-            new(new C(8), new T("Critical Hit"), new C(0),
-                new T(" affects the rate at which your attacks and heals can critically hit as well as the damage dealt and HP restored by a critical hit.\n\nCritical Hit Rate and Damage increase by 0.1% approx. every "),
-                new T("0"), new T(" points.\nYou are currently wasting "), new C(0), new T("0"), new C(0),
-                new T(" point(s).\nTo reach the next tier you need "),
-                new C(33), new T("0"), new C(0), new T(" point(s)."))
+            new(new C(8), new T(Localization.Tooltips_Critical_Hit), new C(0),
+                new T(Localization.Tooltips_Crit_Tooltip),
+                new T("0"), new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
+                new T(Localization.Tooltips_Next_Tier),
+                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_points))
         }, {
             Entry.Determination,
-            new(new C(8), new T("Determination"), new C(0),
-                new T(" increases damage dealt by attacks as well as HP restored by healing actions.\n\nDetermination's effect increases by 0.1% approx. every "),
-                new T("0"), new T(" points.\nYou are currently wasting "), new C(0), new T("0"), new C(0),
-                new T(" point(s).\nTo reach the next tier you need "),
-                new C(33), new T("0"), new C(0), new T(" point(s)."))
+            new(new C(8), new T(Localization.Tooltips_Determination), new C(0),
+                new T(Localization.Tooltips_Determination_Tooltip),
+                new T("0"), new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
+                new T(Localization.Tooltips_Next_Tier),
+                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_points))
         }, {
             Entry.DirectHit,
-            new(new C(8), new T("Direct Hit Rate"), new C(0),
-                new T(" affects the rate at which your attacks can direct hit.\nA direct hit increases damage done by 25%.\n\nDirect Hit Rate increases by 0.1% approx. every "),
-                new T("0"), new T(" points.\nYou are currently wasting "), new C(0), new T("0"), new C(0),
-                new T(" point(s).\nTo reach the next tier you need "),
-                new C(33), new T("0"), new C(0), new T(" point(s)."))
+            new(new C(8), new T(Localization.Tooltips_Direct_Hit_Rate), new C(0),
+                new T(Localization.Tooltips_Direct_Hit_Tooltip),
+                new T("0"), new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
+                new T(Localization.Tooltips_Next_Tier),
+                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_points))
         }, {
             Entry.Speed,
-            new(new C(8), new T("Skill/Spell Speed"), new C(0),
-                new T(" shortens cast times and recast timers as well as increase damage done by damage over time effects.\n\nA 2.5s GCD is sped up by 0.01s approx. every "),
-                new T("0"), new T(" points.\nYou are currently wasting "), new C(0), new T("0"), new C(0),
-                new T(" point(s).\nTo reach the next tier you need "),
-                new C(33), new T("0"), new C(0), new T(" point(s).\n\nDoT damage increases by 0.1% approx. every "), new T("0"),
-                new T(" points.\nYou are currently wasting "), new C(0), new T("0"), new C(0), new T(" point(s).\nTo reach the next tier you need "),
+            new(new C(8), new T(Localization.Tooltips_Skill_Spell_Speed), new C(0),
+                new T(Localization.Tooltips_Skill_Spell_Speed_Tooltip),
+                new T("0"), new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
+                new T(Localization.Tooltips_Next_Tier),
+                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_Skill_Spell_Speed_DoT_Increase), new T("0"),
+                new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0), new T(Localization.Tooltips_Next_Tier),
                 new C(33),
-                new T("0"), new C(0), new T(" point(s)."))
+                new T("0"), new C(0), new T(Localization.Tooltips_points))
         }, {
             Entry.Speed28,
-            new(new C(8), new T("Spell Speed"), new C(0),
-                new T(" shortens cast times and recast timers as well as increase damage done by damage over time effects.\n\nA 2.5s GCD is sped up by 0.01s approx. every "),
-                new T("0"), new T(" points.\nYou are currently wasting "), new C(0), new T("0"), new C(0),
-                new T(" point(s).\nTo reach the next tier you need "),
-                new C(33), new T("0"), new C(0), new T(" point(s).\n\nA 2.8s GCD is sped up by 0.01s approx. every "), new T("0"),
-                new T(" points.\nYou are currently wasting "), new C(0), new T("0"), new C(0), new T(" point(s).\nTo reach the next tier you need "),
+            new(new C(8), new T(Localization.Tooltips_Spell_Speed), new C(0),
+                new T(Localization.Tooltips_Skill_Spell_Speed_Tooltip),
+                new T("0"), new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
+                new T(Localization.Tooltips_Next_Tier),
+                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_Spell_Speed_GCD), new T("0"),
+                new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0), new T(Localization.Tooltips_Next_Tier),
                 new C(33),
-                new T("0"), new C(0), new T(" point(s).\n\nDoT damage increases by 0.1% approx. every "), new T("0"),
-                new T(" points.\nYou are currently wasting "), new C(0), new T("0"), new C(0), new T(" point(s).\nTo reach the next tier you need "),
+                new T("0"), new C(0), new T(Localization.Tooltips_Skill_Spell_Speed_DoT_Increase), new T("0"),
+                new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0), new T(Localization.Tooltips_Next_Tier),
                 new C(33),
-                new T("0"), new C(0), new T(" point(s)."))
+                new T("0"), new C(0), new T(Localization.Tooltips_points))
         }, {
             Entry.ExpectedDamage,
-            new(new T("Average damage of a 100 potency skill, including critical and direct hits as well as passive traits such as Maim and Mend.\n\n" +
-                      "Damage is multiplied by Potency, Weapon Damage, Main Stat (Str/Int/Dex/Mnd) and all other damage modifiers (such as Direct Hit +25%, Brotherhood +5%) and always has a variance of ±5%."))
+            new(new T(Localization.Tooltips_Expected_Damage))
         },
         {
             Entry.Tenacity,
-            new(new C(8), new T("Tenacity"), new C(0),
-                new T(" increases damage dealt and HP restored by your own actions as well as reducing damage taken.\n\nTenacity's effect increases by 0.1% approx. every "),
-                new T("0"), new T(" points.\nYou are currently wasting "), new C(0), new T("0"), new C(0),
-                new T(" point(s).\nTo reach the next tier you need "),
-                new C(33), new T("0"), new C(0), new T(" point(s)."))
+            new(new C(8), new T(Localization.Tooltips_Tenacity), new C(0),
+                new T(Localization.Tooltips_Tenacity_Tooltip),
+                new T("0"), new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
+                new T(Localization.Tooltips_Next_Tier),
+                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_points))
         },
         {
             Entry.Piety,
-            new(new C(8), new T("Piety"), new C(0),
-                new T(" increases the amount of MP gained per server tick (every 3s).\nBy default you will gain 200 MP per tick.\n\nPiety gives 1 extra MP approx. every "),
-                new T("0"), new T(" points.\nYou are currently wasting "), new C(0), new T("0"), new C(0),
-                new T(" point(s).\nTo reach the next tier you need "),
-                new C(33), new T("0"), new C(0), new T(" point(s)."))
+            new(new C(8), new T(Localization.Tooltips_Piety), new C(0),
+                new T(Localization.Tooltips_Piety_Tooltip),
+                new T("0"), new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
+                new T(Localization.Tooltips_Next_Tier),
+                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_points))
         },
         {
             Entry.Defense,
-            new(new C(8), new T("Defense"), new C(0),
-                new T(" reduces physical damage taken by 1% approx. every "),
-                new T("0"), new T(" points.\nYou are currently wasting "), new C(0), new T("0"), new C(0),
-                new T(" point(s).\nTo reach the next tier you need "),
-                new C(33), new T("0"), new C(0), new T(" point(s)."))
+            new(new C(8), new T(Localization.Tooltips_Defense), new C(0),
+                new T(Localization.Tooltips_Defense_Tooltip),
+                new T("0"), new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
+                new T(Localization.Tooltips_Next_Tier),
+                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_points))
             
         },
         {
             Entry.MagicDefense,
-            new(new C(8), new T("Magic Defense"), new C(0),
-                new T(" reduces magic damage taken by 1% approx. every "),
-                new T("0"), new T(" points.\nYou are currently wasting "), new C(0), new T("0"), new C(0),
-                new T(" point(s).\nTo reach the next tier you need "),
-                new C(33), new T("0"), new C(0), new T(" point(s)."))
+            new(new C(8), new T(Localization.Tooltips_Magic_Defense), new C(0),
+                new T(Localization.Tooltips_Magic_Defense_Tooltip),
+                new T("0"), new T(Localization.Tooltips_Currently_Wasting), new C(0), new T("0"), new C(0),
+                new T(Localization.Tooltips_Next_Tier),
+                new C(33), new T("0"), new C(0), new T(Localization.Tooltips_points))
             
         },
         {
             Entry.Vitality,
-            new(new C(8), new T("Vitality"), new C(0), new T(" increases max HP by "), new T("0"), new T(" every point.\nAs a "), new T(""), 
-                new T(" you have "), new T("0"), new T(" base HP."))
+            new(new C(8), new T(Localization.Tooltips_Vitality), new C(0), new T(Localization.Tooltips_Vitality_Tooltip_1), new T("0"), new T(Localization.Tooltips_Vitality_Tooltip_2), new T(""), 
+                new T(Localization.Tooltips_Vitality_Tooltip_3), new T("0"), new T(Localization.Tooltips_Vitality_Tooltip_4))
         },
         {
             Entry.MainStat,            
-            new(new C(8), new T("Main Stat"), new C(0), 
-                new T(" increases damage dealt as well as HP restored by your actions.\nAn increase of 10% main stat constitutes a 10% increase in damage and healing.\n\n" +
-                      "SMNs physick is the only exception since it scales with MND instead of INT."))
+            new(new C(8), new T(Localization.Tooltips_Main_Stat), new C(0), 
+                new T(Localization.Tooltips_Main_Stat_Tooltip))
         }
     };
 
@@ -167,6 +166,7 @@ public class Tooltips : IDisposable {
         ((T)tooltip.Payloads[11]).Text = (statInfo.NextTier - statInfo.CurrentValue).ToString();
         ((T)tooltip.Payloads[7]).Text = (statInfo.CurrentValue - statInfo.PrevTier).ToString();
         WriteString(entry);
+        
     }
 
     private void WriteString(Entry entry) {

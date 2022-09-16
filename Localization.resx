@@ -18,9 +18,6 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="ERROR_Failed_to_modify_character" xml:space="preserve">
-        <value>Failed to modify character</value>
-    </data>
     <data name="Tooltips_Critical_Hit" xml:space="preserve">
         <value>Critical Hit</value>
     </data>
@@ -44,9 +41,6 @@
     </data>
     <data name="Panel_Direct_Hit_Chance" xml:space="preserve">
         <value>Direct Hit Chance</value>
-    </data>
-    <data name="ERROR_Failed_to_update_CharacterStatus" xml:space="preserve">
-        <value>Failed to update CharacterStatus</value>
     </data>
     <data name="Panel_Fire_IV_GCD" xml:space="preserve">
         <value>Fire IV GCD</value>
@@ -193,6 +187,6 @@ SMNs physick is the only exception since it scales with MND instead of INT.</val
     </data>
     <data name="Config_Window_Use_Game_Language_Tooltip" xml:space="preserve">
         <value>Use the internal game language for this plugin if available. 
- Currently Available: English, German</value>
+ Currently Available: English, German, French</value>
     </data>
 </root>

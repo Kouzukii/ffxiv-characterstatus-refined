@@ -34,7 +34,7 @@ public class ConfigWindow {
             var bUseGameLanguage = conf.UseGameLanguage;
             if (ImGui.Checkbox(Localization.Config_Use_Game_Language_if_available, ref bUseGameLanguage)) {
                 conf.UseGameLanguage = bUseGameLanguage;
-                plugin.LoadLocalization();
+                plugin.UpdateLanguage();
                 conf.Save();
             }
             UseGameLanguageTooltip();

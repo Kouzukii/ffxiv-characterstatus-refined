@@ -10,7 +10,6 @@ using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using FFXIVClientStructs.FFXIV.Client.Graphics;
 using FFXIVClientStructs.FFXIV.Component.GUI;
 using FFXIVClientStructs.STD;
-using Lumina.Data;
 
 namespace CharacterPanelRefined;
 
@@ -22,7 +21,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
 
     private readonly Hook<AddonOnSetup> characterStatusOnSetup;
     private readonly Hook<RequestUpdate> characterStatusRequestUpdate;
-    private readonly Tooltips tooltips = new();
+    private readonly Tooltips tooltips;
 
     private unsafe delegate void* AddonOnSetup(AtkUnitBase* atkUnitBase, int a2, void* a3);
 
@@ -60,8 +59,9 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
 
         Configuration = Configuration.Get(pluginInterface);
         ConfigWindow = new ConfigWindow(this);
+        tooltips = new Tooltips();
         
-        LoadLocalization();
+        UpdateLanguage();
 
         var characterStatusOnSetupPtr =
             Service.SigScanner.ScanText("4C 8B DC 55 53 41 56 49 8D 6B A1 48 81 EC F0 00 00 00 48 8B 05 ?? ?? ?? ?? 48 33 C4 48 89 45 07");
@@ -80,7 +80,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         pluginInterface.UiBuilder.OpenConfigUi += () => ConfigWindow.ShowConfig = true;
     }
     
-    public void LoadLocalization() {
+    public void UpdateLanguage() {
         var lang = "";
         
         if (Configuration.UseGameLanguage)
@@ -93,10 +93,9 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
                 _ => ""
             };
         }
-        
-        PluginLog.LogInformation("lang: " + lang);
-        
         Localization.Culture = new CultureInfo(lang);
+        
+        tooltips.Reload();
     }
 
     private unsafe void* CharacterStatusRequestUpdate(AtkUnitBase* atkUnitBase, void* a2) {
@@ -167,7 +166,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
                 ClearPointers();
             }
         } catch (Exception e) {
-            PluginLog.LogError(e, Localization.ERROR_Failed_to_update_CharacterStatus);
+            PluginLog.LogError(e, "Failed to update CharacterStatus");
         }
 
         return characterStatusRequestUpdate.Original(atkUnitBase, a2);
@@ -405,7 +404,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
 
             UpdateCharacterPanelForJob(job);
         } catch (Exception e) {
-            PluginLog.LogError(e, Localization.ERROR_Failed_to_modify_character);
+            PluginLog.LogError(e, "Failed to modify character");
         }
 
         return val;

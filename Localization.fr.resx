@@ -11,4 +11,159 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <data name="Config_Character_Panel_Refined_Config" xml:space="preserve">
+        <value>Character Panel Refined Configuration</value>
+    </data>
+    <data name="Panel_Crit_Chance" xml:space="preserve">
+        <value>Chance de critique</value>
+    </data>
+    <data name="Tooltips_Vitality_Tooltip_4" xml:space="preserve">
+        <value> PV de base.</value>
+    </data>
+    <data name="Tooltips_Vitality" xml:space="preserve">
+        <value>Vitalité</value>
+    </data>
+    <data name="Tooltips_Tenacity" xml:space="preserve">
+        <value>Ténacité</value>
+    </data>
+    <data name="Tooltips_Spell_Speed" xml:space="preserve">
+        <value>Célérité</value>
+    </data>
+    <data name="Tooltips_Skill_Spell_Speed" xml:space="preserve">
+        <value>Vivacité/Célérité</value>
+    </data>
+    <data name="Tooltips_Piety" xml:space="preserve">
+        <value>Piété</value>
+    </data>
+    <data name="Panel_Fire_IV_GCD" xml:space="preserve">
+        <value>Giga Feu lancement</value>
+    </data>
+    <data name="Panel_Mana_per_Tick" xml:space="preserve">
+        <value>PM par tick</value>
+    </data>
+    <data name="Tooltips_Critical_Hit" xml:space="preserve">
+        <value>Critique</value>
+    </data>
+    <data name="Tooltips_Defense" xml:space="preserve">
+        <value>Défense</value>
+    </data>
+    <data name="Tooltips_Magic_Defense" xml:space="preserve">
+        <value>Défense magique</value>
+    </data>
+    <data name="Tooltips_Direct_Hit_Rate" xml:space="preserve">
+        <value>Coups nets</value>
+    </data>
+    <data name="Tooltips_Determination" xml:space="preserve">
+        <value>Détermination</value>
+    </data>
+    <data name="Panel_Crit_Damage" xml:space="preserve">
+        <value>Dégâts critique</value>
+    </data>
+    <data name="Panel_Damage_and_Mitigation" xml:space="preserve">
+        <value>Mitigation &amp; Dégâts</value>
+    </data>
+    <data name="Panel_Damage_Increase" xml:space="preserve">
+        <value>Augmentation dégâts</value>
+    </data>
+    <data name="Panel_Direct_Hit_Chance" xml:space="preserve">
+        <value>Chance de coup net</value>
+    </data>
+    <data name="Panel_Magic_Mitigation" xml:space="preserve">
+        <value>Mitigation magique</value>
+    </data>
+    <data name="Panel_Physical_Mitigation" xml:space="preserve">
+        <value>Mitigation physique</value>
+    </data>
+    <data name="Panel_Skill_Speed_Increase" xml:space="preserve">
+        <value>Augmentation vitesse</value>
+    </data>
+    <data name="Panel_Speed_Properties" xml:space="preserve">
+        <value>Propriétés vitesse</value>
+    </data>
+    <data name="Tooltips_Crit_Tooltip" xml:space="preserve">
+        <value> affecte le taux de critique des attaques et soins ainsi que les dégâts et soins des coup critiques.
+
+Taux de critique et dégâts augmentés d'environ 0.1% pour chaque </value>
+    </data>
+    <data name="Tooltips_Currently_Wasting" xml:space="preserve">
+        <value> points.
+Actuellement, vous gâchez </value>
+    </data>
+    <data name="Tooltips_Defense_Tooltip" xml:space="preserve">
+        <value> réduit les dégâts physique subits d'environ 1% pour chaque </value>
+    </data>
+    <data name="Tooltips_Determination_Tooltip" xml:space="preserve">
+        <value> augmente les dégâts infligés par vos attaques ainsi que les PV restaurés par les actions de soins.
+
+Les effets de détermination sont augmentés d'environ 0.1% pour chaque </value>
+    </data>
+    <data name="Tooltips_Direct_Hit_Tooltip" xml:space="preserve">
+        <value> affecte les chances que vos attaques soient des coups nets.
+Un coup net augmente les dégâts infligés de 25%.
+
+Chance de coup net augmentée d'environ 0.1% pour chaque </value>
+    </data>
+    <data name="Tooltips_Expected_Damage" xml:space="preserve">
+        <value>Dégâts moyens d'une compétence de puissance 100, en incluant les critiques et les coups nets ainsi que les talents passifs comme Main and Mend.
+
+Les dégâts sont multipliés par la puissance, les dégâts de l'arme, les statistiques principales (For/Int/Dex/Esp) et les autres modificateurs de dégâts (comme coup net +25%, fraternité +5%) et ont toujours une variance de ±5%.</value>
+    </data>
+    <data name="Tooltips_Magic_Defense_Tooltip" xml:space="preserve">
+        <value> réduit les dégâts magique subits d'environ 1% pour chaque </value>
+    </data>
+    <data name="Tooltips_Main_Stat_Tooltip" xml:space="preserve">
+        <value> augmente les dégâts infligés ainsi que les PV réstaurés par vos actions.
+Une augmentation de 10% sur la statistique principale offre une augmentation de 10% pour les dégâts et soins.
+
+Médecine d'Invocateur est la seule exception parce qu'elle augmente avec l'ESP au lieu de l'INT.</value>
+    </data>
+    <data name="Tooltips_Next_Tier" xml:space="preserve">
+        <value> point(s).
+Pour atteindre le prochain palier il vous faut </value>
+    </data>
+    <data name="Tooltips_Piety_Tooltip" xml:space="preserve">
+        <value> augmente le nombre de PM récupérés à chaque tick du serveur (toutes les 3s).
+Par défaut, vous récupérez 200 PM par tick.
+
+La piété augmente cette valeur de 1 PM environ pour chaque </value>
+    </data>
+    <data name="Tooltips_Skill_Spell_Speed_DoT_Increase" xml:space="preserve">
+        <value> point(s).
+
+Dégâts sur la durée augmentés d'environ 0.1% pour chaque </value>
+    </data>
+    <data name="Tooltips_Skill_Spell_Speed_Tooltip" xml:space="preserve">
+        <value> réduit le temps d'incantation et de recharge et augmente les dégâts infligés sur la durée.
+
+La recharge globale de 2.5s est accélérée d'environ 0.01s pour chaque </value>
+    </data>
+    <data name="Tooltips_Spell_Speed_GCD" xml:space="preserve">
+        <value> point(s).
+
+La recharge globale de 2.8s est accélérée d'environ 0.01s pour chaque </value>
+    </data>
+    <data name="Tooltips_Tenacity_Tooltip" xml:space="preserve">
+        <value> augmente les dégâts infligés et les PV restaurés par vos actions et réduit les dégâts subit.
+
+Les effets de ténacité augmentent d'environ 0.1% pour chaque </value>
+    </data>
+    <data name="Tooltips_Vitality_Tooltip_1" xml:space="preserve">
+        <value> augmente les PV max de </value>
+    </data>
+    <data name="Tooltips_Vitality_Tooltip_3" xml:space="preserve">
+        <value> vous avez </value>
+    </data>
+    <data name="Tooltips_Vitality_Tooltip_2" xml:space="preserve">
+        <value> pour chaque point.
+En tant que </value>
+    </data>
+    <data name="Panel_Damage_per_100_Potency" xml:space="preserve">
+        <value>Dégâts pour 100 puis.</value>
+    </data>
+    <data name="Panel_GCD" xml:space="preserve">
+        <value>Recharge</value>
+    </data>
+    <data name="Tooltips_Main_Stat" xml:space="preserve">
+        <value>Statistique principale</value>
+    </data>
 </root>

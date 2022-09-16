@@ -36,7 +36,7 @@
         <value>Direkt Chance</value>
     </data>
     <data name="Panel_Fire_IV_GCD" xml:space="preserve">
-        <value>Feuka Reaktivierung</value>
+        <value>Feuka Aktivierung</value>
     </data>
     <data name="Panel_GCD" xml:space="preserve">
         <value>Reaktivierungszeit</value>
@@ -57,7 +57,7 @@
         <value>Geschw. Eigenschaften</value>
     </data>
     <data name="Tooltips_Direct_Hit_Rate" xml:space="preserve">
-        <value>Direkte Treffer Rate </value>
+        <value>Direkte Treffer Rate</value>
     </data>
     <data name="Tooltips_Crit_Tooltip" xml:space="preserve">
         <value> beeinflusst die Rate, mit der deine Angriffe und Heilungen kritische Treffer erzielen können, sowie den Schaden und die wiederhergestellten LP bei einem kritischen Treffer.
@@ -111,7 +111,7 @@ Eine Reaktivierungszeit von 2.8s wird um 0.01s alle ca. </value>
         <value>Zaubertempo</value>
     </data>
     <data name="Tooltips_Skill_Spell_Speed_Tooltip" xml:space="preserve">
-        <value> senkt die (Re-)Aktivierungszeiten von Angriffen und erhöht den Schaden von Schaden über Zeit Effekten.
+        <value> senkt die (Re-) Aktivierungszeiten von Angriffen und erhöht den Schaden von Schaden über Zeit Effekten.
 
 Eine Reaktivierungszeit von 2.5s wird um 0.01 verkürzt alle ca. </value>
     </data>
@@ -173,6 +173,6 @@ Die einzige Ausnahme stellt Physick vom BSW dar, da es mit Willenskraft statt In
     </data>
     <data name="Config_Window_Use_Game_Language_Tooltip" xml:space="preserve">
         <value>Verwende die interne Spielsprache für dieses Plugin, sollte sie verfügbar sein. 
-Verfügbar: Englisch, Deutsch</value>
+Verfügbar: Englisch, Deutsch, Französisch</value>
     </data>
 </root>

@@ -19,9 +19,10 @@ public class ConfigWindow {
             return;
         var conf = plugin.Configuration;
         var bShowConfig = ShowConfig;
-        ImGui.SetNextWindowSize(ImGuiHelpers.ScaledVector2(300, 100));
-        if (ImGui.Begin(Localization.Config_Character_Panel_Refined_Config, ref bShowConfig, ImGuiWindowFlags.NoCollapse)) {
+        if (ImGui.Begin(Localization.Config_Character_Panel_Refined_Config, ref bShowConfig, ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.AlwaysAutoResize)) {
             
+            ImGui.TextUnformatted(Localization.Config_Help_Apply_Changes);
+            ImGui.Spacing();
             
             var bShowTooltips = conf.ShowTooltips;
             if (ImGui.Checkbox(Localization.Config_Override_default_tooltips, ref bShowTooltips)) {
@@ -38,6 +39,30 @@ public class ConfigWindow {
                 conf.Save();
             }
             UseGameLanguageTooltip();
+            
+            var bShowAvgDamage = conf.ShowAvgDamage;
+            if (ImGui.Checkbox(Localization.Config_Show_average_damage, ref bShowAvgDamage)) {
+                conf.ShowAvgDamage = bShowAvgDamage;
+                conf.Save();
+            }
+            
+            var bShowAvgHealing = conf.ShowAvgHealing;
+            if (ImGui.Checkbox(Localization.Config_Show_average_healing, ref bShowAvgHealing)) {
+                conf.ShowAvgHealing = bShowAvgHealing;
+                conf.Save();
+            }
+            
+            var bShowCritDamageIncrease = conf.ShowCritDamageIncrease;
+            if (ImGui.Checkbox(Localization.Config_Show_crit_damage_increase, ref bShowCritDamageIncrease)) {
+                conf.ShowCritDamageIncrease = bShowCritDamageIncrease;
+                conf.Save();
+            }
+            
+            var bShowDhDamageIncrease = conf.ShowDhDamageIncrease;
+            if (ImGui.Checkbox(Localization.Config_Show_direct_hit_damage_increase, ref bShowDhDamageIncrease)) {
+                conf.ShowDhDamageIncrease = bShowDhDamageIncrease;
+                conf.Save();
+            }
             
 
             ImGui.End();

@@ -103,8 +103,17 @@ Un coup net augmente les dégâts infligés de 25%.
 
 Chance de coup net augmentée d'environ 0.1% pour chaque </value>
     </data>
-    <data name="Tooltips_Expected_Damage" xml:space="preserve">
+    <data name="Tooltips_Expected_Damage_1" xml:space="preserve">
         <value>Dégâts moyens d'une compétence de puissance 100, en incluant les critiques et les coups nets ainsi que les talents passifs comme Main and Mend.
+            
+Un coup normale inflige</value>
+    </data>
+    <data name="Tooltips_Expected_Damage_2" xml:space="preserve">
+        <value>dégâts.
+Un coup critique inflige</value>
+    </data>
+    <data name="Tooltips_Expected_Damage_3" xml:space="preserve">
+        <value>dégâts.
 
 Les dégâts sont multipliés par la puissance, les dégâts de l'arme, les statistiques principales (For/Int/Dex/Esp) et les autres modificateurs de dégâts (comme coup net +25%, fraternité +5%) et ont toujours une variance de ±5%.</value>
     </data>
@@ -158,12 +167,15 @@ Les effets de ténacité augmentent d'environ 0.1% pour chaque </value>
 En tant que </value>
     </data>
     <data name="Panel_Damage_per_100_Potency" xml:space="preserve">
-        <value>Dégâts pour 100 puis.</value>
+        <value>Dégâts moyens</value>
     </data>
     <data name="Panel_GCD" xml:space="preserve">
         <value>Recharge</value>
     </data>
     <data name="Tooltips_Main_Stat" xml:space="preserve">
         <value>Statistique principale</value>
+    </data>
+    <data name="Panel_Heal_per_100_Potency" xml:space="preserve">
+        <value>Soins moyens</value>
     </data>
 </root>

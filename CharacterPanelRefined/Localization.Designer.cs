@@ -69,6 +69,15 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To apply any config changes you must reopen the character panel..
+        /// </summary>
+        internal static string Config_Help_Apply_Changes {
+            get {
+                return ResourceManager.GetString("Config_Help_Apply_Changes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Override default tooltips.
         /// </summary>
         internal static string Config_Override_default_tooltips {
@@ -83,6 +92,42 @@ namespace CharacterPanelRefined {
         internal static string Config_Override_default_tooltips_tooltip {
             get {
                 return ResourceManager.GetString("Config_Override_default_tooltips_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show average damage.
+        /// </summary>
+        internal static string Config_Show_average_damage {
+            get {
+                return ResourceManager.GetString("Config_Show_average_damage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show average healing.
+        /// </summary>
+        internal static string Config_Show_average_healing {
+            get {
+                return ResourceManager.GetString("Config_Show_average_healing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show crit damage increase.
+        /// </summary>
+        internal static string Config_Show_crit_damage_increase {
+            get {
+                return ResourceManager.GetString("Config_Show_crit_damage_increase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show direct hit damage increase.
+        /// </summary>
+        internal static string Config_Show_direct_hit_damage_increase {
+            get {
+                return ResourceManager.GetString("Config_Show_direct_hit_damage_increase", resourceCulture);
             }
         }
         
@@ -142,7 +187,7 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Damage per 100 Pot.
+        ///   Looks up a localized string similar to Avg. Damage.
         /// </summary>
         internal static string Panel_Damage_per_100_Potency {
             get {
@@ -160,7 +205,7 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fire IV GCD.
+        ///   Looks up a localized string similar to Fire IV Cast.
         /// </summary>
         internal static string Panel_Fire_IV_GCD {
             get {
@@ -169,11 +214,20 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to GCD.
+        ///   Looks up a localized string similar to Recast.
         /// </summary>
         internal static string Panel_GCD {
             get {
                 return ResourceManager.GetString("Panel_GCD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Avg. Healing.
+        /// </summary>
+        internal static string Panel_Heal_per_100_Potency {
+            get {
+                return ResourceManager.GetString("Panel_Heal_per_100_Potency", resourceCulture);
             }
         }
         
@@ -313,12 +367,65 @@ namespace CharacterPanelRefined {
         
         /// <summary>
         ///   Looks up a localized string similar to Average damage of a 100 potency skill, including critical and direct hits as well as passive traits such as Maim and Mend.
-        ///
+        ///            
+        ///A normal attack will do .
+        /// </summary>
+        internal static string Tooltips_Expected_Damage_1 {
+            get {
+                return ResourceManager.GetString("Tooltips_Expected_Damage_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  damage.
+        ///A critical hit will do .
+        /// </summary>
+        internal static string Tooltips_Expected_Damage_2 {
+            get {
+                return ResourceManager.GetString("Tooltips_Expected_Damage_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  damage.
+        ///            
         ///Damage is multiplied by Potency, Weapon Damage, Main Stat (Str/Int/Dex/Mnd) and all other damage modifiers (such as Direct Hit +25%, Brotherhood +5%) and always has a variance of ±5%..
         /// </summary>
-        internal static string Tooltips_Expected_Damage {
+        internal static string Tooltips_Expected_Damage_3 {
             get {
-                return ResourceManager.GetString("Tooltips_Expected_Damage", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Expected_Damage_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Average HP restored by a 100 potency healing action, including critical hits as well as passive traits such as Maim and Mend.
+        ///            
+        ///A normal heal will restore .
+        /// </summary>
+        internal static string Tooltips_Expected_Heal_1 {
+            get {
+                return ResourceManager.GetString("Tooltips_Expected_Heal_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  HP.
+        ///A critical hit will restore .
+        /// </summary>
+        internal static string Tooltips_Expected_Heal_2 {
+            get {
+                return ResourceManager.GetString("Tooltips_Expected_Heal_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  HP.
+        ///            
+        ///HP restored will always vary by ±3%..
+        /// </summary>
+        internal static string Tooltips_Expected_Heal_3 {
+            get {
+                return ResourceManager.GetString("Tooltips_Expected_Heal_3", resourceCulture);
             }
         }
         

@@ -12,6 +12,10 @@ public class Configuration : IPluginConfiguration {
 
     public bool ShowTooltips { get; set; } = true;
     public bool UseGameLanguage { get; set; } = true;
+    public bool ShowAvgDamage { get; set; } = true;
+    public bool ShowAvgHealing { get; set; } = true;
+    public bool ShowCritDamageIncrease { get; set; } = false;
+    public bool ShowDhDamageIncrease { get; set; } = false;
     public int Version { get; set; } = 0;
 
     public static Configuration Get(DalamudPluginInterface pluginInterface) {

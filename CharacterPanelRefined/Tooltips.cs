@@ -22,6 +22,7 @@ public class Tooltips : IDisposable {
         Speed,
         Speed28,
         ExpectedDamage,
+        ExpectedHeal,
         Tenacity,
         Piety,
         Defense,
@@ -71,13 +72,22 @@ public class Tooltips : IDisposable {
         tooltips[Entry.Vitality] = new(new C(8), new T(Localization.Tooltips_Vitality), new C(0), new T(Localization.Tooltips_Vitality_Tooltip_1), new T("0"),
             new T(Localization.Tooltips_Vitality_Tooltip_2), new T(""), new T(Localization.Tooltips_Vitality_Tooltip_3), new T("0"),
             new T(Localization.Tooltips_Vitality_Tooltip_4));
+        tooltips[Entry.ExpectedDamage] = new(new T(Localization.Tooltips_Expected_Damage_1), new C(8), new T("0"), new C(0),
+            new T(Localization.Tooltips_Expected_Damage_2), new C(8), new T("0"), new C(0), new T(Localization.Tooltips_Expected_Damage_3));
+        tooltips[Entry.ExpectedHeal] = new(new T(Localization.Tooltips_Expected_Heal_1), new C(8), new T("0"), new C(0),
+            new T(Localization.Tooltips_Expected_Heal_2), new C(8), new T("0"), new C(0), new T(Localization.Tooltips_Expected_Heal_3));
         tooltips[Entry.MainStat] = new(new C(8), new T(Localization.Tooltips_Main_Stat), new C(0), new T(Localization.Tooltips_Main_Stat_Tooltip));
         WriteString(Entry.MainStat);
-        tooltips[Entry.ExpectedDamage] = new(new T(Localization.Tooltips_Expected_Damage));
-        WriteString(Entry.ExpectedDamage);
     }
 
     public IntPtr this[Entry entry] => allocations[entry];
+
+    public void UpdateExpectedOutput(Entry entry, double normalOutput, double critOutput) {
+        var tooltip = tooltips[entry];
+        ((T)tooltip.Payloads[2]).Text = normalOutput.ToString("N0");
+        ((T)tooltip.Payloads[6]).Text = critOutput.ToString("N0");
+        WriteString(entry);
+    }
 
     public void UpdateVitality(string job, double hpPerVitality, double jobModifer) {
         var tooltip = tooltips[Entry.Vitality];

@@ -93,7 +93,7 @@ public class Equations {
         }
     }
 
-    public static unsafe double CalcRawDamage(UIState* uiState, JobId jobId, double det, double critDmg, double critRate, double dh, double ten, ref LevelModifier lvlModifier) {
+    public static unsafe (double AvgDamage, double NormalDamage, double CritDamage, double AvgHeal, double NormalHeal, double CritHeal) CalcExpectedOutput(UIState* uiState, JobId jobId, double det, double critMult, double critRate, double dh, double ten, ref LevelModifier lvlModifier) {
         try {
             var lvl = uiState->PlayerState.CurrentLevel;
             var ap = uiState->PlayerState.Attributes[(int)(jobId.IsCaster() ? Attributes.AttackMagicPotency : Attributes.AttackPower)];
@@ -107,12 +107,19 @@ public class Equations {
             var weaponDamage = Math.Floor(lvlModifier.Main * jobId.AttackModifier() / 1000.0 + weaponBaseDamage) / 100.0;
             var lvlAttackModifier = jobId.UsesTenacity() ? LevelModifiers.TankAttackModifier(lvl) : LevelModifiers.AttackModifier(lvl);
             var atk = Math.Floor(lvlAttackModifier * (ap - lvlModifier.Main) / lvlModifier.Main + 100) / 100.0;
-            var rawDamage = Math.Floor(100 * atk * weaponDamage * (1 + det) * jobId.TraitModifiers(lvl) * (1 + (critDmg - 1) * critRate) * (1 + dh * 0.25) *
-                                       (1 + ten));
-            return rawDamage;
+            var baseDamage = Math.Floor(Math.Floor(Math.Floor(100 * atk * weaponDamage) * (1 + det)) * (1 + ten)) * jobId.TraitModifiers(lvl);
+            var avgDamage = Math.Floor(baseDamage * (1 + (critMult - 1) * critRate) * (1 + dh * 0.25));
+            var critDamage = Math.Floor(baseDamage * critMult);
+            var normalDamage = Math.Floor(baseDamage);
+            
+            var healPot = Math.Floor(569.0 * (ap - lvlModifier.Main) / 1522.0 + 100) / 100.0;
+            var normalHeal = Math.Floor(Math.Floor(Math.Floor(Math.Floor(100 * healPot * weaponDamage) * (1 + det)) * (1 + ten)) * (jobId.IsCaster() ? jobId.TraitModifiers(lvl) : 1));
+            var avgHeal = Math.Floor(normalHeal * (1 + (critMult - 1) * critRate));
+            var critHeal = Math.Floor(normalHeal * critMult);
+            return (avgDamage, normalDamage, critDamage, avgHeal, normalHeal, critHeal);
         } catch (Exception e) {
             PluginLog.Warning(e, "Failed to calculate raw damage");
-            return 0;
+            return (0, 0, 0, 0, 0, 0);
         }
     }
 

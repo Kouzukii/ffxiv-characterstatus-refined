@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Runtime.InteropServices;
 using Dalamud;
+using Dalamud.Game.Command;
 using Dalamud.Hooking;
 using Dalamud.Logging;
 using Dalamud.Memory;
@@ -30,9 +31,11 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
 
     private IntPtr characterStatusPtr;
     private unsafe AtkTextNode* dhChancePtr;
+    private unsafe AtkTextNode* dhDamagePtr;
     private unsafe AtkTextNode* detDmgIncreasePtr;
     private unsafe AtkTextNode* critDmgPtr;
     private unsafe AtkTextNode* critChancePtr;
+    private unsafe AtkTextNode* critDmgIncreasePtr;
     private unsafe AtkTextNode* physMitPtr;
     private unsafe AtkTextNode* magicMitPtr;
     private unsafe AtkTextNode* sksSpeedIncreasePtr;
@@ -43,6 +46,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
     private unsafe AtkTextNode* tenMitPtr;
     private unsafe AtkTextNode* pieManaPtr;
     private unsafe AtkTextNode* expectedDamagePtr;
+    private unsafe AtkTextNode* expectedHealPtr;
     private unsafe AtkResNode* attributesPtr;
     private unsafe AtkResNode* offensivePtr;
     private unsafe AtkResNode* defensivePtr;
@@ -75,9 +79,11 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
 
         characterStatusOnSetup.Enable();
         characterStatusRequestUpdate.Enable();
-
+        
         pluginInterface.UiBuilder.Draw += ConfigWindow.Draw;
         pluginInterface.UiBuilder.OpenConfigUi += () => ConfigWindow.ShowConfig = true;
+        Service.CommandManager.AddHandler("/cprconfig",
+            new CommandInfo((_, _) => ConfigWindow.ShowConfig ^= true) { HelpMessage = "Open the Character Panel Refined configuration." });
     }
     
     public void UpdateLanguage() {
@@ -108,6 +114,8 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
 
                 var dh = Equations.CalcDh(uiState->PlayerState.Attributes[(int)Attributes.DirectHit], ref statInfo, ref levelModifier);
                 dhChancePtr->SetText($"{statInfo.DisplayValue:P1}");
+                if (dhDamagePtr != null)
+                    dhDamagePtr->SetText($"{statInfo.DisplayValue * 0.25:P1}");
                 tooltips.Update(Tooltips.Entry.DirectHit, ref statInfo);
 
                 var det = Equations.CalcDet(uiState->PlayerState.Attributes[(int)Attributes.Determination], ref statInfo, ref levelModifier);
@@ -120,6 +128,8 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
 
                 var critDmg = Equations.CalcCritDmg(uiState->PlayerState.Attributes[(int)Attributes.CriticalHit], ref statInfo, ref levelModifier);
                 critDmgPtr->SetText($"{statInfo.DisplayValue:P1}");
+                if (critDmgIncreasePtr != null)
+                    critDmgIncreasePtr->SetText($"{critRate * (critDmg-1):P1}");
 
                 Equations.CalcMagicDef(uiState->PlayerState.Attributes[(int)Attributes.MagicDefense], ref statInfo, ref levelModifier);
                 magicMitPtr->SetText($"{statInfo.DisplayValue:P0}");
@@ -158,7 +168,19 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
                 Equations.CalcHp(uiState, jobId, out var hpPerVitality, out var hpModifier);
                 tooltips.UpdateVitality(jobId.ToString(), hpPerVitality, hpModifier);
 
-                expectedDamagePtr->SetText($"{Equations.CalcRawDamage(uiState, jobId, det, critDmg, critRate, dh, ten, ref levelModifier):N0}");
+                if (expectedDamagePtr != null || expectedHealPtr != null) {
+                    var (avgDamage, normalDamage, critDamage, avgHeal, normalHeal, critHeal) =
+                        Equations.CalcExpectedOutput(uiState, jobId, det, critDmg, critRate, dh, ten, ref levelModifier);
+                    if (expectedDamagePtr != null) {
+                        expectedDamagePtr->SetText($"{avgDamage:N0}");
+                        tooltips.UpdateExpectedOutput(Tooltips.Entry.ExpectedDamage, normalDamage, critDamage);
+                    }
+                    if (expectedHealPtr != null) {
+                        expectedHealPtr->SetText($"{avgHeal:N0}");
+                        tooltips.UpdateExpectedOutput(Tooltips.Entry.ExpectedHeal, normalHeal, critHeal);
+                    }
+                }
+
                 if (jobId != lastJob) {
                     UpdateCharacterPanelForJob(jobId);
                 }
@@ -175,9 +197,11 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
     private unsafe void ClearPointers() {
         characterStatusPtr = IntPtr.Zero;
         dhChancePtr = null;
+        dhDamagePtr = null;
         detDmgIncreasePtr = null;
         critDmgPtr = null;
         critChancePtr = null;
+        critDmgIncreasePtr = null;
         physMitPtr = null;
         magicMitPtr = null;
         sksSpeedIncreasePtr = null;
@@ -188,10 +212,13 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         tenMitPtr = null;
         pieManaPtr = null;
         expectedDamagePtr = null;
+        expectedHealPtr = null;
         attributesPtr = null;
         offensivePtr = null;
         defensivePtr = null;
         physPropertiesPtr = null;
+        pietyPtr = null;
+        tenacityPtr = null;
         spellSpeedPtr = null;
         skillSpeedPtr = null;
     }
@@ -205,12 +232,18 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
             offensivePtr->ToggleVisibility(false);
             defensivePtr->ToggleVisibility(false);
             physPropertiesPtr->ToggleVisibility(false);
-            expectedDamagePtr->AtkResNode.ParentNode->ToggleVisibility(false);
+            if (expectedDamagePtr != null)
+                expectedDamagePtr->AtkResNode.ParentNode->ToggleVisibility(false);
+            if (expectedHealPtr != null)
+                expectedHealPtr->AtkResNode.ParentNode->ToggleVisibility(false);
         } else {
             offensivePtr->ToggleVisibility(true);
             defensivePtr->ToggleVisibility(true);
             physPropertiesPtr->ToggleVisibility(true);
-            expectedDamagePtr->AtkResNode.ParentNode->ToggleVisibility(true);
+            if (expectedDamagePtr != null)
+                expectedDamagePtr->AtkResNode.ParentNode->ToggleVisibility(true);
+            if (expectedHealPtr != null)
+                expectedHealPtr->AtkResNode.ParentNode->ToggleVisibility(true);
             if (job.IsCaster()) {
                 skillSpeedPtr->ToggleVisibility(false);
                 spellSpeedPtr->ToggleVisibility(true);
@@ -316,14 +349,30 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
             vitalityNode->Y = 20;
             SetTooltip((AtkComponentNode*)vitalityNode, Tooltips.Entry.Vitality);
 
+            var attributesHeight = 130;
+            
             var gearProp = atkUnitBase->UldManager.SearchNodeById(80);
-            gearProp->Y = 80;
-            var avgItemLvlNode = gearProp->ChildNode;
-            avgItemLvlNode->PrevSiblingNode->ToggleVisibility(false); // header
-            expectedDamagePtr = AddStatRow((AtkComponentNode*)avgItemLvlNode, Localization.Panel_Damage_per_100_Potency);
-            expectedDamagePtr->AtkResNode.NextSiblingNode->ToggleVisibility(false);
-            expectedDamagePtr->AtkResNode.NextSiblingNode->NextSiblingNode->SetScale(0, 0); // toggle visibility doesn't work?
-            SetTooltip(expectedDamagePtr, Tooltips.Entry.ExpectedDamage);
+            if (Configuration.ShowAvgDamage) {
+                attributesHeight += 20;
+                gearProp->Y = 100;
+                var avgItemLvlNode = gearProp->ChildNode;
+                avgItemLvlNode->PrevSiblingNode->ToggleVisibility(false); // header
+                expectedDamagePtr = AddStatRow((AtkComponentNode*)avgItemLvlNode, Localization.Panel_Damage_per_100_Potency, true);
+                SetTooltip(expectedDamagePtr, Tooltips.Entry.ExpectedDamage);
+            } else {
+                gearProp->ToggleVisibility(false);
+            }
+            
+            var mentProperties = atkUnitBase->UldManager.SearchNodeById(58);
+            var magAtkPotency = mentProperties->ChildNode->PrevSiblingNode;
+            if (Configuration.ShowAvgHealing) {
+                attributesHeight += 20;
+                magAtkPotency->Y = -160;
+                expectedHealPtr = AddStatRow((AtkComponentNode*)magAtkPotency, Localization.Panel_Heal_per_100_Potency, true);
+                SetTooltip(expectedHealPtr, Tooltips.Entry.ExpectedHeal);
+            } else {
+                magAtkPotency->ToggleVisibility(false);
+            }
 
             var dexNode = vitalityNode->PrevSiblingNode;
             dexNode->Y = 40;
@@ -332,11 +381,18 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
             strNode->Y = 40;
             SetTooltip((AtkComponentNode*)strNode, Tooltips.Entry.MainStat);
 
+            var offensiveHeight = 130;
+            
             offensivePtr = atkUnitBase->UldManager.SearchNodeById(36);
-            offensivePtr->Y = 150;
+            offensivePtr->Y = attributesHeight;
             var dh = offensivePtr->ChildNode;
             dh->Y = 120;
             dhChancePtr = AddStatRow((AtkComponentNode*)dh, Localization.Panel_Direct_Hit_Chance);
+            if (Configuration.ShowDhDamageIncrease) {
+                offensiveHeight += 20;
+                magAtkPotency->Y -= 20;
+                dhDamagePtr = AddStatRow((AtkComponentNode*)dh, Localization.Panel_Damage_Increase);
+            }
             SetTooltip(dhChancePtr, Tooltips.Entry.DirectHit);
             var det = dh->PrevSiblingNode;
             det->Y = 80;
@@ -345,10 +401,17 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
             var crit = det->PrevSiblingNode;
             critChancePtr = AddStatRow((AtkComponentNode*)crit, Localization.Panel_Crit_Chance);
             critDmgPtr = AddStatRow((AtkComponentNode*)crit, Localization.Panel_Crit_Damage);
+            if (Configuration.ShowCritDamageIncrease) {
+                offensiveHeight += 20;
+                dh->Y += 20;
+                det->Y += 20;
+                magAtkPotency->Y -= 20;
+                critDmgIncreasePtr = AddStatRow((AtkComponentNode*)crit, Localization.Panel_Damage_Increase);
+            }
             SetTooltip(critChancePtr, Tooltips.Entry.Crit);
 
             defensivePtr = atkUnitBase->UldManager.SearchNodeById(44);
-            defensivePtr->Y = 150;
+            defensivePtr->Y = attributesHeight;
             var magicDef = defensivePtr->ChildNode;
             magicDef->Y = 60;
             magicMitPtr = AddStatRow((AtkComponentNode*)magicDef, Localization.Panel_Magic_Mitigation);
@@ -357,20 +420,18 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
             physMitPtr = AddStatRow((AtkComponentNode*)def, Localization.Panel_Physical_Mitigation);
             SetTooltip(physMitPtr, Tooltips.Entry.Defense);
 
-            var mentProperties = atkUnitBase->UldManager.SearchNodeById(58);
             mentProperties->X = 0;
-            mentProperties->Y = 280;
+            mentProperties->Y = attributesHeight + offensiveHeight;
             spellSpeedPtr = mentProperties->ChildNode;
-            spellSpeedPtr->PrevSiblingNode->ToggleVisibility(false); // Magic Attack Potency
-            spellSpeedPtr->PrevSiblingNode->PrevSiblingNode->ToggleVisibility(false); // Magic Heal Potency
-            spellSpeedPtr->PrevSiblingNode->PrevSiblingNode->PrevSiblingNode->ToggleVisibility(false); // Header
+            magAtkPotency->PrevSiblingNode->ToggleVisibility(false); // Magic Heal Potency
+            magAtkPotency->PrevSiblingNode->PrevSiblingNode->ToggleVisibility(false); // Header
             spsSpeedIncreasePtr = AddStatRow((AtkComponentNode*)spellSpeedPtr, Localization.Panel_Skill_Speed_Increase);
             spsGcdPtr = AddStatRow((AtkComponentNode*)spellSpeedPtr, Localization.Panel_GCD);
             sps28GcdPtr = AddStatRow((AtkComponentNode*)spellSpeedPtr, Localization.Panel_Fire_IV_GCD);
             SetTooltip(spsSpeedIncreasePtr, Tooltips.Entry.Speed);
 
             physPropertiesPtr = atkUnitBase->UldManager.SearchNodeById(51);
-            physPropertiesPtr->Y = 320;
+            physPropertiesPtr->Y = attributesHeight + offensiveHeight + 40;
             skillSpeedPtr = physPropertiesPtr->ChildNode;
             skillSpeedPtr->Y = 20;
             skillSpeedPtr->PrevSiblingNode->ToggleVisibility(false); // Attack Power
@@ -410,11 +471,13 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         return val;
     }
 
-    private unsafe AtkTextNode* AddStatRow(AtkComponentNode* parentNode, string label) {
+    private unsafe AtkTextNode* AddStatRow(AtkComponentNode* parentNode, string label, bool hideOriginal = false) {
         ExpandNodeList(parentNode, 2);
-        parentNode->AtkResNode.Height += 20;
         var collisionNode = parentNode->Component->UldManager.RootNode;
-        collisionNode->Height += 20;
+        if (!hideOriginal) {
+            parentNode->AtkResNode.Height += 20;
+            collisionNode->Height += 20;
+        }
         var numberNode = (AtkTextNode*)collisionNode->PrevSiblingNode;
         var labelNode = (AtkTextNode*)numberNode->AtkResNode.PrevSiblingNode;
         var newNumberNode = CloneNode(numberNode);
@@ -436,6 +499,10 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         newLabelNode->NodeText.StringPtr = (byte*)MemoryHelper.GameAllocateUi((ulong)newLabelNode->NodeText.BufSize);
         newLabelNode->SetText(label);
         parentNode->Component->UldManager.NodeList[parentNode->Component->UldManager.NodeListCount++] = (AtkResNode*)newLabelNode;
+        if (hideOriginal) {
+            labelNode->AtkResNode.ToggleVisibility(false);
+            numberNode->TextColor.A = 0; // toggle visibility doesn't work since it's constantly updated by the game
+        }
         return newNumberNode;
     }
 
@@ -469,6 +536,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
 
     public void Dispose() {
         ClearPointers();
+        Service.CommandManager.RemoveHandler("/cprconfig");
         characterStatusOnSetup.Dispose();
         characterStatusRequestUpdate.Disable();
         tooltips.Dispose();

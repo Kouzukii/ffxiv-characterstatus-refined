@@ -31,7 +31,10 @@
         <value>Damage Increase</value>
     </data>
     <data name="Panel_Damage_per_100_Potency" xml:space="preserve">
-        <value>Damage per 100 Pot</value>
+        <value>Avg. Damage</value>
+    </data>
+    <data name="Panel_Heal_per_100_Potency" xml:space="preserve">
+        <value>Avg. Healing</value>
     </data>
     <data name="Panel_Damage_and_Mitigation" xml:space="preserve">
         <value>Damage &amp; Mitigation</value>
@@ -43,10 +46,10 @@
         <value>Direct Hit Chance</value>
     </data>
     <data name="Panel_Fire_IV_GCD" xml:space="preserve">
-        <value>Fire IV GCD</value>
+        <value>Fire IV Cast</value>
     </data>
     <data name="Panel_GCD" xml:space="preserve">
-        <value>GCD</value>
+        <value>Recast</value>
     </data>
     <data name="Panel_Magic_Mitigation" xml:space="preserve">
         <value>Magic Mitigation</value>
@@ -114,10 +117,33 @@ A 2.8s GCD is sped up by 0.01s approx. every </value>
     <data name="Tooltips_Spell_Speed" xml:space="preserve">
         <value>Spell Speed</value>
     </data>
-    <data name="Tooltips_Expected_Damage" xml:space="preserve">
+    <data name="Tooltips_Expected_Damage_1" xml:space="preserve">
         <value>Average damage of a 100 potency skill, including critical and direct hits as well as passive traits such as Maim and Mend.
-
+            
+A normal attack will do </value>
+    </data>
+    <data name="Tooltips_Expected_Damage_2" xml:space="preserve">
+        <value> damage.
+A critical hit will do </value>
+    </data>
+    <data name="Tooltips_Expected_Damage_3" xml:space="preserve">
+        <value> damage.
+            
 Damage is multiplied by Potency, Weapon Damage, Main Stat (Str/Int/Dex/Mnd) and all other damage modifiers (such as Direct Hit +25%, Brotherhood +5%) and always has a variance of ±5%.</value>
+    </data>
+    <data name="Tooltips_Expected_Heal_1" xml:space="preserve">
+        <value>Average HP restored by a 100 potency healing action, including critical hits as well as passive traits such as Maim and Mend.
+            
+A normal heal will restore </value>
+    </data>
+    <data name="Tooltips_Expected_Heal_2" xml:space="preserve">
+        <value> HP.
+A critical hit will restore </value>
+    </data>
+    <data name="Tooltips_Expected_Heal_3" xml:space="preserve">
+        <value> HP.
+            
+HP restored will always vary by ±3%.</value>
     </data>
     <data name="Tooltips_Tenacity" xml:space="preserve">
         <value>Tenacity</value>
@@ -188,5 +214,20 @@ SMNs physick is the only exception since it scales with MND instead of INT.</val
     <data name="Config_Window_Use_Game_Language_Tooltip" xml:space="preserve">
         <value>Use the internal game language for this plugin if available. 
  Currently Available: English, German, French</value>
+    </data>
+    <data name="Config_Show_average_damage" xml:space="preserve">
+        <value>Show average damage</value>
+    </data>
+    <data name="Config_Show_average_healing" xml:space="preserve">
+        <value>Show average healing</value>
+    </data>
+    <data name="Config_Show_crit_damage_increase" xml:space="preserve">
+        <value>Show crit damage increase</value>
+    </data>
+    <data name="Config_Show_direct_hit_damage_increase" xml:space="preserve">
+        <value>Show direct hit damage increase</value>
+    </data>
+    <data name="Config_Help_Apply_Changes" xml:space="preserve">
+        <value>To apply any config changes you must reopen the character panel.</value>
     </data>
 </root>

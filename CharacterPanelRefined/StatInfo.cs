@@ -5,4 +5,5 @@ public struct StatInfo {
     public int CurrentValue { get; set; }
     public int PrevTier { get; set; }
     public int NextTier { get; set; }
+    public double PointsPerTier { get; set; }
 }

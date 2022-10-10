@@ -277,9 +277,9 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  affects the rate at which your attacks and heals can critically hit as well as the damage dealt and HP restored by a critical hit.
+        ///   Looks up a localized string similar to {@Title}Critical Hit{@Clear} affects the rate at which your attacks and heals can critically hit as well as the damage dealt and HP restored by a critical hit.
         ///
-        ///Critical Hit Rate and Damage increase by 0.1% approx. every .
+        ///Critical Hit Rate and Damage increase by 0.1% every {PointsPerTier} points..
         /// </summary>
         internal static string Tooltips_Crit_Tooltip {
             get {
@@ -288,35 +288,7 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Critical Hit.
-        /// </summary>
-        internal static string Tooltips_Critical_Hit {
-            get {
-                return ResourceManager.GetString("Tooltips_Critical_Hit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  points.
-        ///You are currently wasting .
-        /// </summary>
-        internal static string Tooltips_Currently_Wasting {
-            get {
-                return ResourceManager.GetString("Tooltips_Currently_Wasting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Defense.
-        /// </summary>
-        internal static string Tooltips_Defense {
-            get {
-                return ResourceManager.GetString("Tooltips_Defense", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  reduces physical damage taken by 1% approx. every .
+        ///   Looks up a localized string similar to {@Title}Defense{@Clear} reduces physical damage taken by 1% every {PointsPerTier} points..
         /// </summary>
         internal static string Tooltips_Defense_Tooltip {
             get {
@@ -325,18 +297,9 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Determination.
-        /// </summary>
-        internal static string Tooltips_Determination {
-            get {
-                return ResourceManager.GetString("Tooltips_Determination", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  increases damage dealt by attacks as well as HP restored by healing actions.
+        ///   Looks up a localized string similar to {@Title}Determination{@Clear} increases damage dealt by attacks as well as HP restored by healing actions.
         ///
-        ///Determination&apos;s effect increases by 0.1% approx. every .
+        ///Determination&apos;s effect increases by 0.1% every {PointsPerTier} points..
         /// </summary>
         internal static string Tooltips_Determination_Tooltip {
             get {
@@ -345,19 +308,10 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Direct Hit Rate.
-        /// </summary>
-        internal static string Tooltips_Direct_Hit_Rate {
-            get {
-                return ResourceManager.GetString("Tooltips_Direct_Hit_Rate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  affects the rate at which your attacks can direct hit.
+        ///   Looks up a localized string similar to {@Title}Direct Hit Rate{@Clear} affects the rate at which your attacks can direct hit.
         ///A direct hit increases damage done by 25%.
         ///
-        ///Direct Hit Rate increases by 0.1% approx. every .
+        ///Direct Hit Rate increases by 0.1% every {PointsPerTier} points..
         /// </summary>
         internal static string Tooltips_Direct_Hit_Tooltip {
             get {
@@ -367,79 +321,34 @@ namespace CharacterPanelRefined {
         
         /// <summary>
         ///   Looks up a localized string similar to Average damage of a 100 potency skill, including critical and direct hits as well as passive traits such as Maim and Mend.
-        ///            
-        ///A normal attack will do .
+        ///
+        ///A normal attack will do {@Highlight}{NormalValue}{@Clear} damage.
+        ///A critical hit will do {@Highlight}{CritValue}{@Clear} damage.
+        ///
+        ///Damage always has a variance of ±5%..
         /// </summary>
-        internal static string Tooltips_Expected_Damage_1 {
+        internal static string Tooltips_Expected_Damage {
             get {
-                return ResourceManager.GetString("Tooltips_Expected_Damage_1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  damage.
-        ///A critical hit will do .
-        /// </summary>
-        internal static string Tooltips_Expected_Damage_2 {
-            get {
-                return ResourceManager.GetString("Tooltips_Expected_Damage_2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  damage.
-        ///            
-        ///Damage is multiplied by Potency, Weapon Damage, Main Stat (Str/Int/Dex/Mnd) and all other damage modifiers (such as Direct Hit +25%, Brotherhood +5%) and always has a variance of ±5%..
-        /// </summary>
-        internal static string Tooltips_Expected_Damage_3 {
-            get {
-                return ResourceManager.GetString("Tooltips_Expected_Damage_3", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Expected_Damage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Average HP restored by a 100 potency healing action, including critical hits as well as passive traits such as Maim and Mend.
-        ///            
-        ///A normal heal will restore .
-        /// </summary>
-        internal static string Tooltips_Expected_Heal_1 {
-            get {
-                return ResourceManager.GetString("Tooltips_Expected_Heal_1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  HP.
-        ///A critical hit will restore .
-        /// </summary>
-        internal static string Tooltips_Expected_Heal_2 {
-            get {
-                return ResourceManager.GetString("Tooltips_Expected_Heal_2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  HP.
-        ///            
+        ///
+        ///A normal heal will restore {@Highlight}{NormalValue}{@Clear} HP.
+        ///A critical hit will restore {@Highlight}{CritValue}{@Clear} HP.
+        ///
         ///HP restored will always vary by ±3%..
         /// </summary>
-        internal static string Tooltips_Expected_Heal_3 {
+        internal static string Tooltips_Expected_Heal {
             get {
-                return ResourceManager.GetString("Tooltips_Expected_Heal_3", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Expected_Heal", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Magic Defense.
-        /// </summary>
-        internal static string Tooltips_Magic_Defense {
-            get {
-                return ResourceManager.GetString("Tooltips_Magic_Defense", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  reduces magic damage taken by 1% approx. every .
+        ///   Looks up a localized string similar to {@Title}Magic Defense{@Clear} reduces magic damage taken by 1% every {PointsPerTier} points..
         /// </summary>
         internal static string Tooltips_Magic_Defense_Tooltip {
             get {
@@ -448,16 +357,7 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Main Stat.
-        /// </summary>
-        internal static string Tooltips_Main_Stat {
-            get {
-                return ResourceManager.GetString("Tooltips_Main_Stat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  increases damage dealt as well as HP restored by your actions.
+        ///   Looks up a localized string similar to {@Title}Main Stat{@Clear} increases damage dealt as well as HP restored by your actions.
         ///An increase of 10% main stat constitutes a 10% increase in damage and healing.
         ///
         ///SMNs physick is the only exception since it scales with MND instead of INT..
@@ -469,8 +369,7 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  point(s).
-        ///To reach the next tier you need .
+        ///   Looks up a localized string similar to To reach the next tier you need {@Highlight}{NextTier}{@Clear} points..
         /// </summary>
         internal static string Tooltips_Next_Tier {
             get {
@@ -479,19 +378,10 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Piety.
-        /// </summary>
-        internal static string Tooltips_Piety {
-            get {
-                return ResourceManager.GetString("Tooltips_Piety", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  increases the amount of MP gained per server tick (every 3s).
+        ///   Looks up a localized string similar to {@Title}Piety{@Clear} increases the amount of MP gained per server tick (every 3s).
         ///By default you will gain 200 MP per tick.
         ///
-        ///Piety gives 1 extra MP approx. every .
+        ///Piety gives 1 extra MP every {PointsPerTier} points..
         /// </summary>
         internal static string Tooltips_Piety_Tooltip {
             get {
@@ -500,27 +390,7 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  point(s)..
-        /// </summary>
-        internal static string Tooltips_points {
-            get {
-                return ResourceManager.GetString("Tooltips_points", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Skill/Spell Speed.
-        /// </summary>
-        internal static string Tooltips_Skill_Spell_Speed {
-            get {
-                return ResourceManager.GetString("Tooltips_Skill_Spell_Speed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  point(s).
-        ///
-        ///DoT damage increases by 0.1% approx. every .
+        ///   Looks up a localized string similar to DoT damage increases by 0.1% every {PointsPerTier} points..
         /// </summary>
         internal static string Tooltips_Skill_Spell_Speed_DoT_Increase {
             get {
@@ -529,9 +399,9 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  shortens cast times and recast timers as well as increase damage done by damage over time effects.
+        ///   Looks up a localized string similar to {@Title}Skill/Spell Speed{@Clear} shortens cast times and recast timers as well as increase damage done by damage over time effects.
         ///
-        ///A 2.5s GCD is sped up by 0.01s approx. every .
+        ///A 2.5s GCD is sped up by 0.01s on average every {PointsPerTier} points..
         /// </summary>
         internal static string Tooltips_Skill_Spell_Speed_Tooltip {
             get {
@@ -540,38 +410,18 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Spell Speed.
+        ///   Looks up a localized string similar to A 2.8s GCD is sped up by 0.01s on average every {PointsPerTier} points..
         /// </summary>
-        internal static string Tooltips_Spell_Speed {
+        internal static string Tooltips_Spell_Speed_28_GCD {
             get {
-                return ResourceManager.GetString("Tooltips_Spell_Speed", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Spell_Speed_28_GCD", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  point(s).
+        ///   Looks up a localized string similar to {@Title}Tenacity{@Clear} increases damage dealt and HP restored by your own actions as well as reducing damage taken.
         ///
-        ///A 2.8s GCD is sped up by 0.01s approx. every .
-        /// </summary>
-        internal static string Tooltips_Spell_Speed_GCD {
-            get {
-                return ResourceManager.GetString("Tooltips_Spell_Speed_GCD", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tenacity.
-        /// </summary>
-        internal static string Tooltips_Tenacity {
-            get {
-                return ResourceManager.GetString("Tooltips_Tenacity", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  increases damage dealt and HP restored by your own actions as well as reducing damage taken.
-        ///
-        ///Tenacity&apos;s effect increases by 0.1% approx. every .
+        ///Tenacity&apos;s effect increases by 0.1% every {PointsPerTier} points..
         /// </summary>
         internal static string Tooltips_Tenacity_Tooltip {
             get {
@@ -580,48 +430,39 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vitality.
+        ///   Looks up a localized string similar to {@Title}Vitality{@Clear} increases max HP by {HpPerPoint} every point.
+        ///As a {Job} you have {BaseHp} base HP..
         /// </summary>
-        internal static string Tooltips_Vitality {
+        internal static string Tooltips_Vitality_Tooltip {
             get {
-                return ResourceManager.GetString("Tooltips_Vitality", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Vitality_Tooltip", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  increases max HP by .
+        ///   Looks up a localized string similar to You are currently wasting {@Wasting}{Wasting}{@Clear} {Points}..
         /// </summary>
-        internal static string Tooltips_Vitality_Tooltip_1 {
+        internal static string Tooltips_Wasting {
             get {
-                return ResourceManager.GetString("Tooltips_Vitality_Tooltip_1", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Wasting", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  every point.
-        ///As a .
+        ///   Looks up a localized string similar to points.
         /// </summary>
-        internal static string Tooltips_Vitality_Tooltip_2 {
+        internal static string Tooltips_Wasting_Points_Plural {
             get {
-                return ResourceManager.GetString("Tooltips_Vitality_Tooltip_2", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Wasting_Points_Plural", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  you have .
+        ///   Looks up a localized string similar to point.
         /// </summary>
-        internal static string Tooltips_Vitality_Tooltip_3 {
+        internal static string Tooltips_Wasting_Points_Singular {
             get {
-                return ResourceManager.GetString("Tooltips_Vitality_Tooltip_3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  base HP..
-        /// </summary>
-        internal static string Tooltips_Vitality_Tooltip_4 {
-            get {
-                return ResourceManager.GetString("Tooltips_Vitality_Tooltip_4", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Wasting_Points_Singular", resourceCulture);
             }
         }
     }

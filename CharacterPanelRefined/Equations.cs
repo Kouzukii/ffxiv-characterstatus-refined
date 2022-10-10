@@ -13,6 +13,7 @@ public class Equations {
         var cVal = statInfo.DisplayValue = Math.Floor(550d * (dh - lvlModifier.Sub) / lvlModifier.Div) / 1000d;
         statInfo.PrevTier = (int)Math.Ceiling(cVal * 1000d * lvlModifier.Div / 550d + lvlModifier.Sub);
         statInfo.NextTier = (int)Math.Ceiling((cVal + 0.001) * 1000d * lvlModifier.Div / 550d + lvlModifier.Sub);
+        statInfo.PointsPerTier = lvlModifier.Div / 550d;
         return cVal;
     }
 
@@ -21,6 +22,7 @@ public class Equations {
         var cVal = statInfo.DisplayValue = Math.Floor(140d * (det - lvlModifier.Main) / lvlModifier.Div) / 1000d;
         statInfo.PrevTier = (int)Math.Ceiling(cVal * 1000d * lvlModifier.Div / 140d + lvlModifier.Main);
         statInfo.NextTier = (int)Math.Ceiling((cVal + 0.001) * 1000d * lvlModifier.Div / 140d + lvlModifier.Main);
+        statInfo.PointsPerTier = lvlModifier.Div / 140d;
         return cVal;
     }
 
@@ -29,6 +31,7 @@ public class Equations {
         var cVal = statInfo.DisplayValue = Math.Floor(200d * (crit - lvlModifier.Sub) / lvlModifier.Div + 50) / 1000d;
         statInfo.PrevTier = (int)Math.Ceiling((cVal * 1000d - 50.0000001) * lvlModifier.Div / 200d + lvlModifier.Sub);
         statInfo.NextTier = (int)Math.Ceiling(((cVal + 0.001) * 1000d - 50.0000001) * lvlModifier.Div / 200d + lvlModifier.Sub);
+        statInfo.PointsPerTier = lvlModifier.Div / 200d;
         return cVal;
     }
 
@@ -37,6 +40,7 @@ public class Equations {
         var cVal = statInfo.DisplayValue = Math.Floor(200d * (crit - lvlModifier.Sub) / lvlModifier.Div + 1400) / 1000d;
         statInfo.PrevTier = (int)Math.Ceiling((cVal * 1000d - 1400.0000001) * lvlModifier.Div / 200d + lvlModifier.Sub);
         statInfo.NextTier = (int)Math.Ceiling(((cVal + 0.001) * 1000d - 1400.0000001) * lvlModifier.Div / 200d + lvlModifier.Sub);
+        statInfo.PointsPerTier = lvlModifier.Div / 200d;
         return cVal;
     }
 
@@ -45,6 +49,7 @@ public class Equations {
         var cVal = statInfo.DisplayValue = Math.Floor(15d * def / lvlModifier.Div) / 100d;
         statInfo.PrevTier = (int)Math.Ceiling(cVal * 100d * lvlModifier.Div / 15d);
         statInfo.NextTier = (int)Math.Ceiling((cVal + 0.01) * 100d * lvlModifier.Div / 15d);
+        statInfo.PointsPerTier = lvlModifier.Div / 15d;
     }
 
     public static void CalcMagicDef(int def, ref StatInfo statInfo, ref LevelModifier lvlModifier) {
@@ -52,6 +57,7 @@ public class Equations {
         var cVal = statInfo.DisplayValue = Math.Floor(15d * def / lvlModifier.Div) / 100d;
         statInfo.PrevTier = (int)Math.Ceiling(cVal * 100d * lvlModifier.Div / 15d);
         statInfo.NextTier = (int)Math.Ceiling((cVal + 0.01) * 100d * lvlModifier.Div / 15d);
+        statInfo.PointsPerTier = lvlModifier.Div / 15d;
     }
 
     public static double CalcTenacity(int ten, ref StatInfo statInfo, ref LevelModifier lvlModifier) {
@@ -59,6 +65,7 @@ public class Equations {
         var cVal = statInfo.DisplayValue = Math.Floor(100d * (ten - lvlModifier.Sub) / lvlModifier.Div) / 1000d;
         statInfo.PrevTier = (int)Math.Ceiling(cVal * 1000d * lvlModifier.Div / 100d + lvlModifier.Sub);
         statInfo.NextTier = (int)Math.Ceiling((cVal + 0.001) * 1000d * lvlModifier.Div / 100d + lvlModifier.Sub);
+        statInfo.PointsPerTier = lvlModifier.Div / 100d;
         return cVal;
     }
 
@@ -68,6 +75,7 @@ public class Equations {
         statInfo.DisplayValue = cVal + 200;
         statInfo.PrevTier = (int)Math.Ceiling(cVal * lvlModifier.Div / 150d + lvlModifier.Main);
         statInfo.NextTier = (int)Math.Ceiling((cVal + 1) * lvlModifier.Div / 150d + lvlModifier.Main);
+        statInfo.PointsPerTier = lvlModifier.Div / 150d;
     }
 
     public static void CalcSpeed(int speed, ref StatInfo statInfo, ref StatInfo gcd25, ref StatInfo gcd28, ref LevelModifier lvlModifier, bool show28) {
@@ -75,6 +83,7 @@ public class Equations {
         var cVal = statInfo.DisplayValue = Math.Floor(130d * (speed - lvlModifier.Sub) / lvlModifier.Div) / 1000d;
         statInfo.PrevTier = (int)Math.Ceiling(cVal * 1000d * lvlModifier.Div / 130d + lvlModifier.Sub);
         statInfo.NextTier = (int)Math.Ceiling((cVal + 0.001) * 1000d * lvlModifier.Div / 130d + lvlModifier.Sub);
+        statInfo.PointsPerTier = lvlModifier.Div / 130d;
         gcd25.CurrentValue = speed;
         cVal = gcd25.DisplayValue = Math.Floor(2500d * (1000d + Math.Ceiling(130d * (lvlModifier.Sub - speed) / lvlModifier.Div)) / 10000d) / 100d;
         if (cVal >= 2.50)
@@ -82,6 +91,7 @@ public class Equations {
         else
             gcd25.PrevTier = -(int)Math.Floor(Math.Floor((cVal + 0.01) * 100d * 10000d / 2500d - 1000.01d) * lvlModifier.Div / 130d - lvlModifier.Sub);
         gcd25.NextTier = -(int)Math.Floor(Math.Floor(cVal * 100d * 10000d / 2500d - 1000.01d) * lvlModifier.Div / 130d - lvlModifier.Sub);
+        gcd25.PointsPerTier = lvlModifier.Div / 130d / 0.25;
         if (show28) {
             gcd28.CurrentValue = speed;
             cVal = gcd28.DisplayValue = Math.Floor(2800d * (1000d + Math.Ceiling(130d * (lvlModifier.Sub - speed) / lvlModifier.Div)) / 10000d) / 100d;
@@ -90,6 +100,7 @@ public class Equations {
             else
                 gcd28.PrevTier = -(int)Math.Floor(Math.Floor((cVal + 0.01) * 100d * 10000d / 2800d - 1000.01d) * lvlModifier.Div / 130d - lvlModifier.Sub);
             gcd28.NextTier = -(int)Math.Floor(Math.Floor(cVal * 100d * 10000d / 2800d - 1000.01d) * lvlModifier.Div / 130d - lvlModifier.Sub);
+            gcd28.PointsPerTier = lvlModifier.Div / 130d / 0.28;
         }
     }
 

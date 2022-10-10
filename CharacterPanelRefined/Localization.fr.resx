@@ -55,77 +55,83 @@
         <value>Attributs de rapidité</value>
     </data>
     <data name="Tooltips_Crit_Tooltip" xml:space="preserve">
-        <value>{@Title}Critique{@Clear} affecte vos chances d'effectuer des Coups critiques avec vos attaques et vos soins ainsi que la quantité de dégâts infligés de de PV restaurés lors d'un Coup critique.
+        <value>Le {@Title}Critique{@Clear} affecte vos chances d'effectuer des Coups critiques avec vos attaques et vos soins ainsi que la quantité de dégâts infligés de de PV restaurés lors d'un Coup critique.
 
-Vos chances d'infliger des Coups critiques ainsi que les Dégâts que vous infligez sont augmentés d'environ 0.1% tous les {PointsPerTier} points.</value>
-    </data>
-    <data name="Tooltips_Wasting" xml:space="preserve">
-        <value>Actuellement, {@Wasting}{Wasting}{@Clear} {Points} ne sont pas rentabilisés.</value>
-    </data>
-    <data name="Tooltips_Next_Tier" xml:space="preserve">
-        <value>Pour atteindre le prochain palier, il vous manque {@Highlight}{NextTier}{@Clear} points.</value>
+Vos chances d'infliger des Coups critiques ainsi que les Dégâts que vous infligez sont augmentés de 0.1% tous les {PointsPerTier} points.</value>
     </data>
     <data name="Tooltips_Determination_Tooltip" xml:space="preserve">
-        <value>{@Title}Détermination{@Clear} augmente les dégâts infligés par vos attaques ainsi que les PV restaurés par les actions de soins.
+    <value>La {@Title}Détermination{@Clear} augmente les dégâts infligés par vos attaques ainsi que les PV restaurés par les actions de soins.
 
-Les effets de la Détermination sont augmentés d'environ 0.1% tous les {PointsPerTier} points.</value>
+Les effets de la Détermination sont augmentés de 0.1% tous les {PointsPerTier} points.</value>
     </data>
     <data name="Tooltips_Direct_Hit_Tooltip" xml:space="preserve">
-        <value>{@Title}Coups nets{@Clear} affecte vos chances d'infliger des Coups nets.
-Un Coup net augmente les dégâts infligés de 25%.
+        <value>Les {@Title}Coups nets{@Clear} affectent vos chances d'infliger des Coups nets.
+Effectuer un Coup net augmente les dégâts infligés de 25%.
 
-Vos chances de Coup net sont augmentées d'environ 0.1% tous les {PointsPerTier} points.</value>
+Vos chances d'effectuer un Coup net sont augmentées d'environ 0.1% tous les {PointsPerTier} points.</value>
     </data>
     <data name="Tooltips_Skill_Spell_Speed_Tooltip" xml:space="preserve">
-        <value>{@Title}Vivacité/Célérité{@Clear} réduit vos temps d'incantation et de recharge et augmente les dégâts périodiques infligés.
+        <value>La {@Title}Vivacité/Célérité{@Clear} réduit vos temps d'incantation et de recharge et augmente les dégâts périodiques infligés.
 
-Le GCD de 2.5s est réduit d'environ 0.01s tous les {PointsPerTier} points.</value>
+Un GCD de 2.5s est généralement réduit de 0.01s tous les {PointsPerTier} points.</value>
     </data>
     <data name="Tooltips_Skill_Spell_Speed_DoT_Increase" xml:space="preserve">
         <value>Les dégâts périodiques sont augmentés d'environ 0.1% tous les {PointsPerTier} points.</value>
     </data>
     <data name="Tooltips_Spell_Speed_28_GCD" xml:space="preserve">
-        <value>Le GCD de 2.8s est réduit d'environ 0.01s tous les {PointsPerTier} points.</value>
+        <value>Le GCD de 2.8s est généralement réduit de 0.01s tous les {PointsPerTier} points.</value>
+    </data>
+    <data name="Tooltips_Next_Tier" xml:space="preserve">
+        <value>Pour atteindre le prochain palier, il vous manque {@Highlight}{NextTier}{@Clear} points.</value>
+    </data>
+    <data name="Tooltips_Wasting" xml:space="preserve">
+        <value>Actuellement, {@Wasting}{Wasting}{@Clear} {Points} ne sont pas rentabilisés.</value>
+    </data>
+    <data name="Tooltips_Wasting_Points_Singular" xml:space="preserve">
+        <value>point</value>
+    </data>
+    <data name="Tooltips_Wasting_Points_Plural" xml:space="preserve">
+        <value>points</value>
     </data>
     <data name="Tooltips_Expected_Damage" xml:space="preserve">
         <value>Dégâts médians d'une action avec 100 de Puissance, en incluant les critiques et coups nets ainsi que vos Traits tels que Efficacité des actions augmentée.
-            
-Un coup normal inflige {@Highlight}{NormalValue}{@Clear} dégâts.
+
+Un Coup normal inflige {@Highlight}{NormalValue}{@Clear} dégâts.
 Un Coup critique inflige {@Highlight}{CritValue}{@Clear} dégâts.
 
-Les dégâts sont multipliés par la Puissance, les Dégâts de l'Arme, les Statistiques Principales (FOR/INT/DEX/ESP) ainsi que tous les autres modificateurs de dégâts ponctuels (tel qu'un Coup net +25%, ou le buff de +5% de Fraternité) et ont toujours une variance de ±5%.</value>
+Les dégâts ont toujours une variance de ±5%.</value>
     </data>
     <data name="Tooltips_Expected_Heal" xml:space="preserve">
-        <value>Quantité médianne de PV restaurés pour une action de soin de 100 de Puissance, incluant les Coups critiques ainsi que les Traits tels qu'Efficacité des actions augmentée.
+        <value>Quantité médiane de PV restaurés pour une action de soin de 100 de Puissance, incluant les Coups critiques ainsi que les Traits tels qu'Efficacité des actions augmentée.
 
-Un soin normal restaure {@Highlight}{NormalValue}{@Clear} PV.
+Un Soin normal restaure {@Highlight}{NormalValue}{@Clear} PV.
 Un Coup critique restaure {@Highlight}{CritValue}{@Clear} PV.
 
 La quantité de PV restaurés est toujours soumise à une variance de ±3%.</value>
     </data>
     <data name="Tooltips_Tenacity_Tooltip" xml:space="preserve">
-        <value>{@Title}Ténacité{@Clear} augmente les dégâts infligés et les PV restaurés par vos actions et réduit les dégâts subis.
+        <value>La {@Title}Ténacité{@Clear} augmente les dégâts infligés et les PV restaurés par vos actions, et réduit les dégâts subis.
 
-Les effets de la Ténacité augmentent d'environ 0.1% tous les {PointsPerTier} points.</value>
+Les effets de la Ténacité augmentent de 0.1% tous les {PointsPerTier} points.</value>
     </data>
     <data name="Tooltips_Piety_Tooltip" xml:space="preserve">
         <value>{@Title}Piété{@Clear} augmente le nombre de PM récupérés à chaque tick du serveur (toutes les 3s).
 De base, vous récupérez 200 PM par tick.
 
-La Piété augmente cette valeur d'environ 1 PM tous les {PointsPerTier} points.</value>
+La Piété octroie 1 PM récupéré supplémentaire par tick tous les {PointsPerTier} points.</value>
     </data>
     <data name="Tooltips_Defense_Tooltip" xml:space="preserve">
-        <value>{@Title}Défense{@Clear} réduit les Dégâts Physiques subis d'environ 1% tous les {PointsPerTier} points.</value>
+        <value>La {@Title}Défense{@Clear} réduit les Dégâts Physiques subis de 1% tous les {PointsPerTier} points.</value>
     </data>
     <data name="Tooltips_Magic_Defense_Tooltip" xml:space="preserve">
-        <value>{@Title}Défense magique{@Clear} réduit les Dégâts Magiques subis d'environ 1% tous les {PointsPerTier} points.</value>
+        <value>La {@Title}Défense magique{@Clear} réduit les Dégâts Magiques subis de 1% tous les {PointsPerTier} points.</value>
     </data>
     <data name="Tooltips_Vitality_Tooltip" xml:space="preserve">
-        <value>{@Title}Vitalité{@Clear} : augmente vos PV max de {HpPerPoint} PV pour chaque point de statistique.
+        <value>La {@Title}Vitalité{@Clear} augmente vos PV max de {HpPerPoint} PV pour chaque point de statistique.
 En tant que {Job} vous avez {BaseHp} PV de base.</value>
     </data>
     <data name="Tooltips_Main_Stat_Tooltip" xml:space="preserve">
-        <value>{@Title}Statistique principale{@Clear} : augmente les dégâts infligés, ainsi que les PV restaurés par vos actions.
+        <value>Votre {@Title}Statistique principale{@Clear} augmente les dégâts infligés, ainsi que les PV restaurés par vos actions.
 Une augmentation de 10% de la statistique principale équivaut à une augmentation de 10% des dégâts infligés et soins octroyés.
 
 Le sort Médecine de l'Invocateur est la seule exception à cette règle car il dépend de la stat d'Esprit au lieu de l'Intelligence.</value>

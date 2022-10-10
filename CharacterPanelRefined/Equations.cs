@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Dalamud.Logging;
 using FFXIVClientStructs.FFXIV.Client.Game;
@@ -138,5 +139,28 @@ public class Equations {
         var lvl = uiState->PlayerState.CurrentLevel;
         hpPerVitality = jobId.UsesTenacity() ? LevelModifiers.TankHpModifier(lvl) : LevelModifiers.HpModifier(lvl);
         hpModifier = jobId.HpModifier() / 100d;
+    }
+
+    public static unsafe Dictionary<Attributes, int> EstimateBaseStats(UIState* uiState) {
+        var fd = new Dictionary<Attributes, int>();
+        var foodSheet = Service.DataManager.GetExcelSheet<ItemFood>();
+        foreach (var status in Service.ClientState.LocalPlayer!.StatusList.Where(s => s.StatusId is 48 or 49)) {
+            var hq = Math.DivRem(status.Param, 10000, out var foodId);
+            var food = foodSheet?.GetRow((uint)foodId);
+            if (food == null)
+                return fd;
+            foreach (var bonus in food.UnkData1) {
+                var val = hq == 1 ? bonus.ValueHQ : bonus.Value;
+                var currentStat = fd.GetValueOrDefault((Attributes)bonus.BaseParam, uiState->PlayerState.Attributes[bonus.BaseParam]);
+                if (bonus.IsRelative) {
+                    var max = hq == 1 ? bonus.MaxHQ : bonus.Max;
+                    var sub = Math.Min(max, Math.Floor(currentStat - currentStat / (1 + val * 0.01)));
+                    fd[(Attributes)bonus.BaseParam] = (int)(currentStat - sub);
+                } else {
+                    fd[(Attributes)bonus.BaseParam] = currentStat - val;
+                }
+            }
+        }
+        return fd;
     }
 }

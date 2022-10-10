@@ -171,4 +171,13 @@ SMNs physick is the only exception since it scales with MND instead of INT.</val
     <data name="Config_Help_Apply_Changes" xml:space="preserve">
         <value>To apply any config changes you must reopen the character panel.</value>
     </data>
+    <data name="Panel_excluding_Consumables" xml:space="preserve">
+        <value>excl. Consumables</value>
+    </data>
+    <data name="Panel_CP" xml:space="preserve">
+        <value>CP</value>
+    </data>
+    <data name="Panel_GP" xml:space="preserve">
+        <value>GP</value>
+    </data>
 </root>

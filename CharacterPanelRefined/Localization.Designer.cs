@@ -151,6 +151,15 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CP.
+        /// </summary>
+        internal static string Panel_CP {
+            get {
+                return ResourceManager.GetString("Panel_CP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Crit Chance.
         /// </summary>
         internal static string Panel_Crit_Chance {
@@ -205,6 +214,15 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to excl. Consumables.
+        /// </summary>
+        internal static string Panel_excluding_Consumables {
+            get {
+                return ResourceManager.GetString("Panel_excluding_Consumables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fire IV Cast.
         /// </summary>
         internal static string Panel_Fire_IV_GCD {
@@ -219,6 +237,15 @@ namespace CharacterPanelRefined {
         internal static string Panel_GCD {
             get {
                 return ResourceManager.GetString("Panel_GCD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GP.
+        /// </summary>
+        internal static string Panel_GP {
+            get {
+                return ResourceManager.GetString("Panel_GP", resourceCulture);
             }
         }
         

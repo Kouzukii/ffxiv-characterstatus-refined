@@ -64,6 +64,11 @@ public class ConfigWindow {
                 conf.Save();
             }
             
+            var bShowStatsWithoutFood = conf.ShowDoHDoLStatsWithoutFood;
+            if (ImGui.Checkbox(Localization.Config_Show_stats_without_consumables, ref bShowStatsWithoutFood)) {
+                conf.ShowDoHDoLStatsWithoutFood = bShowStatsWithoutFood;
+                conf.Save();
+            }
 
             ImGui.End();
 

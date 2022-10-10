@@ -171,18 +171,20 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
                 }
             }
 
-            if (jobId.IsCrafter()) {
-                var fd = Equations.EstimateBaseStats(uiState);
-                craftsmanshipBasePtr->SetText(fd.GetValueOrDefault(Attributes.Craftsmanship, uiState->PlayerState.Attributes[(int)Attributes.Craftsmanship]).ToString());
-                controlBasePtr->SetText(fd.GetValueOrDefault(Attributes.Control, uiState->PlayerState.Attributes[(int)Attributes.Control]).ToString());
-                cpPtr->SetText(uiState->PlayerState.Attributes[(int)Attributes.MaxCp].ToString());
-                cpBasePtr->SetText(fd.GetValueOrDefault(Attributes.MaxCp, uiState->PlayerState.Attributes[(int)Attributes.MaxCp]).ToString());
-            } else if (jobId.IsGatherer()) {
-                var fd = Equations.EstimateBaseStats(uiState);
-                gatheringBasePtr->SetText(fd.GetValueOrDefault(Attributes.Gathering, uiState->PlayerState.Attributes[(int)Attributes.Gathering]).ToString());
-                perceptionBasePtr->SetText(fd.GetValueOrDefault(Attributes.Perception, uiState->PlayerState.Attributes[(int)Attributes.Perception]).ToString());
-                gpPtr->SetText(uiState->PlayerState.Attributes[(int)Attributes.MaxGp].ToString());
-                gpBasePtr->SetText(fd.GetValueOrDefault(Attributes.MaxGp, uiState->PlayerState.Attributes[(int)Attributes.MaxGp]).ToString());
+            if (Configuration.ShowDoHDoLStatsWithoutFood) {
+                if (jobId.IsCrafter()) {
+                    var fd = Equations.EstimateBaseStats(uiState);
+                    craftsmanshipBasePtr->SetText(fd.GetValueOrDefault(Attributes.Craftsmanship, uiState->PlayerState.Attributes[(int)Attributes.Craftsmanship]).ToString());
+                    controlBasePtr->SetText(fd.GetValueOrDefault(Attributes.Control, uiState->PlayerState.Attributes[(int)Attributes.Control]).ToString());
+                    cpPtr->SetText(uiState->PlayerState.Attributes[(int)Attributes.MaxCp].ToString());
+                    cpBasePtr->SetText(fd.GetValueOrDefault(Attributes.MaxCp, uiState->PlayerState.Attributes[(int)Attributes.MaxCp]).ToString());
+                } else if (jobId.IsGatherer()) {
+                    var fd = Equations.EstimateBaseStats(uiState);
+                    gatheringBasePtr->SetText(fd.GetValueOrDefault(Attributes.Gathering, uiState->PlayerState.Attributes[(int)Attributes.Gathering]).ToString());
+                    perceptionBasePtr->SetText(fd.GetValueOrDefault(Attributes.Perception, uiState->PlayerState.Attributes[(int)Attributes.Perception]).ToString());
+                    gpPtr->SetText(uiState->PlayerState.Attributes[(int)Attributes.MaxGp].ToString());
+                    gpBasePtr->SetText(fd.GetValueOrDefault(Attributes.MaxGp, uiState->PlayerState.Attributes[(int)Attributes.MaxGp]).ToString());
+                }
             }
 
             if (jobId != lastJob) {
@@ -425,29 +427,35 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         craftingPtr->X = 0;
         craftingPtr->Y = 80;
         var control = craftingPtr->ChildNode;
-        control->Y += 20;
-        controlBasePtr = AddStatRow((AtkComponentNode*)control, Localization.Panel_excluding_Consumables);
-        cpPtr = AddStatRow((AtkComponentNode*)control, Localization.Panel_CP);
-        cpPtr->TextColor = ((AtkTextNode*)cpPtr->AtkResNode.PrevSiblingNode)->TextColor = ((AtkTextNode*)controlBasePtr->AtkResNode.NextSiblingNode)->TextColor;
-        cpBasePtr = AddStatRow((AtkComponentNode*)control, Localization.Panel_excluding_Consumables);
-        ((AtkComponentNode*)control)->Component->UldManager.RootNode->Height -= 40;
         var craftsmanship = control->PrevSiblingNode;
-        craftsmanshipBasePtr = AddStatRow((AtkComponentNode*)craftsmanship, Localization.Panel_excluding_Consumables);
         craftsmanship->PrevSiblingNode->ToggleVisibility(false); // header
+        if (Configuration.ShowDoHDoLStatsWithoutFood) {
+            control->Y += 20;
+            controlBasePtr = AddStatRow((AtkComponentNode*)control, Localization.Panel_excluding_Consumables);
+            cpPtr = AddStatRow((AtkComponentNode*)control, Localization.Panel_CP);
+            cpPtr->TextColor = ((AtkTextNode*)cpPtr->AtkResNode.PrevSiblingNode)->TextColor =
+                ((AtkTextNode*)controlBasePtr->AtkResNode.NextSiblingNode)->TextColor;
+            cpBasePtr = AddStatRow((AtkComponentNode*)control, Localization.Panel_excluding_Consumables);
+            ((AtkComponentNode*)control)->Component->UldManager.RootNode->Height -= 40;
+            craftsmanshipBasePtr = AddStatRow((AtkComponentNode*)craftsmanship, Localization.Panel_excluding_Consumables);
+        }
 
         var gatheringPtr = atkUnitBase->UldManager.SearchNodeById(66);
         gatheringPtr->X = 0;
         gatheringPtr->Y = 80;
         var perception = gatheringPtr->ChildNode;
-        perception->Y += 20;
-        perceptionBasePtr = AddStatRow((AtkComponentNode*)perception, Localization.Panel_excluding_Consumables);
-        gpPtr = AddStatRow((AtkComponentNode*)perception, Localization.Panel_GP);
-        gpPtr->TextColor = ((AtkTextNode*)gpPtr->AtkResNode.PrevSiblingNode)->TextColor = ((AtkTextNode*)perceptionBasePtr->AtkResNode.NextSiblingNode)->TextColor;
-        gpBasePtr = AddStatRow((AtkComponentNode*)perception, Localization.Panel_excluding_Consumables);
-        ((AtkComponentNode*)perception)->Component->UldManager.RootNode->Height -= 40;
         var gathering = perception->PrevSiblingNode;
-        gatheringBasePtr = AddStatRow((AtkComponentNode*)gathering, Localization.Panel_excluding_Consumables);
         gathering->PrevSiblingNode->ToggleVisibility(false); // header
+        if (Configuration.ShowDoHDoLStatsWithoutFood) {
+            perception->Y += 20;
+            perceptionBasePtr = AddStatRow((AtkComponentNode*)perception, Localization.Panel_excluding_Consumables);
+            gpPtr = AddStatRow((AtkComponentNode*)perception, Localization.Panel_GP);
+            gpPtr->TextColor = ((AtkTextNode*)gpPtr->AtkResNode.PrevSiblingNode)->TextColor = 
+                ((AtkTextNode*)perceptionBasePtr->AtkResNode.NextSiblingNode)->TextColor;
+            gpBasePtr = AddStatRow((AtkComponentNode*)perception, Localization.Panel_excluding_Consumables);
+            ((AtkComponentNode*)perception)->Component->UldManager.RootNode->Height -= 40;
+            gatheringBasePtr = AddStatRow((AtkComponentNode*)gathering, Localization.Panel_excluding_Consumables);
+        }
 
         characterStatusPtr = (IntPtr)atkUnitBase;
 

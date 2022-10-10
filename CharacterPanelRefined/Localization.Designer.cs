@@ -78,7 +78,7 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Override default tooltips.
+        ///   Looks up a localized string similar to Replace the Character Panel&apos;s built-in tooltips with more detailed ones.
         /// </summary>
         internal static string Config_Override_default_tooltips {
             get {
@@ -128,6 +128,15 @@ namespace CharacterPanelRefined {
         internal static string Config_Show_direct_hit_damage_increase {
             get {
                 return ResourceManager.GetString("Config_Show_direct_hit_damage_increase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show DoH/DoL stats without consumables.
+        /// </summary>
+        internal static string Config_Show_stats_without_consumables {
+            get {
+                return ResourceManager.GetString("Config_Show_stats_without_consumables", resourceCulture);
             }
         }
         

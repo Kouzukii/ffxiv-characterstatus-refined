@@ -144,7 +144,7 @@ SMNs physick is the only exception since it scales with MND instead of INT.</val
         <value>Character Panel Refined Config</value>
     </data>
     <data name="Config_Override_default_tooltips" xml:space="preserve">
-        <value>Override default tooltips</value>
+        <value>Replace the Character Panel's built-in tooltips with more detailed ones</value>
     </data>
     <data name="Config_Use_Game_Language_if_available" xml:space="preserve">
         <value>Use Game Language if available</value>
@@ -179,5 +179,8 @@ SMNs physick is the only exception since it scales with MND instead of INT.</val
     </data>
     <data name="Panel_GP" xml:space="preserve">
         <value>GP</value>
+    </data>
+    <data name="Config_Show_stats_without_consumables" xml:space="preserve">
+        <value>Show DoH/DoL stats without consumables</value>
     </data>
 </root>

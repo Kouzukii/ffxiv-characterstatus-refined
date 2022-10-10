@@ -16,6 +16,7 @@ public class Configuration : IPluginConfiguration {
     public bool ShowAvgHealing { get; set; } = true;
     public bool ShowCritDamageIncrease { get; set; } = false;
     public bool ShowDhDamageIncrease { get; set; } = false;
+    public bool ShowDoHDoLStatsWithoutFood { get; set; } = true;
     public int Version { get; set; } = 0;
 
     public static Configuration Get(DalamudPluginInterface pluginInterface) {

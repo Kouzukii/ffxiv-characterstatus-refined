@@ -82,7 +82,7 @@ Un GCD de 2.5s est généralement réduit de 0.01s tous les {PointsPerTier} poin
         <value>Le GCD de 2.8s est généralement réduit de 0.01s tous les {PointsPerTier} points.</value>
     </data>
     <data name="Tooltips_Next_Tier" xml:space="preserve">
-        <value>Pour atteindre le prochain palier, il vous manque {@Highlight}{NextTier}{@Clear} points.</value>
+        <value>Pour atteindre le prochain palier, il vous manque {@Highlight}{NextTier}{@Clear} {Points}.</value>
     </data>
     <data name="Tooltips_Wasting" xml:space="preserve">
         <value>Actuellement, {@Wasting}{Wasting}{@Clear} {Points} ne sont pas rentabilisés.</value>

@@ -69,7 +69,7 @@ Die Rate der kritischen Treffer und der Schaden erhöhen sich um 0,1% alle {Poin
         <value>Punkte</value>
     </data>
     <data name="Tooltips_Next_Tier" xml:space="preserve">
-        <value>Um die nächste Stufe zu erreichen benötigst du {@Highlight}{NextTier}{@Clear} Punkte.</value>
+        <value>Um die nächste Stufe zu erreichen benötigst du {@Highlight}{NextTier}{@Clear} {Points}.</value>
     </data>
     <data name="Tooltips_Determination_Tooltip" xml:space="preserve">
         <value>{@Title}Entschlossenheit{@Clear} erhöht den verursachten Schaden durch Angriffe sowie die Stärke von Heilungszaubern.

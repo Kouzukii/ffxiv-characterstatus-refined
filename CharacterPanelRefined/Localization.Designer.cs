@@ -405,7 +405,7 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To reach the next tier you need {@Highlight}{NextTier}{@Clear} points..
+        ///   Looks up a localized string similar to To reach the next tier you need {@Highlight}{NextTier}{@Clear} {Points}..
         /// </summary>
         internal static string Tooltips_Next_Tier {
             get {

@@ -142,7 +142,7 @@ public class Tooltips : IDisposable {
             Update(Entry.Speed28, ref statInfo, "__");
         } else {
             Update(Entry.Speed, ref gcd25);
-            Update(Entry.Speed28, ref statInfo, "_");
+            Update(Entry.Speed, ref statInfo, "_");
         }
     }
 
@@ -152,9 +152,12 @@ public class Tooltips : IDisposable {
         var wasting = statInfo.CurrentValue - statInfo.PrevTier;
         ((UIForegroundPayload)tooltip.Payloads[keywordIndices[(entry, "@Wasting" + suffix)]]).ColorKey = (ushort)(wasting == 0 ? GreenColor : OrangeColor);
         ((TextPayload)tooltip.Payloads[keywordIndices[(entry, "Wasting" + suffix)]]).Text = wasting.ToString();
-        ((TextPayload)tooltip.Payloads[keywordIndices[(entry, "Points" + suffix)]]).Text =
+        ((TextPayload)tooltip.Payloads[keywordIndices[(entry, $"Points{suffix}{suffix}")]]).Text =
             wasting == 1 ? Localization.Tooltips_Wasting_Points_Singular : Localization.Tooltips_Wasting_Points_Plural;
-        ((TextPayload)tooltip.Payloads[keywordIndices[(entry, "NextTier" + suffix)]]).Text = (statInfo.NextTier - statInfo.CurrentValue).ToString();
+        var nextTier = statInfo.NextTier - statInfo.CurrentValue;
+        ((TextPayload)tooltip.Payloads[keywordIndices[(entry, "NextTier" + suffix)]]).Text = nextTier.ToString();
+        ((TextPayload)tooltip.Payloads[keywordIndices[(entry, $"Points{suffix}{suffix}_")]]).Text =
+            nextTier == 1 ? Localization.Tooltips_Wasting_Points_Singular : Localization.Tooltips_Wasting_Points_Plural;
         WriteString(entry);
     }
 

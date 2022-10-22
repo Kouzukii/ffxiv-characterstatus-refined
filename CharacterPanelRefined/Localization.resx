@@ -86,7 +86,7 @@ A 2.5s GCD is sped up by 0.01s on average every {PointsPerTier} points.</value>
         <value>A 2.8s GCD is sped up by 0.01s on average every {PointsPerTier} points.</value>
     </data>
     <data name="Tooltips_Next_Tier" xml:space="preserve">
-        <value>To reach the next tier you need {@Highlight}{NextTier}{@Clear} points.</value>
+        <value>To reach the next tier you need {@Highlight}{NextTier}{@Clear} {Points}.</value>
     </data>
     <data name="Tooltips_Wasting" xml:space="preserve">
         <value>You are currently wasting {@Wasting}{Wasting}{@Clear} {Points}.</value>

@@ -97,6 +97,86 @@ public class EquationTests {
         (2651, 2.36),
     };
 
+    private List<(int Speed, double GcdScalar)> llGcd25Breakpoints = new() {
+        (400, 2.12),
+        (444, 2.11),
+        (503, 2.1),
+        (576, 2.09),
+        (649, 2.08),
+        (707, 2.07),
+        (780, 2.06),
+        (854, 2.05),
+        (927, 2.04),
+        (1000, 2.03),
+        (1058, 2.02),
+        (1131, 2.01),
+        (1204, 2),
+        (1263, 1.99),
+        (1336, 1.98),
+        (1409, 1.97),
+        (1467, 1.96),
+        (1540, 1.95),
+        (1614, 1.94),
+        (1672, 1.93),
+        (1745, 1.92),
+        (1818, 1.91),
+        (1877, 1.9),
+        (1950, 1.89),
+        (2023, 1.88),
+        (2096, 1.87),
+        (2169, 1.86),
+        (2227, 1.85),
+        (2300, 1.84),
+        (2374, 1.83),
+        (2432, 1.82),
+        (2505, 1.81),
+        (2578, 1.8),
+        (2637, 1.79),
+        (2710, 1.78)
+    };
+
+    private List<(int Speed, double GcdScalar)> llGcd28Breakpoints = new() {
+        (400, 2.38),
+        (415, 2.37),
+        (459, 2.36),
+        (532, 2.35),
+        (590, 2.34),
+        (649, 2.33),
+        (707, 2.32),
+        (780, 2.31),
+        (839, 2.3),
+        (897, 2.29),
+        (956, 2.28),
+        (1014, 2.27),
+        (1087, 2.26),
+        (1146, 2.25),
+        (1204, 2.24),
+        (1263, 2.23),
+        (1321, 2.22),
+        (1394, 2.21),
+        (1453, 2.2),
+        (1511, 2.19),
+        (1570, 2.18),
+        (1628, 2.17),
+        (1701, 2.16),
+        (1760, 2.15),
+        (1818, 2.14),
+        (1877, 2.13),
+        (1950, 2.12),
+        (1994, 2.11),
+        (2067, 2.1),
+        (2125, 2.09),
+        (2184, 2.08),
+        (2242, 2.07),
+        (2315, 2.06),
+        (2374, 2.05),
+        (2432, 2.04),
+        (2490, 2.03),
+        (2549, 2.02),
+        (2622, 2.01),
+        (2680, 2)
+    };
+
     private Dictionary<string, List<(int Stat, double Value)>> breakpoints = new() {
         {
             nameof(Equations.CalcDh), new() {
@@ -1119,10 +1199,18 @@ public class EquationTests {
         var j = 0;
         var lbp28 = gcd28Breakpoints[0];
         var nbp28 = gcd28Breakpoints[1];
+        var l = 0;
+        var lbpm = llGcd25Breakpoints[0];
+        var nbpm = llGcd25Breakpoints[1];
+        var k = 0;
+        var lbpm28 = llGcd28Breakpoints[0];
+        var nbpm28 = llGcd28Breakpoints[1];
         var statInfo = new StatInfo();
         var gcd25 = new StatInfo();
         var gcd28 = new StatInfo();
         var lvlModifier = LevelModifiers.LevelTable[90];
+        var altGcd = new AlternateGcd(280, "Fire IV");
+        var gcdMod = GcdModifier.LeyLines;
         for (var speed = 400; speed < 2651; speed++) {
             if (speed >= nbp.Speed) {
                 lbp = nbp;
@@ -1134,7 +1222,20 @@ public class EquationTests {
                 nbp28 = gcd28Breakpoints[++j + 1];
             }
 
-            Equations.CalcSpeed(speed, ref statInfo, ref gcd25, ref gcd28, ref lvlModifier, true);
+            if (speed >= nbpm.Speed) {
+                lbpm = nbpm;
+                nbpm = llGcd25Breakpoints[++l + 1];
+            }
+
+            if (speed >= nbpm28.Speed) {
+                lbpm28 = nbpm28;
+                nbpm28 = llGcd28Breakpoints[++k + 1];
+            }
+
+            Equations.CalcSpeed(speed, ref statInfo, ref gcd25, ref gcd28, lvlModifier, altGcd, null, out var baseModGcd, out var altBaseModGcd);
+
+            Assert.AreEqual(250, baseModGcd, "Base GCD is off for {0}", speed);
+            Assert.AreEqual(280, altBaseModGcd, "Alt Base GCD is off for {0}", speed);
 
             Assert.AreEqual(lbp.GcdScalar, gcd25.DisplayValue, "GCD is off for {0}", speed);
             Assert.AreEqual(lbp.Speed, gcd25.PrevTier, "PrevTier is off for {0}", speed);
@@ -1143,6 +1244,19 @@ public class EquationTests {
             Assert.AreEqual(lbp28.GcdScalar, gcd28.DisplayValue, "GCD is off for {0}", speed);
             Assert.AreEqual(lbp28.Speed, gcd28.PrevTier, "PrevTier is off for {0}", speed);
             Assert.AreEqual(nbp28.Speed, gcd28.NextTier, "NextTier is off for {0}", speed);
+
+            Equations.CalcSpeed(speed, ref statInfo, ref gcd25, ref gcd28, lvlModifier, altGcd, gcdMod, out baseModGcd, out altBaseModGcd);
+
+            Assert.AreEqual(212, baseModGcd, "Base GCD is off for {0}", speed);
+            Assert.AreEqual(238, altBaseModGcd, "Alt Base GCD is off for {0}", speed);
+
+            Assert.AreEqual(lbpm.GcdScalar, gcd25.DisplayValue, "GCD is off for {0}", speed);
+            Assert.AreEqual(lbpm.Speed, gcd25.PrevTier, "PrevTier is off for {0}", speed);
+            Assert.AreEqual(nbpm.Speed, gcd25.NextTier, "NextTier is off for {0}", speed);
+
+            Assert.AreEqual(lbpm28.GcdScalar, gcd28.DisplayValue, "GCD is off for {0}", speed);
+            Assert.AreEqual(lbpm28.Speed, gcd28.PrevTier, "PrevTier is off for {0}", speed);
+            Assert.AreEqual(nbpm28.Speed, gcd28.NextTier, "NextTier is off for {0}", speed);
         }
     }
 

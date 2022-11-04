@@ -1,6 +1,7 @@
 using Dalamud.Data;
 using Dalamud.Game;
 using Dalamud.Game.ClientState;
+using Dalamud.Game.ClientState.Keys;
 using Dalamud.Game.Command;
 using Dalamud.IoC;
 using Dalamud.Plugin;
@@ -18,7 +19,11 @@ internal class Service {
 
     [PluginService]
     [RequiredVersion("1.0")]
-    internal static SigScanner SigScanner { get; private set; }
+    internal static KeyState KeyState { get; private set; }
+
+    [PluginService]
+    [RequiredVersion("1.0")]
+    internal static Framework Framework { get; private set; }
 
     [PluginService]
     [RequiredVersion("1.0")]

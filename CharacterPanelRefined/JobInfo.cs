@@ -178,4 +178,44 @@ public static class JobInfo {
             _ => 1
         };
     }
+
+    public static GcdModifier? GcdMod(this JobId id, int level) =>
+        (id, level) switch {
+            (JobId.SAM, >= 18) => GcdModifier.Shifu,
+            (JobId.NIN, >= 45) => GcdModifier.Huton,
+            (JobId.MNK, >= 76) => GcdModifier.EnhancedGreasedLightning3,
+            (JobId.MNK, >= 40) => GcdModifier.EnhancedGreasedLightning2,
+            (JobId.MNK or JobId.PGL, >= 20) => GcdModifier.EnhancedGreasedLightning1,
+            (JobId.MNK or JobId.PGL, >=  1) => GcdModifier.GreasedLightning,
+            (JobId.WHM, >= 30) => GcdModifier.PresenceOfMind,
+            (JobId.BRD, >= 40) => GcdModifier.ArmysPaeon,
+            (JobId.AST, >= 50) => GcdModifier.Astrodyne,
+            (JobId.BLM, >= 52) => GcdModifier.LeyLines,
+            _ => null
+        };
+
+    public static AlternateGcd? AltGcd(this JobId id, int level) =>
+        (id, level) switch {
+            (JobId.BLM, >= 60) => AlternateGcd.FireIV,
+            (JobId.SMN or JobId.ARC, >= 6) => AlternateGcd.RubyRite,
+            _ => null
+        };
+}
+
+public record AlternateGcd(int Gcd, string Name) {
+    public static readonly AlternateGcd FireIV = new(280, Localization.Panel_Fire_IV_GCD);
+    public static readonly AlternateGcd RubyRite = new(300, Localization.Panel_RubyRite_GCD);
+}
+
+public record GcdModifier(int Mod, string Name, string Abbrev, bool Passive) {
+    public static readonly GcdModifier Shifu = new(13, Localization.Buff_Shifu, Localization.Buff_Shifu, true);
+    public static readonly GcdModifier Huton = new(15, Localization.Buff_Huton, Localization.Buff_Huton, true);
+    public static readonly GcdModifier EnhancedGreasedLightning3 = new(20, Localization.Buff_GreasedLightning, Localization.Buff_GreasedLightning_Abbrev, true);
+    public static readonly GcdModifier EnhancedGreasedLightning2 = new(15, Localization.Buff_GreasedLightning, Localization.Buff_GreasedLightning_Abbrev, true);
+    public static readonly GcdModifier EnhancedGreasedLightning1 = new(10, Localization.Buff_GreasedLightning, Localization.Buff_GreasedLightning_Abbrev, true);
+    public static readonly GcdModifier GreasedLightning = new(5, Localization.Buff_GreasedLightning, Localization.Buff_GreasedLightning_Abbrev, true);
+    public static readonly GcdModifier ArmysPaeon = new (16, Localization.Buff_ArmysPaeon, Localization.Buff_ArmysPaeon_Abbrev, false);
+    public static readonly GcdModifier Astrodyne = new (10, Localization.Buff_Astrodyne, Localization.Buff_Astrodyne_Abbrev, false);
+    public static readonly GcdModifier LeyLines = new (15, Localization.Buff_LeyLines, Localization.Buff_LeyLines_Abbrev, false);
+    public static readonly GcdModifier PresenceOfMind = new (20, Localization.Buff_PresenceOfMind, Localization.Buff_PresenceOfMind_Abbrev, false);
 }

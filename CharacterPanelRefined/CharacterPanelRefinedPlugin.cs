@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using Dalamud;
-using Dalamud.Game;
-using Dalamud.Game.ClientState.Keys;
 using Dalamud.Game.Command;
 using Dalamud.Memory;
 using Dalamud.Plugin;
@@ -24,7 +22,6 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
     private readonly Tooltips tooltips;
     private readonly Hooks hooks;
 
-    private bool ctrlHeld;
     private IntPtr characterStatusPtr;
     private unsafe AtkTextNode* dhChancePtr;
     private unsafe AtkTextNode* dhDamagePtr;
@@ -38,7 +35,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
     private unsafe AtkTextNode* sksGcdPtr;
     private unsafe AtkTextNode* spsSpeedIncreasePtr;
     private unsafe AtkTextNode* spsGcdPtr;
-    private unsafe AtkTextNode* spsAltGcdPtr;
+    private unsafe AtkTextNode* sps28GcdPtr;
     private unsafe AtkTextNode* tenMitPtr;
     private unsafe AtkTextNode* pieManaPtr;
     private unsafe AtkTextNode* expectedDamagePtr;
@@ -67,33 +64,16 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         Configuration = Configuration.Get(pluginInterface);
         ConfigWindow = new ConfigWindow(this);
         tooltips = new Tooltips();
-        hooks = new Hooks(this);
+        hooks = new Hooks();
+        hooks.CharacterStatusOnSetup += CharacterStatusOnSetup;
+        hooks.CharacterStatusRequestUpdate += CharacterStatusRequestUpdate;
 
         UpdateLanguage();
-        
-        Service.Framework.Update += FrameworkOnUpdate;
 
         pluginInterface.UiBuilder.Draw += ConfigWindow.Draw;
         pluginInterface.UiBuilder.OpenConfigUi += () => ConfigWindow.ShowConfig = true;
         Service.CommandManager.AddHandler("/cprconfig",
             new CommandInfo((_, _) => ConfigWindow.ShowConfig ^= true) { HelpMessage = "Open the Character Panel Refined configuration." });
-    }
-
-    private unsafe void FrameworkOnUpdate(Framework framework) {
-        var ctrlState = Service.KeyState[VirtualKey.CONTROL];
-        if (ctrlState == ctrlHeld)
-            return;
-        ctrlHeld = ctrlState;
-        if (characterStatusPtr == IntPtr.Zero)
-            return;
-        var atkUnitBase = (AtkUnitBase*)characterStatusPtr;
-        if (!atkUnitBase->IsVisible) return;
-        CharacterStatusRequestUpdate(atkUnitBase);
-        // Update the currently active tooltip
-        var tooltipManager = &AtkStage.GetSingleton()->TooltipManager;
-        var currentTooltipNode = ((AtkResNode**)tooltipManager)[4];
-        if (currentTooltipNode == null) return;
-        hooks.AtkTooltipManagerShowNodeTooltip(tooltipManager, currentTooltipNode);
     }
 
     public void UpdateLanguage() {
@@ -114,77 +94,72 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         tooltips.Reload();
     }
 
-    internal unsafe void CharacterStatusRequestUpdate(AtkUnitBase* atkUnitBase) {
-        if ((IntPtr)atkUnitBase == characterStatusPtr) {
+    private unsafe void CharacterStatusRequestUpdate(Pointer<AtkUnitBase> atkUnitBase) {
+        if ((IntPtr)atkUnitBase.Value == characterStatusPtr) {
             var uiState = UIState.Instance();
             var lvl = uiState->PlayerState.CurrentLevel;
             var levelModifier = LevelModifiers.LevelTable[lvl];
             var statInfo = new StatInfo();
 
-            var dh = Equations.CalcDh(uiState->PlayerState.Attributes[(int)Attributes.DirectHit], ref statInfo, levelModifier);
+            var dh = Equations.CalcDh(uiState->PlayerState.Attributes[(int)Attributes.DirectHit], ref statInfo, ref levelModifier);
             dhChancePtr->SetText($"{statInfo.DisplayValue:P1}");
             if (dhDamagePtr != null)
                 dhDamagePtr->SetText($"{statInfo.DisplayValue * 0.25:P1}");
-            tooltips.Update(Tooltips.Entry.DirectHit, statInfo);
+            tooltips.Update(Tooltips.Entry.DirectHit, ref statInfo);
 
-            var det = Equations.CalcDet(uiState->PlayerState.Attributes[(int)Attributes.Determination], ref statInfo, levelModifier);
-            tooltips.Update(Tooltips.Entry.Determination, statInfo);
+            var det = Equations.CalcDet(uiState->PlayerState.Attributes[(int)Attributes.Determination], ref statInfo, ref levelModifier);
+            tooltips.Update(Tooltips.Entry.Determination, ref statInfo);
             detDmgIncreasePtr->SetText($"{statInfo.DisplayValue:P1}");
 
-            var critRate = Equations.CalcCritRate(uiState->PlayerState.Attributes[(int)Attributes.CriticalHit], ref statInfo, levelModifier);
-            tooltips.Update(Tooltips.Entry.Crit, statInfo);
+            var critRate = Equations.CalcCritRate(uiState->PlayerState.Attributes[(int)Attributes.CriticalHit], ref statInfo, ref levelModifier);
+            tooltips.Update(Tooltips.Entry.Crit, ref statInfo);
             critChancePtr->SetText($"{statInfo.DisplayValue:P1}");
 
-            var critDmg = Equations.CalcCritDmg(uiState->PlayerState.Attributes[(int)Attributes.CriticalHit], ref statInfo, levelModifier);
+            var critDmg = Equations.CalcCritDmg(uiState->PlayerState.Attributes[(int)Attributes.CriticalHit], ref statInfo, ref levelModifier);
             critDmgPtr->SetText($"{statInfo.DisplayValue:P1}");
             if (critDmgIncreasePtr != null)
                 critDmgIncreasePtr->SetText($"{critRate * (critDmg - 1):P1}");
 
-            Equations.CalcMagicDef(uiState->PlayerState.Attributes[(int)Attributes.MagicDefense], ref statInfo, levelModifier);
+            Equations.CalcMagicDef(uiState->PlayerState.Attributes[(int)Attributes.MagicDefense], ref statInfo, ref levelModifier);
             magicMitPtr->SetText($"{statInfo.DisplayValue:P0}");
-            tooltips.Update(Tooltips.Entry.MagicDefense, statInfo);
+            tooltips.Update(Tooltips.Entry.MagicDefense, ref statInfo);
 
-            Equations.CalcDef(uiState->PlayerState.Attributes[(int)Attributes.Defense], ref statInfo, levelModifier);
+            Equations.CalcDef(uiState->PlayerState.Attributes[(int)Attributes.Defense], ref statInfo, ref levelModifier);
             physMitPtr->SetText($"{statInfo.DisplayValue:P0}");
-            tooltips.Update(Tooltips.Entry.Defense, statInfo);
+            tooltips.Update(Tooltips.Entry.Defense, ref statInfo);
 
-            var jobId = (JobId)uiState->PlayerState.CurrentClassJobId;
+            var jobId = (JobId)(*((byte*)&uiState->PlayerState + 0x6E));
 
-            StatInfo gcdMain = new(), gcdAlt = new();
-            var altGcd = jobId.AltGcd(lvl);
-            var gcdMod = jobId.GcdMod(lvl);
-            var withMod = gcdMod != null && ctrlHeld != gcdMod.Passive;
-            Equations.CalcSpeed(uiState->PlayerState.Attributes[jobId.IsCaster() ? (int)Attributes.SpellSpeed : (int)Attributes.SkillSpeed], ref statInfo,
-                ref gcdMain, ref gcdAlt, levelModifier, altGcd, withMod ? gcdMod : null, out var baseGcd, out var altBaseGcd);
-            tooltips.UpdateSpeed(statInfo, gcdMain, gcdAlt, baseGcd, altBaseGcd, !ctrlHeld ? gcdMod : null);
+            StatInfo gcd25 = new(), gcd28 = new();
             if (jobId.IsCaster()) {
+                var isBlm = jobId == JobId.BLM;
+                Equations.CalcSpeed(uiState->PlayerState.Attributes[(int)Attributes.SpellSpeed], ref statInfo, ref gcd25, ref gcd28, ref levelModifier, isBlm);
                 spsSpeedIncreasePtr->SetText($"{statInfo.DisplayValue:P1}");
-                ((AtkTextNode*)spsGcdPtr->AtkResNode.PrevSiblingNode)->SetText($"{Localization.Panel_GCD}{(withMod ? $" ({gcdMod!.Abbrev})" : "")}");
-                spsGcdPtr->SetText($"{gcdMain.DisplayValue:N2}s");
-                if (altGcd != null) {
-                    ((AtkTextNode*)spsAltGcdPtr->AtkResNode.PrevSiblingNode)->SetText($"{altGcd.Name}{(withMod ? $" ({gcdMod!.Abbrev})" : "")}");
-                    spsAltGcdPtr->SetText($"{gcdAlt.DisplayValue:N2}s");
-                }
+                spsGcdPtr->SetText($"{gcd25.DisplayValue:N2}s");
+                sps28GcdPtr->SetText($"{gcd28.DisplayValue:N2}s");
+                tooltips.UpdateSpeed(ref statInfo, ref gcd25, ref gcd28, isBlm);
+                SetTooltip(spsSpeedIncreasePtr, isBlm ? Tooltips.Entry.Speed28 : Tooltips.Entry.Speed);
             } else {
+                Equations.CalcSpeed(uiState->PlayerState.Attributes[(int)Attributes.SkillSpeed], ref statInfo, ref gcd25, ref gcd28, ref levelModifier, false);
                 sksSpeedIncreasePtr->SetText($"{statInfo.DisplayValue:P1}");
-                ((AtkTextNode*)sksGcdPtr->AtkResNode.PrevSiblingNode)->SetText($"{Localization.Panel_GCD}{(withMod ? $" ({gcdMod!.Abbrev})" : "")}");
-                sksGcdPtr->SetText($"{gcdMain.DisplayValue:N2}s");
+                sksGcdPtr->SetText($"{gcd25.DisplayValue:N2}s");
+                tooltips.UpdateSpeed(ref statInfo, ref gcd25, ref gcd28, false);
             }
 
-            Equations.CalcPiety(uiState->PlayerState.Attributes[(int)Attributes.Piety], ref statInfo, levelModifier);
+            Equations.CalcPiety(uiState->PlayerState.Attributes[(int)Attributes.Piety], ref statInfo, ref levelModifier);
             pieManaPtr->SetText($"{statInfo.DisplayValue:N0}");
-            tooltips.Update(Tooltips.Entry.Piety, statInfo);
+            tooltips.Update(Tooltips.Entry.Piety, ref statInfo);
 
-            var ten = Equations.CalcTenacity(uiState->PlayerState.Attributes[(int)Attributes.Tenacity], ref statInfo, levelModifier);
+            var ten = Equations.CalcTenacity(uiState->PlayerState.Attributes[(int)Attributes.Tenacity], ref statInfo, ref levelModifier);
             tenMitPtr->SetText($"{statInfo.DisplayValue:P1}");
-            tooltips.Update(Tooltips.Entry.Tenacity, statInfo);
+            tooltips.Update(Tooltips.Entry.Tenacity, ref statInfo);
 
             Equations.CalcHp(uiState, jobId, out var hpPerVitality, out var hpModifier);
             tooltips.UpdateVitality(jobId.ToString(), hpPerVitality, hpModifier);
 
             if (expectedDamagePtr != null || expectedHealPtr != null) {
                 var (avgDamage, normalDamage, critDamage, avgHeal, normalHeal, critHeal) =
-                    Equations.CalcExpectedOutput(uiState, jobId, det, critDmg, critRate, dh, ten, levelModifier);
+                    Equations.CalcExpectedOutput(uiState, jobId, det, critDmg, critRate, dh, ten, ref levelModifier);
                 if (expectedDamagePtr != null) {
                     expectedDamagePtr->SetText($"{avgDamage:N0}");
                     tooltips.UpdateExpectedOutput(Tooltips.Entry.ExpectedDamage, normalDamage, critDamage);
@@ -213,14 +188,14 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
             }
 
             if (jobId != lastJob) {
-                UpdateCharacterPanelForJob(jobId, lvl);
+                UpdateCharacterPanelForJob(jobId);
             }
         } else {
             ClearPointers();
         }
     }
 
-    private unsafe void UpdateCharacterPanelForJob(JobId job, int lvl) {
+    private unsafe void UpdateCharacterPanelForJob(JobId job) {
         if (job.IsCrafter() || job.IsGatherer()) {
             attributesPtr->ChildNode->ToggleVisibility(false);
             attributesPtr->ChildNode->PrevSiblingNode->ToggleVisibility(false);
@@ -246,8 +221,8 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
                 spellSpeedPtr->ToggleVisibility(true);
                 skillSpeedPtr->ToggleVisibility(false);
                 spellSpeedPtr->ToggleVisibility(true);
-                spsAltGcdPtr->AtkResNode.ToggleVisibility(job.AltGcd(lvl) != null);
-                spsAltGcdPtr->AtkResNode.PrevSiblingNode->ToggleVisibility(job.AltGcd(lvl) != null);
+                sps28GcdPtr->AtkResNode.ToggleVisibility(job == JobId.BLM);
+                sps28GcdPtr->AtkResNode.PrevSiblingNode->ToggleVisibility(job == JobId.BLM);
                 if (job.UsesMind()) {
                     attributesPtr->ChildNode->ToggleVisibility(true);
                     attributesPtr->ChildNode->PrevSiblingNode->ToggleVisibility(false);
@@ -326,10 +301,9 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
     }
 
 
-    internal unsafe void CharacterStatusOnSetup(AtkUnitBase* atkUnitBase) {
-        var uiState = UIState.Instance();
-        var job = (JobId)uiState->PlayerState.CurrentClassJobId;
-        var lvl = uiState->PlayerState.CurrentLevel;
+    private unsafe void CharacterStatusOnSetup(Pointer<AtkUnitBase> atk) {
+        var job = (JobId)UIState.Instance()->PlayerState.CurrentClassJobId;
+        var atkUnitBase = atk.Value;
 
         attributesPtr = atkUnitBase->UldManager.SearchNodeById(26);
         var mndNode = attributesPtr->ChildNode;
@@ -425,7 +399,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         magAtkPotency->PrevSiblingNode->PrevSiblingNode->ToggleVisibility(false); // Header
         spsSpeedIncreasePtr = AddStatRow((AtkComponentNode*)spellSpeedPtr, Localization.Panel_Skill_Speed_Increase);
         spsGcdPtr = AddStatRow((AtkComponentNode*)spellSpeedPtr, Localization.Panel_GCD);
-        spsAltGcdPtr = AddStatRow((AtkComponentNode*)spellSpeedPtr, "");
+        sps28GcdPtr = AddStatRow((AtkComponentNode*)spellSpeedPtr, Localization.Panel_Fire_IV_GCD);
         SetTooltip(spsSpeedIncreasePtr, Tooltips.Entry.Speed);
 
         physPropertiesPtr = atkUnitBase->UldManager.SearchNodeById(51);
@@ -476,7 +450,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
             perception->Y += 20;
             perceptionBasePtr = AddStatRow((AtkComponentNode*)perception, Localization.Panel_excluding_Consumables);
             gpPtr = AddStatRow((AtkComponentNode*)perception, Localization.Panel_GP);
-            gpPtr->TextColor = ((AtkTextNode*)gpPtr->AtkResNode.PrevSiblingNode)->TextColor =
+            gpPtr->TextColor = ((AtkTextNode*)gpPtr->AtkResNode.PrevSiblingNode)->TextColor = 
                 ((AtkTextNode*)perceptionBasePtr->AtkResNode.NextSiblingNode)->TextColor;
             gpBasePtr = AddStatRow((AtkComponentNode*)perception, Localization.Panel_excluding_Consumables);
             ((AtkComponentNode*)perception)->Component->UldManager.RootNode->Height -= 40;
@@ -485,7 +459,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
 
         characterStatusPtr = (IntPtr)atkUnitBase;
 
-        UpdateCharacterPanelForJob(job, lvl);
+        UpdateCharacterPanelForJob(job);
     }
 
     private unsafe AtkTextNode* AddStatRow(AtkComponentNode* parentNode, string label, bool hideOriginal = false) {
@@ -567,7 +541,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         sksGcdPtr = null;
         spsSpeedIncreasePtr = null;
         spsGcdPtr = null;
-        spsAltGcdPtr = null;
+        sps28GcdPtr = null;
         tenMitPtr = null;
         pieManaPtr = null;
         expectedDamagePtr = null;
@@ -591,7 +565,6 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
     }
 
     public void Dispose() {
-        Service.Framework.Update -= FrameworkOnUpdate;
         ClearPointers();
         Service.CommandManager.RemoveHandler("/cprconfig");
         hooks.Dispose();

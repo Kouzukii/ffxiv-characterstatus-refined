@@ -40,9 +40,6 @@
     <data name="Panel_Fire_IV_GCD" xml:space="preserve">
         <value>Fire IV Cast</value>
     </data>
-    <data name="Panel_RubyRite_GCD" xml:space="preserve">
-        <value>Ruby Rite Recast</value>
-    </data>
     <data name="Panel_GCD" xml:space="preserve">
         <value>Recast</value>
     </data>
@@ -78,20 +75,15 @@ A direct hit increases damage done by 25%.
 Direct Hit Rate increases by 0.1% every {PointsPerTier} points.</value>
     </data>
     <data name="Tooltips_Skill_Spell_Speed_Tooltip" xml:space="preserve">
-        <value>{@Title}Skill/Spell Speed{@Clear} shortens cast times and recast timers as well as increase damage done by damage over time effects.</value>
-    </data>
-    <data name="Tooltips_Skill_Spell_Speed_GCD" xml:space="preserve">
-        <value>A {GCD}s GCD is sped up by 0.01s on average every {PointsPerTier} points.</value>
-    </data>
-    <data name="Tooltips_Skill_Spell_Speed_With_Mod" xml:space="preserve">
-        <value>{@Highlight}These values assume {@Red}{ModName}{@Clear} is active. 
-Hold Ctrl to view these values without {@Red}{ModName}{@Clear}.{@Clear}</value>
-    </data>
-    <data name="Tooltips_Skill_Spell_Speed_Without_Mod" xml:space="preserve">
-        <value>{@Highlight}Hold Ctrl to view these values assuming {@Red}{ModName}{@Clear} is active.{@Clear}</value>
+        <value>{@Title}Skill/Spell Speed{@Clear} shortens cast times and recast timers as well as increase damage done by damage over time effects.
+
+A 2.5s GCD is sped up by 0.01s on average every {PointsPerTier} points.</value>
     </data>
     <data name="Tooltips_Skill_Spell_Speed_DoT_Increase" xml:space="preserve">
         <value>DoT damage increases by 0.1% every {PointsPerTier} points.</value>
+    </data>
+    <data name="Tooltips_Spell_Speed_28_GCD" xml:space="preserve">
+        <value>A 2.8s GCD is sped up by 0.01s on average every {PointsPerTier} points.</value>
     </data>
     <data name="Tooltips_Next_Tier" xml:space="preserve">
         <value>To reach the next tier you need {@Highlight}{NextTier}{@Clear} {Points}.</value>
@@ -190,41 +182,5 @@ SMNs physick is the only exception since it scales with MND instead of INT.</val
     </data>
     <data name="Config_Show_stats_without_consumables" xml:space="preserve">
         <value>Show DoH/DoL stats without consumables</value>
-    </data>
-    <data name="Buff_LeyLines" xml:space="preserve">
-        <value>Ley Lines</value>
-    </data>
-    <data name="Buff_LeyLines_Abbrev" xml:space="preserve">
-        <value>LL</value>
-    </data>
-    <data name="Buff_GreasedLightning" xml:space="preserve">
-        <value>Greased Lightning</value>
-    </data>
-    <data name="Buff_GreasedLightning_Abbrev" xml:space="preserve">
-        <value>GL</value>
-    </data>
-    <data name="Buff_Shifu" xml:space="preserve">
-        <value>Shifu</value>
-    </data>
-    <data name="Buff_PresenceOfMind" xml:space="preserve">
-        <value>Presence of Mind</value>
-    </data>
-    <data name="Buff_PresenceOfMind_Abbrev" xml:space="preserve">
-        <value>PoM</value>
-    </data>
-    <data name="Buff_Huton" xml:space="preserve">
-        <value>Huton</value>
-    </data>
-    <data name="Buff_ArmysPaeon" xml:space="preserve">
-        <value>Army's Paeon</value>
-    </data>
-    <data name="Buff_ArmysPaeon_Abbrev" xml:space="preserve">
-        <value>AP</value>
-    </data>
-    <data name="Buff_Astrodyne" xml:space="preserve">
-        <value>Astrodyne</value>
-    </data>
-    <data name="Buff_Astrodyne_Abbrev" xml:space="preserve">
-        <value>AD</value>
     </data>
 </root>

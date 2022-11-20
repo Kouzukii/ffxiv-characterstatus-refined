@@ -8,11 +8,10 @@ using Dalamud.Game.Text.SeStringHandling.Payloads;
 namespace CharacterPanelRefined;
 
 public class Tooltips : IDisposable {
-    private const ushort TitleColor = 8;
-    private const ushort HighlightColor = 33;
-    private const ushort GreenColor = 43;
-    private const ushort OrangeColor = 31;
-    private const ushort RedColor = 0x1f4;
+    private const int TitleColor = 8;
+    private const int HighlightColor = 33;
+    private const int GreenColor = 43;
+    private const int OrangeColor = 31;
 
     private readonly Dictionary<Entry, IntPtr> allocations = new();
 
@@ -25,6 +24,7 @@ public class Tooltips : IDisposable {
         DirectHit,
         Determination,
         Speed,
+        Speed28,
         ExpectedDamage,
         ExpectedHeal,
         Tenacity,
@@ -75,9 +75,6 @@ public class Tooltips : IDisposable {
                         case "@Highlight":
                             col = HighlightColor;
                             break;
-                        case "@Red":
-                            col = RedColor;
-                            break;
                         case "@Wasting":
                             AddKeyword(keyword);
                             break;
@@ -108,6 +105,12 @@ public class Tooltips : IDisposable {
         LoadLocString(Entry.Defense, Localization.Tooltips_Defense_Tooltip, "\n", Localization.Tooltips_Wasting, "\n", Localization.Tooltips_Next_Tier);
         LoadLocString(Entry.MagicDefense, Localization.Tooltips_Magic_Defense_Tooltip, "\n", Localization.Tooltips_Wasting, "\n",
             Localization.Tooltips_Next_Tier);
+        LoadLocString(Entry.Speed, Localization.Tooltips_Skill_Spell_Speed_Tooltip, "\n", Localization.Tooltips_Wasting, "\n", Localization.Tooltips_Next_Tier,
+            "\n\n", Localization.Tooltips_Skill_Spell_Speed_DoT_Increase, "\n", Localization.Tooltips_Wasting, "\n", Localization.Tooltips_Next_Tier);
+        LoadLocString(Entry.Speed28, Localization.Tooltips_Skill_Spell_Speed_Tooltip, "\n", Localization.Tooltips_Wasting, "\n",
+            Localization.Tooltips_Next_Tier, "\n\n", Localization.Tooltips_Spell_Speed_28_GCD, "\n", Localization.Tooltips_Wasting, "\n",
+            Localization.Tooltips_Next_Tier, "\n\n", Localization.Tooltips_Skill_Spell_Speed_DoT_Increase, "\n", Localization.Tooltips_Wasting, "\n",
+            Localization.Tooltips_Next_Tier);
         LoadLocString(Entry.Vitality, Localization.Tooltips_Vitality_Tooltip);
         LoadLocString(Entry.ExpectedDamage, Localization.Tooltips_Expected_Damage);
         LoadLocString(Entry.ExpectedHeal, Localization.Tooltips_Expected_Heal);
@@ -132,58 +135,18 @@ public class Tooltips : IDisposable {
         WriteString(Entry.Vitality);
     }
 
-    public void UpdateSpeed(in StatInfo statInfo, in StatInfo gcdMain, in StatInfo gcdAlt, int baseGcd, int? altBaseGcd, in GcdModifier? mod) {
-        var sb = new StringBuilder();
-        sb.Append(Localization.Tooltips_Skill_Spell_Speed_Tooltip)
-            .Append("\n\n");
-        if (mod != null) {
-            sb.Append(mod.Passive ? Localization.Tooltips_Skill_Spell_Speed_With_Mod : Localization.Tooltips_Skill_Spell_Speed_Without_Mod)
-                .Append("\n\n");
-        }
-
-        sb.Append(Localization.Tooltips_Skill_Spell_Speed_GCD)
-            .Append('\n')
-            .Append(Localization.Tooltips_Wasting)
-            .Append('\n')
-            .Append(Localization.Tooltips_Next_Tier)
-            .Append("\n\n");
-        if (altBaseGcd != null) {
-            sb.Append(Localization.Tooltips_Skill_Spell_Speed_GCD)
-                .Append('\n')
-                .Append(Localization.Tooltips_Wasting)
-                .Append('\n')
-                .Append(Localization.Tooltips_Next_Tier)
-                .Append("\n\n");
-        }
-        sb.Append(Localization.Tooltips_Skill_Spell_Speed_DoT_Increase)
-            .Append('\n')
-            .Append(Localization.Tooltips_Wasting)
-            .Append('\n')
-            .Append(Localization.Tooltips_Next_Tier);
-        
-        LoadLocString(Entry.Speed, sb.ToString());
-        
-        var tooltip = tooltips[Entry.Speed];
-        
-        ((TextPayload)tooltip.Payloads[keywordIndices[(Entry.Speed, "GCD")]]).Text = (baseGcd / 100.0).ToString("N2");
-        if (mod != null) {
-            ((TextPayload)tooltip.Payloads[keywordIndices[(Entry.Speed, "ModName")]]).Text = mod.Name;
-            if (mod.Passive)
-                ((TextPayload)tooltip.Payloads[keywordIndices[(Entry.Speed, "ModName_")]]).Text = mod.Name;
-        }
-        Update(Entry.Speed, gcdMain);
-        if (altBaseGcd != null) {
-            ((TextPayload)tooltip.Payloads[keywordIndices[(Entry.Speed, "GCD_")]]).Text = (altBaseGcd.Value / 100.0).ToString("N2");
-            Update(Entry.Speed, gcdAlt, "_");
-            Update(Entry.Speed, statInfo, "__");
+    public void UpdateSpeed(ref StatInfo statInfo, ref StatInfo gcd25, ref StatInfo gcd28, bool show28) {
+        if (show28) {
+            Update(Entry.Speed28, ref gcd25);
+            Update(Entry.Speed28, ref gcd28, "_");
+            Update(Entry.Speed28, ref statInfo, "__");
         } else {
-            Update(Entry.Speed, statInfo, "_");
+            Update(Entry.Speed, ref gcd25);
+            Update(Entry.Speed, ref statInfo, "_");
         }
-
-        WriteString(Entry.Speed);
     }
 
-    public void Update(Entry entry, in StatInfo statInfo, string suffix = "") {
+    public void Update(Entry entry, ref StatInfo statInfo, string suffix = "") {
         var tooltip = tooltips[entry];
         ((TextPayload)tooltip.Payloads[keywordIndices[(entry, "PointsPerTier" + suffix)]]).Text = statInfo.PointsPerTier.ToString("N1");
         var wasting = statInfo.CurrentValue - statInfo.PrevTier;

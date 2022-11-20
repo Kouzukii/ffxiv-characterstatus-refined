@@ -71,13 +71,15 @@ Effectuer un Coup net augmente les dégâts infligés de 25%.
 Vos chances d'effectuer un Coup net sont augmentées d'environ 0.1% tous les {PointsPerTier} points.</value>
     </data>
     <data name="Tooltips_Skill_Spell_Speed_Tooltip" xml:space="preserve">
-        <value>La {@Title}Vivacité/Célérité{@Clear} réduit vos temps d'incantation et de recharge et augmente les dégâts périodiques infligés.</value>
+        <value>La {@Title}Vivacité/Célérité{@Clear} réduit vos temps d'incantation et de recharge et augmente les dégâts périodiques infligés.
+
+Un GCD de 2.5s est généralement réduit de 0.01s tous les {PointsPerTier} points.</value>
     </data>
     <data name="Tooltips_Skill_Spell_Speed_DoT_Increase" xml:space="preserve">
         <value>Les dégâts périodiques sont augmentés d'environ 0.1% tous les {PointsPerTier} points.</value>
     </data>
-    <data name="Tooltips_Skill_Spell_Speed_GCD" xml:space="preserve">
-        <value>Un GCD de {GCD}s est généralement réduit de 0.01s tous les {PointsPerTier} points.</value>
+    <data name="Tooltips_Spell_Speed_28_GCD" xml:space="preserve">
+        <value>Le GCD de 2.8s est généralement réduit de 0.01s tous les {PointsPerTier} points.</value>
     </data>
     <data name="Tooltips_Next_Tier" xml:space="preserve">
         <value>Pour atteindre le prochain palier, il vous manque {@Highlight}{NextTier}{@Clear} {Points}.</value>

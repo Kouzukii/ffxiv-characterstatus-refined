@@ -60,114 +60,6 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Army&apos;s Paeon.
-        /// </summary>
-        internal static string Buff_ArmysPaeon {
-            get {
-                return ResourceManager.GetString("Buff_ArmysPaeon", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AP.
-        /// </summary>
-        internal static string Buff_ArmysPaeon_Abbrev {
-            get {
-                return ResourceManager.GetString("Buff_ArmysPaeon_Abbrev", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Astrodyne.
-        /// </summary>
-        internal static string Buff_Astrodyne {
-            get {
-                return ResourceManager.GetString("Buff_Astrodyne", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AD.
-        /// </summary>
-        internal static string Buff_Astrodyne_Abbrev {
-            get {
-                return ResourceManager.GetString("Buff_Astrodyne_Abbrev", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Greased Lightning.
-        /// </summary>
-        internal static string Buff_GreasedLightning {
-            get {
-                return ResourceManager.GetString("Buff_GreasedLightning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to GL.
-        /// </summary>
-        internal static string Buff_GreasedLightning_Abbrev {
-            get {
-                return ResourceManager.GetString("Buff_GreasedLightning_Abbrev", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Huton.
-        /// </summary>
-        internal static string Buff_Huton {
-            get {
-                return ResourceManager.GetString("Buff_Huton", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ley Lines.
-        /// </summary>
-        internal static string Buff_LeyLines {
-            get {
-                return ResourceManager.GetString("Buff_LeyLines", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to LL.
-        /// </summary>
-        internal static string Buff_LeyLines_Abbrev {
-            get {
-                return ResourceManager.GetString("Buff_LeyLines_Abbrev", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Presence of Mind.
-        /// </summary>
-        internal static string Buff_PresenceOfMind {
-            get {
-                return ResourceManager.GetString("Buff_PresenceOfMind", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to PoM.
-        /// </summary>
-        internal static string Buff_PresenceOfMind_Abbrev {
-            get {
-                return ResourceManager.GetString("Buff_PresenceOfMind_Abbrev", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Shifu.
-        /// </summary>
-        internal static string Buff_Shifu {
-            get {
-                return ResourceManager.GetString("Buff_Shifu", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Character Panel Refined Config.
         /// </summary>
         internal static string Config_Character_Panel_Refined_Config {
@@ -403,15 +295,6 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ruby Rite Recast.
-        /// </summary>
-        internal static string Panel_RubyRite_GCD {
-            get {
-                return ResourceManager.GetString("Panel_RubyRite_GCD", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Speed Increase.
         /// </summary>
         internal static string Panel_Skill_Speed_Increase {
@@ -552,16 +435,9 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A {GCD}s GCD is sped up by 0.01s on average every {PointsPerTier} points..
-        /// </summary>
-        internal static string Tooltips_Skill_Spell_Speed_GCD {
-            get {
-                return ResourceManager.GetString("Tooltips_Skill_Spell_Speed_GCD", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {@Title}Skill/Spell Speed{@Clear} shortens cast times and recast timers as well as increase damage done by damage over time effects..
+        ///   Looks up a localized string similar to {@Title}Skill/Spell Speed{@Clear} shortens cast times and recast timers as well as increase damage done by damage over time effects.
+        ///
+        ///A 2.5s GCD is sped up by 0.01s on average every {PointsPerTier} points..
         /// </summary>
         internal static string Tooltips_Skill_Spell_Speed_Tooltip {
             get {
@@ -570,21 +446,11 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {@Highlight}These values assume {@Red}{ModName}{@Clear} is active. 
-        ///Hold Ctrl to view these values without {@Red}{ModName}{@Clear}.{@Clear}.
+        ///   Looks up a localized string similar to A 2.8s GCD is sped up by 0.01s on average every {PointsPerTier} points..
         /// </summary>
-        internal static string Tooltips_Skill_Spell_Speed_With_Mod {
+        internal static string Tooltips_Spell_Speed_28_GCD {
             get {
-                return ResourceManager.GetString("Tooltips_Skill_Spell_Speed_With_Mod", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {@Highlight}Hold Ctrl to view these values assuming {@Red}{ModName}{@Clear} is active.{@Clear}.
-        /// </summary>
-        internal static string Tooltips_Skill_Spell_Speed_Without_Mod {
-            get {
-                return ResourceManager.GetString("Tooltips_Skill_Spell_Speed_Without_Mod", resourceCulture);
+                return ResourceManager.GetString("Tooltips_Spell_Speed_28_GCD", resourceCulture);
             }
         }
         

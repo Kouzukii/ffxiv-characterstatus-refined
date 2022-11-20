@@ -84,11 +84,9 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         if (ctrlState == ctrlHeld)
             return;
         ctrlHeld = ctrlState;
-        if (characterStatusPtr == IntPtr.Zero)
-            return;
-        var atkUnitBase = (AtkUnitBase*)characterStatusPtr;
-        if (!atkUnitBase->IsVisible) return;
-        CharacterStatusRequestUpdate(atkUnitBase);
+        var charStatus = AtkStage.GetSingleton()->RaptureAtkUnitManager->GetAddonByName("CharacterStatus");
+        if (charStatus == null || !charStatus->IsVisible) return;
+        CharacterStatusRequestUpdate(charStatus);
         // Update the currently active tooltip
         var tooltipManager = &AtkStage.GetSingleton()->TooltipManager;
         var currentTooltipNode = ((AtkResNode**)tooltipManager)[4];

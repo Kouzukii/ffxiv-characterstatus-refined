@@ -103,6 +103,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
                 ClientLanguage.French => "fr",
                 ClientLanguage.German => "de",
                 ClientLanguage.Japanese => "ja",
+                //ClientLanguage.Korean => "ko",
                 _ => ""
             };
         }

@@ -85,7 +85,7 @@
       <Compile Update="Localization.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>
-        <DependentUpon>strings.resx</DependentUpon>
+        <DependentUpon>Localization.resx</DependentUpon>
       </Compile>
     </ItemGroup>
 

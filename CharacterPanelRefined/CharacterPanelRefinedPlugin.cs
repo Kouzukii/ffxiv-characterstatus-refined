@@ -11,6 +11,7 @@ using Dalamud.Plugin;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using FFXIVClientStructs.FFXIV.Client.Graphics;
 using FFXIVClientStructs.FFXIV.Component.GUI;
+using FFXIVClientStructs.Interop;
 using FFXIVClientStructs.STD;
 
 namespace CharacterPanelRefined;

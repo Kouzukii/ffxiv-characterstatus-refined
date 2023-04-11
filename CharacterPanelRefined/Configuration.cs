@@ -15,6 +15,7 @@ public class Configuration : IPluginConfiguration {
     public bool ShowAvgDamage { get; set; } = true;
     public bool ShowAvgHealing { get; set; } = true;
     public bool ShowGearProperties { get; set; } = true;
+    public bool ShowSyncedStatsOnTooltip { get; set; } = true;
     public bool ShowCritDamageIncrease { get; set; } = false;
     public bool ShowDhDamageIncrease { get; set; } = false;
     public bool ShowDoHDoLStatsWithoutFood { get; set; } = true;

@@ -199,6 +199,17 @@ Any item with an ilvl higher than the limit will lose all its melds and its stat
     <data name="Config_Show_stats_without_consumables" xml:space="preserve">
         <value>Show DoH/DoL stats without consumables</value>
     </data>
+    <data name="Config_Show_item_level_information" xml:space="preserve">
+        <value>Show item level information</value>
+    </data>
+    <data name="Config_Show_synced_stats" xml:space="preserve">
+        <value>Show synced stats in item tooltips</value>
+    </data>
+    <data name="Tooltip_Show_synced_stats" xml:space="preserve">
+        <value>When item level synced, show synced stats in item tooltips. 
+Can be disabled by pressing Ctrl.
+(Due to the game's rounding method these may be off by 1 point)</value>
+    </data>
     <data name="Buff_LeyLines" xml:space="preserve">
         <value>Ley Lines</value>
     </data>

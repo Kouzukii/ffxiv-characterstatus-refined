@@ -3,6 +3,7 @@ using Dalamud.Game;
 using Dalamud.Game.ClientState;
 using Dalamud.Game.ClientState.Keys;
 using Dalamud.Game.Command;
+using Dalamud.Game.Gui;
 using Dalamud.IoC;
 using Dalamud.Plugin;
 
@@ -32,5 +33,9 @@ internal class Service {
     [PluginService]
     [RequiredVersion("1.0")]
     internal static CommandManager CommandManager { get; private set; }
+
+    [PluginService]
+    [RequiredVersion("1.0")]
+    internal static GameGui GameGui { get; private set; }
 }
 #pragma warning restore 8618

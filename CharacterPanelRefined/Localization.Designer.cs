@@ -240,11 +240,29 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show item level information.
+        /// </summary>
+        internal static string Config_Show_item_level_information {
+            get {
+                return ResourceManager.GetString("Config_Show_item_level_information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show DoH/DoL stats without consumables.
         /// </summary>
         internal static string Config_Show_stats_without_consumables {
             get {
                 return ResourceManager.GetString("Config_Show_stats_without_consumables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show synced stats in item tooltips.
+        /// </summary>
+        internal static string Config_Show_synced_stats {
+            get {
+                return ResourceManager.GetString("Config_Show_synced_stats", resourceCulture);
             }
         }
         
@@ -435,6 +453,17 @@ namespace CharacterPanelRefined {
         internal static string Panel_Speed_Properties {
             get {
                 return ResourceManager.GetString("Panel_Speed_Properties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When item level synced, show synced stats in item tooltips. 
+        ///Can be disabled by pressing Ctrl.
+        ///(Due to the game&apos;s rounding method these may be off by 1 point).
+        /// </summary>
+        internal static string Tooltip_Show_synced_stats {
+            get {
+                return ResourceManager.GetString("Tooltip_Show_synced_stats", resourceCulture);
             }
         }
         

@@ -71,10 +71,18 @@ public class ConfigWindow {
             }
             
             var bShowGearProps = conf.ShowGearProperties;
-            if (ImGui.Checkbox("Show item level information", ref bShowGearProps)) {
+            if (ImGui.Checkbox(Localization.Config_Show_item_level_information, ref bShowGearProps)) {
                 conf.ShowGearProperties = bShowGearProps;
                 conf.Save();
             }
+            
+            var bShowSyncedStats = conf.ShowSyncedStatsOnTooltip;
+            if (ImGui.Checkbox(Localization.Config_Show_synced_stats, ref bShowSyncedStats)) {
+                conf.ShowSyncedStatsOnTooltip = bShowSyncedStats;
+                conf.Save();
+            }
+            if (ImGui.IsItemHovered())
+                ImGui.SetTooltip(Localization.Tooltip_Show_synced_stats);
 
             ImGui.End();
 

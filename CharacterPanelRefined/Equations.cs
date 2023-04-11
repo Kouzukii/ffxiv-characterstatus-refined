@@ -111,14 +111,18 @@ public class Equations {
         }
     }
 
-    public static unsafe (double AvgDamage, double NormalDamage, double CritDamage, double AvgHeal, double NormalHeal, double CritHeal) CalcExpectedOutput(UIState* uiState, JobId jobId, double det, double critMult, double critRate, double dh, double ten, in LevelModifier lvlModifier, int? ilvlSync) {
+    private static (uint Ilvl, int Dmg)? cachedIlvl = null;
+
+    public static unsafe (double AvgDamage, double NormalDamage, double CritDamage, double AvgHeal, double NormalHeal, double CritHeal) CalcExpectedOutput(UIState* uiState, JobId jobId, double det, double critMult, double critRate, double dh, double ten, in LevelModifier lvlModifier, uint? ilvlSync, IlvlSyncType ilvlSyncType) {
         try {
             var lvl = uiState->PlayerState.CurrentLevel;
             var ap = uiState->PlayerState.Attributes[(int)(jobId.IsCaster() ? Attributes.AttackMagicPotency : Attributes.AttackPower)];
             var inventoryItemData = (ushort*)((IntPtr)InventoryManager.Instance() + 9160);
             var weaponBaseDamage = /* phys/magic damage */ inventoryItemData[jobId.IsCaster() ? 21 : 20] + /* hq bonus */ inventoryItemData[33];
-            if (ilvlSync != null) {
-                weaponBaseDamage = Math.Min(IlvlSync.IlvlSyncToWeaponDamage(ilvlSync.Value), weaponBaseDamage);
+            if (ilvlSync != null && (/* equip lvl */ inventoryItemData[39] > lvl || ilvlSyncType == IlvlSyncType.Strict)) {
+                if (cachedIlvl?.Ilvl != ilvlSync)
+                    cachedIlvl = (ilvlSync.Value, Service.DataManager.GetExcelSheet<ItemLevel>()!.GetRow(ilvlSync.Value)!.PhysicalDamage);
+                weaponBaseDamage = Math.Min(cachedIlvl.Value.Dmg, weaponBaseDamage);
                 PluginLog.LogDebug($"Using weapon damage {weaponBaseDamage}");
             }
 

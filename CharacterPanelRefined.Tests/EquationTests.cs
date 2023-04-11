@@ -1292,12 +1292,12 @@ public class EquationTests {
     
     [Test]
     public unsafe void TestExpectedOutput() {
-        var expectedValues = new List<(int? IlvlSync, ushort Wd, int Mnd, int Det, int ExpectedDamage, int ExpectedHeal)> {
-            (null, 126, 2940, 1788, 3417, 2566),
-            (null, 126, 3028, 1788, 3527, 2646),
-            (null, 126, 3057, 1788, 3560, 2671),
-            (600, 126, 2669, 1743, 2940, 2213),
-            (570, 126, 2309, 1734, 2420, 1830)
+        var expectedValues = new List<(ushort Wd, int Mnd, int Det, int ExpectedDamage, int ExpectedHeal)> {
+            (126, 2940, 1788, 3417, 2566),
+            (126, 3028, 1788, 3527, 2646),
+            (126, 3057, 1788, 3560, 2671),
+            (119, 2669, 1743, 2940, 2213),
+            (113, 2309, 1734, 2420, 1830)
         };
         
         var inventoryManager = new InventoryManager();
@@ -1308,12 +1308,12 @@ public class EquationTests {
         var statInfo = new StatInfo();
         var levelModifier = LevelModifiers.LevelTable[90];
         
-        foreach (var (ilvlSync, wd, mnd, det, expectedDmg, expectedHeal) in expectedValues) {
+        foreach (var (wd, mnd, det, expectedDmg, expectedHeal) in expectedValues) {
             *(ushort*)((IntPtr)(&inventoryManager) + 9160 + 42) = wd;
             uiState.PlayerState.Attributes[(int)Attributes.AttackMagicPotency] = mnd;
             var detVal = Equations.CalcDet(det, ref statInfo, levelModifier);
 
-            var result = Equations.CalcExpectedOutput(&uiState, JobId.WHM, detVal, 1.4, 0.05, 0, 0, levelModifier, ilvlSync);
+            var result = Equations.CalcExpectedOutput(&uiState, JobId.WHM, detVal, 1.4, 0.05, 0, 0, levelModifier, null, IlvlSyncType.Strict);
             
             Assert.AreEqual(expectedDmg, result.AvgDamage, "Damage is off for {0}|{1}|{2}", wd, mnd, det);
             Assert.AreEqual(expectedHeal, result.NormalHeal, "Heal is off for {0}|{1}|{2}", wd, mnd, det);

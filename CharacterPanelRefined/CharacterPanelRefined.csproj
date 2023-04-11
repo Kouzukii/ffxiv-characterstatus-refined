@@ -14,8 +14,8 @@
         <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-        <AssemblyVersion>1.6.1.0</AssemblyVersion>
-        <FileVersion>1.6.1.0</FileVersion>
+        <AssemblyVersion>1.6.2.0</AssemblyVersion>
+        <FileVersion>1.6.2.0</FileVersion>
     </PropertyGroup>
 
     <!-- Dalamud Configuration -->
@@ -62,7 +62,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="DalamudPackager" Version="2.1.10" />
+        <PackageReference Include="DalamudPackager" Version="2.1.11" />
     </ItemGroup>
 
     <ItemGroup>
@@ -95,17 +95,5 @@
         <LastGenOutput>Localization.Designer.cs</LastGenOutput>
       </EmbeddedResource>
     </ItemGroup>
-
-    <PropertyGroup Condition="'$(Configuration)' == 'Debug' ">
-        <OutputPath>$(AppData)\XIVLauncher\devPlugins\$(AssemblyName)</OutputPath>
-    </PropertyGroup>
-
-    <Target Name="DalamudPackageDebug" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug'">
-        <DalamudPackager ProjectDir="$(ProjectDir)" OutputPath="$(AppData)\XIVLauncher\devPlugins\$(AssemblyName)" AssemblyName="$(AssemblyName)" MakeZip="false" VersionComponents="4" />
-    </Target>
-
-    <Target Name="DalamudPackageRelease" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
-        <DalamudPackager ProjectDir="$(ProjectDir)" OutputPath="$(TargetDir)" AssemblyName="$(AssemblyName)" MakeZip="true" Exclude="$(AssemblyName).pdb" VersionComponents="4" />
-    </Target>
 
 </Project>

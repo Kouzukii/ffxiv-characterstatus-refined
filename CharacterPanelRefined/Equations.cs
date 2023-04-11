@@ -115,23 +115,28 @@ public class Equations {
         try {
             var lvl = uiState->PlayerState.CurrentLevel;
             var ap = uiState->PlayerState.Attributes[(int)(jobId.IsCaster() ? Attributes.AttackMagicPotency : Attributes.AttackPower)];
-            var equippedWeapon = InventoryManager.Instance()->GetInventoryContainer(InventoryType.EquippedItems)->Items[0];
-            var weaponItem = Service.DataManager.GetExcelSheet<Item>()?.GetRow(equippedWeapon.ItemID);
-            var weaponBaseDamage = (jobId.IsCaster() ? weaponItem?.DamageMag : weaponItem?.DamagePhys) ?? 0;
-            if (equippedWeapon.Flags.HasFlag(InventoryItem.ItemFlags.HQ)) {
-                weaponBaseDamage += (ushort)(weaponItem?.UnkData73.FirstOrDefault(d => d.BaseParamSpecial == 12)?.BaseParamValueSpecial ?? 0);
+            var inventoryItemData = (ushort*)((IntPtr)InventoryManager.Instance() + 9160);
+            var weaponBaseDamage = /* phys/magic damage */ inventoryItemData[jobId.IsCaster() ? 21 : 20] + /* hq bonus */ inventoryItemData[33];
+            if (IlvlSync.GetCurrentIlvlSync() is { } ilvl) {
+                weaponBaseDamage = Math.Min(IlvlSync.IlvlSyncToWeaponDamage(ilvl), weaponBaseDamage);
+                PluginLog.LogDebug($"Using weapon damage {weaponBaseDamage}");
             }
 
-            var weaponDamage = Math.Floor(lvlModifier.Main * jobId.AttackModifier() / 1000.0 + weaponBaseDamage) / 100.0;
+            var weaponDamage = Math.Floor(weaponBaseDamage + lvlModifier.Main * jobId.AttackModifier() / 1000.0) / 100.0;
             var lvlAttackModifier = jobId.UsesTenacity() ? LevelModifiers.TankAttackModifier(lvl) : LevelModifiers.AttackModifier(lvl);
-            var atk = Math.Floor(lvlAttackModifier * (ap - lvlModifier.Main) / lvlModifier.Main + 100) / 100.0;
-            var baseDamage = Math.Floor(Math.Floor(Math.Floor(100 * atk * weaponDamage) * (1 + det)) * (1 + ten)) * jobId.TraitModifiers(lvl);
-            var avgDamage = Math.Floor(baseDamage * (1 + (critMult - 1) * critRate) * (1 + dh * 0.25));
-            var critDamage = Math.Floor(baseDamage * critMult);
-            var normalDamage = Math.Floor(baseDamage);
+            var atk = Math.Floor(100 + lvlAttackModifier * (ap - lvlModifier.Main) / lvlModifier.Main) / 100;
+            var baseMultiplier = Math.Floor(100 * atk * weaponDamage);
+            var withDet = Math.Floor(baseMultiplier * (1 + det));
+            var withTen = Math.Floor(withDet * (1 + ten));
+            var normalDamage = Math.Floor(withTen * jobId.TraitModifiers(lvl));
+            var avgDamage = Math.Floor(Math.Floor(normalDamage * (1 + (critMult - 1) * critRate)) * (1 + dh * 0.25));
+            var critDamage = Math.Floor(normalDamage * critMult);
             
-            var healPot = Math.Floor(569.0 * (ap - lvlModifier.Main) / 1522.0 + 100) / 100.0;
-            var normalHeal = Math.Floor(Math.Floor(Math.Floor(Math.Floor(100 * healPot * weaponDamage) * (1 + det)) * (1 + ten)) * (jobId.IsCaster() ? jobId.TraitModifiers(lvl) : 1));
+            var healPot = Math.Floor(100 + LevelModifiers.HealModifier(lvl) * (ap - lvlModifier.Main) / lvlModifier.Main) / 100;
+            var healBaseMultiplier = Math.Floor(100 * healPot * weaponDamage);
+            var healWithDet = Math.Floor(healBaseMultiplier * (1 + det));
+            var healWithTen = Math.Floor(healWithDet * (1 + ten));
+            var normalHeal = Math.Floor(healWithTen * (jobId.IsCaster() ? jobId.TraitModifiers(lvl) : 1));
             var avgHeal = Math.Floor(normalHeal * (1 + (critMult - 1) * critRate));
             var critHeal = Math.Floor(normalHeal * critMult);
             return (avgDamage, normalDamage, critDamage, avgHeal, normalHeal, critHeal);

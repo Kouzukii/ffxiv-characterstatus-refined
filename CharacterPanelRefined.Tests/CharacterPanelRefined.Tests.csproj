@@ -5,12 +5,14 @@
         <Nullable>enable</Nullable>
 
         <IsPackable>false</IsPackable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
-        <PackageReference Include="NUnit" Version="3.13.2" />
-        <PackageReference Include="NUnit3TestAdapter" Version="4.3.1" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+        <PackageReference Include="Moq" Version="4.18.4" />
+        <PackageReference Include="NUnit" Version="3.13.3" />
+        <PackageReference Include="NUnit3TestAdapter" Version="4.4.2" />
         <PackageReference Include="coverlet.collector" Version="3.2.0" />
     </ItemGroup>
 
@@ -28,7 +30,22 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CharacterPanelRefined\CharacterPanelRefined.csproj" />
+        <ProjectReference Include="..\CharacterPanelRefined\CharacterPanelRefined.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Dalamud">
+        <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\Dalamud.dll</HintPath>
+      </Reference>
+      <Reference Include="FFXIVClientStructs">
+        <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\FFXIVClientStructs.dll</HintPath>
+      </Reference>
+      <Reference Include="Lumina">
+        <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\Lumina.dll</HintPath>
+      </Reference>
+      <Reference Include="Lumina.Excel">
+        <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\Lumina.Excel.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

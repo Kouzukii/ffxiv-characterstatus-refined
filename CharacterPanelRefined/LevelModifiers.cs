@@ -127,7 +127,7 @@ public static class LevelModifiers {
         if (level < 80) {
             return 120;
         }
-        return (level - 80) * 2.5 + 121;
+        return (level - 80) * 2.5 + 120.8;
     }
 
     public static double TankAttackModifier(int level) {

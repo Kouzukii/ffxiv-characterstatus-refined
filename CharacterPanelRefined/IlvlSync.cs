@@ -51,6 +51,9 @@ public static class IlvlSync {
 
     // Can't ever make it simple, eh squenix? 
     public static int IlvlSyncToWeaponDamage(int ilvl) {
+        if (ilvl > 535) {
+            return ilvl / 5 - 1;
+        }
         return ilvl * 16 / 161 + 53;
     }
 }

@@ -3,27 +3,27 @@ using Dalamud.Logging;
 using FFXIVClientStructs.FFXIV.Client.Game.Event;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
 
-namespace CharacterPanelRefined; 
+namespace CharacterPanelRefined;
 
 public static class IlvlSync {
-
     public static unsafe int? GetCurrentIlvlSync() {
-        if (EventFramework.Instance() == null || EventFramework.Instance()->GetInstanceContentDirector() == null)
-            return null;
-        
-        var icd = (IntPtr)EventFramework.Instance()->GetInstanceContentDirector();
-        if (*(byte*)(icd + 3284) != 8 && (*(byte*)(icd + 828) & 1) == 0) {
-            // min ilvl
-            if (*(byte*)(icd + 7324) >= 0x80 && *(ushort*)(icd + 1316) > 0) {
-                PluginLog.LogDebug($"Using min ilvl {*(ushort*)(icd + 1316)}");
-                return *(ushort*)(icd + 1316);
-            } 
-            // duty is sync'd
-            if (((*(byte*)(icd + 7324) & 0x40) == 0 || (UIState.Instance()->PlayerState.IsLevelSynced & 1) != 0) && *(ushort*)(icd + 1318) > 0) {
-                PluginLog.LogDebug($"Using duty ilvl sync {*(ushort*)(icd + 1318)}");
-                return *(ushort*)(icd + 1318);
+        if (EventFramework.Instance() != null && EventFramework.Instance()->GetInstanceContentDirector() != null) {
+            var icd = (IntPtr)EventFramework.Instance()->GetInstanceContentDirector();
+            if (*(byte*)(icd + 3284) != 8 && (*(byte*)(icd + 828) & 1) == 0) {
+                // min ilvl
+                if (*(byte*)(icd + 7324) >= 0x80 && *(ushort*)(icd + 1316) > 0) {
+                    PluginLog.LogDebug($"Using min ilvl {*(ushort*)(icd + 1316)}");
+                    return *(ushort*)(icd + 1316);
+                }
+
+                // duty is sync'd
+                if (((*(byte*)(icd + 7324) & 0x40) == 0 || (UIState.Instance()->PlayerState.IsLevelSynced & 1) != 0) && *(ushort*)(icd + 1318) > 0) {
+                    PluginLog.LogDebug($"Using duty ilvl sync {*(ushort*)(icd + 1318)}");
+                    return *(ushort*)(icd + 1318);
+                }
             }
         }
+
         if ((UIState.Instance()->PlayerState.IsLevelSynced & 1) != 0) {
             var syncedLevel = UIState.Instance()->PlayerState.CurrentLevel;
             var ilvl = syncedLevel switch {
@@ -54,6 +54,7 @@ public static class IlvlSync {
         if (ilvl > 535) {
             return ilvl / 5 - 1;
         }
+
         return ilvl * 16 / 161 + 53;
     }
 }

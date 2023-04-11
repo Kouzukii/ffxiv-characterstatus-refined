@@ -7,7 +7,7 @@ namespace CharacterPanelRefined.Tests;
 
 public class TooltipsTest {
     private static string[] locales = { "en", "de", "fr", "ja" };
-    private static Tooltips.Entry[] entries = Enum.GetValues<Tooltips.Entry>().Except(new [] { Tooltips.Entry.MainStat }).ToArray();
+    private static Tooltips.Entry[] entries = Enum.GetValues<Tooltips.Entry>().Except(new [] { Tooltips.Entry.MainStat, Tooltips.Entry.ItemLevelSync }).ToArray();
 
     private Tooltips tooltips = null!;
 

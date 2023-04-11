@@ -111,14 +111,14 @@ public class Equations {
         }
     }
 
-    public static unsafe (double AvgDamage, double NormalDamage, double CritDamage, double AvgHeal, double NormalHeal, double CritHeal) CalcExpectedOutput(UIState* uiState, JobId jobId, double det, double critMult, double critRate, double dh, double ten, in LevelModifier lvlModifier) {
+    public static unsafe (double AvgDamage, double NormalDamage, double CritDamage, double AvgHeal, double NormalHeal, double CritHeal) CalcExpectedOutput(UIState* uiState, JobId jobId, double det, double critMult, double critRate, double dh, double ten, in LevelModifier lvlModifier, int? ilvlSync) {
         try {
             var lvl = uiState->PlayerState.CurrentLevel;
             var ap = uiState->PlayerState.Attributes[(int)(jobId.IsCaster() ? Attributes.AttackMagicPotency : Attributes.AttackPower)];
             var inventoryItemData = (ushort*)((IntPtr)InventoryManager.Instance() + 9160);
             var weaponBaseDamage = /* phys/magic damage */ inventoryItemData[jobId.IsCaster() ? 21 : 20] + /* hq bonus */ inventoryItemData[33];
-            if (IlvlSync.GetCurrentIlvlSync() is { } ilvl) {
-                weaponBaseDamage = Math.Min(IlvlSync.IlvlSyncToWeaponDamage(ilvl), weaponBaseDamage);
+            if (ilvlSync != null) {
+                weaponBaseDamage = Math.Min(IlvlSync.IlvlSyncToWeaponDamage(ilvlSync.Value), weaponBaseDamage);
                 PluginLog.LogDebug($"Using weapon damage {weaponBaseDamage}");
             }
 

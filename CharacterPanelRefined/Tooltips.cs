@@ -32,7 +32,8 @@ public class Tooltips : IDisposable {
         Defense,
         MagicDefense,
         Vitality,
-        MainStat
+        MainStat,
+        ItemLevelSync,
     }
 
     public Tooltips() {
@@ -113,6 +114,8 @@ public class Tooltips : IDisposable {
         LoadLocString(Entry.ExpectedHeal, Localization.Tooltips_Expected_Heal);
         LoadLocString(Entry.MainStat, Localization.Tooltips_Main_Stat_Tooltip);
         WriteString(Entry.MainStat);
+        LoadLocString(Entry.ItemLevelSync, Localization.Tooltips_Item_Level_Sync);
+        WriteString(Entry.ItemLevelSync);
     }
 
     public IntPtr this[Entry entry] => allocations[entry];

@@ -69,6 +69,12 @@ public class ConfigWindow {
                 conf.ShowDoHDoLStatsWithoutFood = bShowStatsWithoutFood;
                 conf.Save();
             }
+            
+            var bShowGearProps = conf.ShowGearProperties;
+            if (ImGui.Checkbox("Show item level information", ref bShowGearProps)) {
+                conf.ShowGearProperties = bShowGearProps;
+                conf.Save();
+            }
 
             ImGui.End();
 

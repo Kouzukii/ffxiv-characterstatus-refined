@@ -44,10 +44,12 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
     private unsafe AtkTextNode* pieManaPtr;
     private unsafe AtkTextNode* expectedDamagePtr;
     private unsafe AtkTextNode* expectedHealPtr;
+    private unsafe AtkTextNode* ilvlSyncPtr;
     private unsafe AtkResNode* attributesPtr;
     private unsafe AtkResNode* offensivePtr;
     private unsafe AtkResNode* defensivePtr;
     private unsafe AtkResNode* physPropertiesPtr;
+    private unsafe AtkResNode* gearPtr;
     private unsafe AtkResNode* pietyPtr;
     private unsafe AtkResNode* tenacityPtr;
     private unsafe AtkResNode* spellSpeedPtr;
@@ -147,6 +149,12 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
             physMitPtr->SetText($"{statInfo.DisplayValue:P0}");
             tooltips.Update(Tooltips.Entry.Defense, statInfo);
 
+            var ilvlSync = IlvlSync.GetCurrentIlvlSync();
+            ToggleCustomTooltipNode(ilvlSyncPtr, ilvlSync != null);
+            if (ilvlSync != null) {
+                ilvlSyncPtr->SetText($"{ilvlSync}");
+            }
+
             var jobId = (JobId)uiState->PlayerState.CurrentClassJobId;
 
             StatInfo gcdMain = new(), gcdAlt = new();
@@ -183,7 +191,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
 
             if (expectedDamagePtr != null || expectedHealPtr != null) {
                 var (avgDamage, normalDamage, critDamage, avgHeal, normalHeal, critHeal) =
-                    Equations.CalcExpectedOutput(uiState, jobId, det, critDmg, critRate, dh, ten, levelModifier);
+                    Equations.CalcExpectedOutput(uiState, jobId, det, critDmg, critRate, dh, ten, levelModifier, ilvlSync);
                 if (expectedDamagePtr != null) {
                     expectedDamagePtr->SetText($"{avgDamage:N0}");
                     tooltips.UpdateExpectedOutput(Tooltips.Entry.ExpectedDamage, normalDamage, critDamage);
@@ -228,6 +236,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
             offensivePtr->ToggleVisibility(false);
             defensivePtr->ToggleVisibility(false);
             physPropertiesPtr->ToggleVisibility(false);
+            gearPtr->ToggleVisibility(false);
             if (expectedDamagePtr != null)
                 expectedDamagePtr->AtkResNode.ParentNode->ToggleVisibility(false);
             if (expectedHealPtr != null)
@@ -236,6 +245,8 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
             offensivePtr->ToggleVisibility(true);
             defensivePtr->ToggleVisibility(true);
             physPropertiesPtr->ToggleVisibility(true);
+            if (Configuration.ShowGearProperties)
+                gearPtr->ToggleVisibility(true);
             if (expectedDamagePtr != null)
                 expectedDamagePtr->AtkResNode.ParentNode->ToggleVisibility(true);
             if (expectedHealPtr != null)
@@ -324,7 +335,6 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         return default;
     }
 
-
     internal unsafe void CharacterStatusOnSetup(AtkUnitBase* atkUnitBase) {
         var uiState = UIState.Instance();
         var job = (JobId)uiState->PlayerState.CurrentClassJobId;
@@ -346,25 +356,23 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
 
         var attributesHeight = 130;
 
-        var gearProp = atkUnitBase->UldManager.SearchNodeById(80);
-        if (Configuration.ShowAvgDamage) {
-            attributesHeight += 20;
-            gearProp->Y = 100;
-            var avgItemLvlNode = gearProp->ChildNode;
-            avgItemLvlNode->PrevSiblingNode->ToggleVisibility(false); // header
-            expectedDamagePtr = AddStatRow((AtkComponentNode*)avgItemLvlNode, Localization.Panel_Damage_per_100_Potency, true);
-            SetTooltip(expectedDamagePtr, Tooltips.Entry.ExpectedDamage);
-        } else {
-            gearProp->ToggleVisibility(false);
-        }
-
         var mentProperties = atkUnitBase->UldManager.SearchNodeById(58);
         var magAtkPotency = mentProperties->ChildNode->PrevSiblingNode;
+        var healMagPotency = magAtkPotency->PrevSiblingNode;
         if (Configuration.ShowAvgHealing) {
             attributesHeight += 20;
-            magAtkPotency->Y = -160;
-            expectedHealPtr = AddStatRow((AtkComponentNode*)magAtkPotency, Localization.Panel_Heal_per_100_Potency, true);
+            healMagPotency->Y = -attributesHeight - 10;
+            expectedHealPtr = AddStatRow((AtkComponentNode*)healMagPotency, Localization.Panel_Heal_per_100_Potency, true);
             SetTooltip(expectedHealPtr, Tooltips.Entry.ExpectedHeal);
+        } else {
+            healMagPotency->ToggleVisibility(false);
+        }
+        if (Configuration.ShowAvgDamage) {
+            attributesHeight += 20;
+            magAtkPotency->Y = -attributesHeight - 10;
+            magAtkPotency->PrevSiblingNode->ToggleVisibility(false); // header
+            expectedDamagePtr = AddStatRow((AtkComponentNode*)magAtkPotency, Localization.Panel_Damage_per_100_Potency, true);
+            SetTooltip(expectedDamagePtr, Tooltips.Entry.ExpectedDamage);
         } else {
             magAtkPotency->ToggleVisibility(false);
         }
@@ -386,6 +394,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         if (Configuration.ShowDhDamageIncrease) {
             offensiveHeight += 20;
             magAtkPotency->Y -= 20;
+            healMagPotency->Y -= 20;
             dhDamagePtr = AddStatRow((AtkComponentNode*)dh, Localization.Panel_Damage_Increase);
         }
 
@@ -402,6 +411,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
             dh->Y += 20;
             det->Y += 20;
             magAtkPotency->Y -= 20;
+            healMagPotency->Y -= 20;
             critDmgIncreasePtr = AddStatRow((AtkComponentNode*)crit, Localization.Panel_Damage_Increase);
         }
 
@@ -420,7 +430,6 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         mentProperties->X = 0;
         mentProperties->Y = attributesHeight + offensiveHeight;
         spellSpeedPtr = mentProperties->ChildNode;
-        magAtkPotency->PrevSiblingNode->ToggleVisibility(false); // Magic Heal Potency
         magAtkPotency->PrevSiblingNode->PrevSiblingNode->ToggleVisibility(false); // Header
         spsSpeedIncreasePtr = AddStatRow((AtkComponentNode*)spellSpeedPtr, Localization.Panel_Skill_Speed_Increase);
         spsGcdPtr = AddStatRow((AtkComponentNode*)spellSpeedPtr, Localization.Panel_GCD);
@@ -436,6 +445,17 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         sksSpeedIncreasePtr = AddStatRow((AtkComponentNode*)skillSpeedPtr, Localization.Panel_Skill_Speed_Increase);
         sksGcdPtr = AddStatRow((AtkComponentNode*)skillSpeedPtr, Localization.Panel_GCD);
         SetTooltip(sksSpeedIncreasePtr, Tooltips.Entry.Speed);
+        
+        gearPtr = atkUnitBase->UldManager.SearchNodeById(80);
+        if (Configuration.ShowGearProperties) {
+            gearPtr->Y = attributesHeight + offensiveHeight + 40;
+            gearPtr->X = 183;
+            var avgItemLevelPtr = (AtkComponentNode*)gearPtr->ChildNode;
+            ilvlSyncPtr = AddStatRow(avgItemLevelPtr, Localization.Panel_Item_level_Sync, copyColor: true, expandCollisionNode: false);
+            CreateNewTooltip(atkUnitBase, ilvlSyncPtr, Tooltips.Entry.ItemLevelSync);
+        } else {
+            gearPtr->ToggleVisibility(false);
+        }
 
         var roleProp = atkUnitBase->UldManager.SearchNodeById(86);
         roleProp->Y = 60;
@@ -457,11 +477,8 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         if (Configuration.ShowDoHDoLStatsWithoutFood) {
             control->Y += 20;
             controlBasePtr = AddStatRow((AtkComponentNode*)control, Localization.Panel_excluding_Consumables);
-            cpPtr = AddStatRow((AtkComponentNode*)control, Localization.Panel_CP);
-            cpPtr->TextColor = ((AtkTextNode*)cpPtr->AtkResNode.PrevSiblingNode)->TextColor =
-                ((AtkTextNode*)controlBasePtr->AtkResNode.NextSiblingNode)->TextColor;
-            cpBasePtr = AddStatRow((AtkComponentNode*)control, Localization.Panel_excluding_Consumables);
-            ((AtkComponentNode*)control)->Component->UldManager.RootNode->Height -= 40;
+            cpPtr = AddStatRow((AtkComponentNode*)control, Localization.Panel_CP, copyColor: true, expandCollisionNode: false);
+            cpBasePtr = AddStatRow((AtkComponentNode*)control, Localization.Panel_excluding_Consumables, expandCollisionNode: false);
             craftsmanshipBasePtr = AddStatRow((AtkComponentNode*)craftsmanship, Localization.Panel_excluding_Consumables);
         }
 
@@ -474,11 +491,8 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         if (Configuration.ShowDoHDoLStatsWithoutFood) {
             perception->Y += 20;
             perceptionBasePtr = AddStatRow((AtkComponentNode*)perception, Localization.Panel_excluding_Consumables);
-            gpPtr = AddStatRow((AtkComponentNode*)perception, Localization.Panel_GP);
-            gpPtr->TextColor = ((AtkTextNode*)gpPtr->AtkResNode.PrevSiblingNode)->TextColor =
-                ((AtkTextNode*)perceptionBasePtr->AtkResNode.NextSiblingNode)->TextColor;
-            gpBasePtr = AddStatRow((AtkComponentNode*)perception, Localization.Panel_excluding_Consumables);
-            ((AtkComponentNode*)perception)->Component->UldManager.RootNode->Height -= 40;
+            gpPtr = AddStatRow((AtkComponentNode*)perception, Localization.Panel_GP, copyColor: true, expandCollisionNode: false);
+            gpBasePtr = AddStatRow((AtkComponentNode*)perception, Localization.Panel_excluding_Consumables, expandCollisionNode: false);
             gatheringBasePtr = AddStatRow((AtkComponentNode*)gathering, Localization.Panel_excluding_Consumables);
         }
 
@@ -487,12 +501,35 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         UpdateCharacterPanelForJob(job, lvl);
     }
 
-    private unsafe AtkTextNode* AddStatRow(AtkComponentNode* parentNode, string label, bool hideOriginal = false) {
+    private unsafe void ToggleCustomTooltipNode(AtkTextNode* node, bool enable) {
+        node->AtkResNode.ToggleVisibility(enable);
+        node->AtkResNode.PrevSiblingNode->ToggleVisibility(enable);
+        if (enable)
+            node->AtkResNode.PrevSiblingNode->PrevSiblingNode->Flags |= (short)NodeFlags.EmitsEvents;
+        else
+            node->AtkResNode.PrevSiblingNode->PrevSiblingNode->Flags &= ~(short)NodeFlags.EmitsEvents;
+    }
+
+    private unsafe void CreateNewTooltip(AtkUnitBase* parent, AtkTextNode* forTextNode, Tooltips.Entry tooltip) {
+        var component = (AtkComponentNode*)forTextNode->AtkResNode.ParentNode;
+        var newCollNode = CloneNode((AtkCollisionNode*)component->Component->UldManager.RootNode);
+        component->Component->UldManager.NodeList[component->Component->UldManager.NodeListCount++] = (AtkResNode*)newCollNode;
+        forTextNode->AtkResNode.PrevSiblingNode->PrevSiblingNode = (AtkResNode*)newCollNode;
+        newCollNode->AtkResNode.NextSiblingNode = forTextNode->AtkResNode.PrevSiblingNode->PrevSiblingNode;
+        newCollNode->AtkResNode.Y = forTextNode->AtkResNode.Y;
+        newCollNode->AtkResNode.AtkEventManager.Event = null;
+        ExpandNodeList(component, 1);
+        var tooltipArgs = new AtkTooltipManager.AtkTooltipArgs { Text = (byte*)tooltips[tooltip], Flags = 0xFFFFFFFF };
+        AtkStage.GetSingleton()->TooltipManager.AddTooltip(AtkTooltipManager.AtkTooltipType.Text, parent->ID, (AtkResNode*)newCollNode, &tooltipArgs);
+    }
+
+    private unsafe AtkTextNode* AddStatRow(AtkComponentNode* parentNode, string label, bool hideOriginal = false, bool copyColor = false, bool expandCollisionNode = true) {
         ExpandNodeList(parentNode, 2);
         var collisionNode = parentNode->Component->UldManager.RootNode;
         if (!hideOriginal) {
             parentNode->AtkResNode.Height += 20;
-            collisionNode->Height += 20;
+            if (expandCollisionNode)
+                collisionNode->Height += 20;
         }
 
         var numberNode = (AtkTextNode*)collisionNode->PrevSiblingNode;
@@ -500,19 +537,19 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         var newNumberNode = CloneNode(numberNode);
         var prevSiblingNode = labelNode->AtkResNode.PrevSiblingNode;
         labelNode->AtkResNode.PrevSiblingNode = (AtkResNode*)newNumberNode;
-        newNumberNode->AtkResNode.ParentNode = (AtkResNode*)parentNode;
         newNumberNode->AtkResNode.NextSiblingNode = (AtkResNode*)labelNode;
         newNumberNode->AtkResNode.Y = parentNode->AtkResNode.Height - 24;
-        newNumberNode->TextColor = new ByteColor { A = 0xFF, R = 0xA0, G = 0xA0, B = 0xA0 };
+        if (!copyColor)
+            newNumberNode->TextColor = new ByteColor { A = 0xFF, R = 0xA0, G = 0xA0, B = 0xA0 };
         newNumberNode->NodeText.StringPtr = (byte*)MemoryHelper.GameAllocateUi((ulong)newNumberNode->NodeText.BufSize);
         parentNode->Component->UldManager.NodeList[parentNode->Component->UldManager.NodeListCount++] = (AtkResNode*)newNumberNode;
         var newLabelNode = CloneNode(labelNode);
         newNumberNode->AtkResNode.PrevSiblingNode = (AtkResNode*)newLabelNode;
-        newLabelNode->AtkResNode.ParentNode = (AtkResNode*)parentNode;
         newLabelNode->AtkResNode.PrevSiblingNode = prevSiblingNode;
         newLabelNode->AtkResNode.NextSiblingNode = (AtkResNode*)newNumberNode;
         newLabelNode->AtkResNode.Y = parentNode->AtkResNode.Height - 24;
-        newLabelNode->TextColor = new ByteColor { A = 0xFF, R = 0xA0, G = 0xA0, B = 0xA0 };
+        if (!copyColor)
+            newLabelNode->TextColor = new ByteColor { A = 0xFF, R = 0xA0, G = 0xA0, B = 0xA0 };
         newLabelNode->NodeText.StringPtr = (byte*)MemoryHelper.GameAllocateUi((ulong)newLabelNode->NodeText.BufSize);
         newLabelNode->SetText(label);
         parentNode->Component->UldManager.NodeList[parentNode->Component->UldManager.NodeListCount++] = (AtkResNode*)newLabelNode;
@@ -524,20 +561,19 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         return newNumberNode;
     }
 
-    private static unsafe AtkTextNode* CloneNode(AtkTextNode* original) {
-        var size = sizeof(AtkTextNode);
+    private static unsafe T* CloneNode<T>(T* original) where T : unmanaged {
+        var size = sizeof(T);
         var allocation = MemoryHelper.GameAllocateUi((ulong)size);
         var bytes = new byte[size];
         Marshal.Copy(new IntPtr(original), bytes, 0, bytes.Length);
         Marshal.Copy(bytes, 0, allocation, bytes.Length);
 
         var newNode = (AtkResNode*)allocation;
-        newNode->ParentNode = null;
         newNode->ChildNode = null;
         newNode->ChildCount = 0;
         newNode->PrevSiblingNode = null;
         newNode->NextSiblingNode = null;
-        return (AtkTextNode*)newNode;
+        return (T*)newNode;
     }
 
     private unsafe void ExpandNodeList(AtkComponentNode* componentNode, ushort addSize) {
@@ -571,10 +607,12 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         pieManaPtr = null;
         expectedDamagePtr = null;
         expectedHealPtr = null;
+        ilvlSyncPtr = null;
         attributesPtr = null;
         offensivePtr = null;
         defensivePtr = null;
         physPropertiesPtr = null;
+        gearPtr = null;
         pietyPtr = null;
         tenacityPtr = null;
         spellSpeedPtr = null;

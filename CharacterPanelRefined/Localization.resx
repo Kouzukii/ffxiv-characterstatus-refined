@@ -61,6 +61,9 @@
     <data name="Panel_Speed_Properties" xml:space="preserve">
         <value>Speed Properties</value>
     </data>
+    <data name="Panel_Item_level_Sync" xml:space="preserve">
+        <value>Item Level Sync</value>
+    </data>
     <data name="Tooltips_Crit_Tooltip" xml:space="preserve">
         <value>{@Title}Critical Hit{@Clear} affects the rate at which your attacks and heals can critically hit as well as the damage dealt and HP restored by a critical hit.
 
@@ -147,6 +150,11 @@ As a {Job} you have {BaseHp} base HP.</value>
 An increase of 10% main stat constitutes a 10% increase in damage and healing.
 
 SMNs physick is the only exception since it scales with MND instead of INT.</value>
+    </data>
+    <data name="Tooltips_Item_Level_Sync" xml:space="preserve">
+        <value>{@Title}Item Level Sync{@Clear} applies whenever you enter a duty that {@Red}lowers your character's level{@Clear} or one that enforces a maximum ilvl, either when the duty is listed as {@Red} Item Level Sync{@Clear} or when queueing with {@Red}Minimum IL{@Clear} enabled.
+   
+Any item with an ilvl higher than the limit will lose all its melds and its stats will be truncated to the highest stat of an equivalent item at the maximum ilvl.</value>
     </data>
     <data name="Config_Character_Panel_Refined_Config" xml:space="preserve">
         <value>Character Panel Refined Config</value>

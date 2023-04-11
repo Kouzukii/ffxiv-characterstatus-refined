@@ -376,6 +376,15 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Item Level Sync.
+        /// </summary>
+        internal static string Panel_Item_level_Sync {
+            get {
+                return ResourceManager.GetString("Panel_Item_level_Sync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Magic Mitigation.
         /// </summary>
         internal static string Panel_Magic_Mitigation {
@@ -497,6 +506,17 @@ namespace CharacterPanelRefined {
         internal static string Tooltips_Expected_Heal {
             get {
                 return ResourceManager.GetString("Tooltips_Expected_Heal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {@Title}Item Level Sync{@Clear} applies whenever you enter a duty that {@Red}lowers your character&apos;s level{@Clear} or one that enforces a maximum ilvl, either when the duty is listed as {@Red} Item Level Sync{@Clear} or when queueing with {@Red}Minimum IL{@Clear} enabled.
+        ///   
+        ///Any item with an ilvl higher than the limit will lose all its melds and its stats will be truncated to the highest stat of an equivalent item at the maximum ilvl..
+        /// </summary>
+        internal static string Tooltips_Item_Level_Sync {
+            get {
+                return ResourceManager.GetString("Tooltips_Item_Level_Sync", resourceCulture);
             }
         }
         

@@ -154,9 +154,11 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
             tooltips.Update(Tooltips.Entry.Defense, statInfo);
 
             var (ilvlSync, ilvlSyncType) = IlvlSync.GetCurrentIlvlSync();
-            ToggleCustomTooltipNode(ilvlSyncPtr, ilvlSync != null);
-            if (ilvlSync != null) {
-                ilvlSyncPtr->SetText($"{ilvlSync}");
+            if (ilvlSyncPtr != null) {
+                ToggleCustomTooltipNode(ilvlSyncPtr, ilvlSync != null);
+                if (ilvlSync != null) {
+                    ilvlSyncPtr->SetText($"{ilvlSync}");
+                }
             }
 
             var jobId = (JobId)uiState->PlayerState.CurrentClassJobId;

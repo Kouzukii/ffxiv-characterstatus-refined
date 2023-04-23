@@ -181,6 +181,7 @@ public static class JobInfo {
 
     public static GcdModifier? GcdMod(this JobId id, int level) =>
         (id, level) switch {
+            (JobId.SAM, >= 78) => GcdModifier.EnhancedShifu,
             (JobId.SAM, >= 18) => GcdModifier.Shifu,
             (JobId.NIN, >= 45) => GcdModifier.Huton,
             (JobId.MNK, >= 76) => GcdModifier.EnhancedGreasedLightning3,
@@ -208,7 +209,8 @@ public record AlternateGcd(int Gcd, string Name) {
 }
 
 public record GcdModifier(int Mod, string Name, string Abbrev, bool Passive) {
-    public static readonly GcdModifier Shifu = new(13, Localization.Buff_Shifu, Localization.Buff_Shifu, true);
+    public static readonly GcdModifier EnhancedShifu = new(13, Localization.Buff_Shifu, Localization.Buff_Shifu, true);
+    public static readonly GcdModifier Shifu = new(10, Localization.Buff_Shifu, Localization.Buff_Shifu, true);
     public static readonly GcdModifier Huton = new(15, Localization.Buff_Huton, Localization.Buff_Huton, true);
     public static readonly GcdModifier EnhancedGreasedLightning3 = new(20, Localization.Buff_GreasedLightning, Localization.Buff_GreasedLightning_Abbrev, true);
     public static readonly GcdModifier EnhancedGreasedLightning2 = new(15, Localization.Buff_GreasedLightning, Localization.Buff_GreasedLightning_Abbrev, true);

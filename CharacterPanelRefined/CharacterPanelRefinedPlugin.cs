@@ -651,9 +651,12 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         if (itemId is >=500000 and <1000000 or >=2000000)
             return; // collectibles & key items
         
-        var item = Service.DataManager.GetExcelSheet<Item>()!.GetRow((uint)(itemId % 500000))!;
+        var item = Service.DataManager.GetExcelSheet<Item>()!.GetRow((uint)(itemId % 500000));
         
-        if (item.EquipSlotCategory.Row == 0)
+        if (item == null || item.EquipSlotCategory.Row == 0)
+            return;
+        
+        if (item.LevelItem.Row <= ilvlSync)
             return;
 
         if (ilvlSyncType == IlvlSyncType.LevelBased && item.LevelEquip <= UIState.Instance()->PlayerState.CurrentLevel)

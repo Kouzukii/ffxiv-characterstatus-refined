@@ -16,19 +16,6 @@
         <PackageReference Include="coverlet.collector" Version="3.2.0" />
     </ItemGroup>
 
-    <!-- Dalamud Configuration -->
-    <PropertyGroup>
-        <DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
-    </PropertyGroup>
-
-    <!-- Assembly Reference Locations -->
-    <PropertyGroup>
-        <AssemblySearchPaths>
-            $(AssemblySearchPaths);
-            $(DalamudLibPath);
-        </AssemblySearchPaths>
-    </PropertyGroup>
-
     <ItemGroup>
         <ProjectReference Include="..\CharacterPanelRefined\CharacterPanelRefined.csproj" />
     </ItemGroup>

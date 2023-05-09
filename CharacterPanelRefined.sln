@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterPanelRefined", "Ch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterPanelRefined.Tests", "CharacterPanelRefined.Tests\CharacterPanelRefined.Tests.csproj", "{99D92F0C-8541-441C-A558-E75ECFCD569F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterPanelRefined.BreakpointGenerator", "CharacterPanelRefined.BreakpointGenerator\CharacterPanelRefined.BreakpointGenerator.csproj", "{D21DD6E1-9A02-4217-9762-5049E547FBF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Release|x64 = Release|x64
@@ -18,5 +20,9 @@ Global
 		{99D92F0C-8541-441C-A558-E75ECFCD569F}.Release|x64.Build.0 = Release|Any CPU
 		{99D92F0C-8541-441C-A558-E75ECFCD569F}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{99D92F0C-8541-441C-A558-E75ECFCD569F}.Debug|x64.Build.0 = Debug|Any CPU
+		{D21DD6E1-9A02-4217-9762-5049E547FBF7}.Release|x64.ActiveCfg = Release|Any CPU
+		{D21DD6E1-9A02-4217-9762-5049E547FBF7}.Release|x64.Build.0 = Release|Any CPU
+		{D21DD6E1-9A02-4217-9762-5049E547FBF7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D21DD6E1-9A02-4217-9762-5049E547FBF7}.Debug|x64.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal

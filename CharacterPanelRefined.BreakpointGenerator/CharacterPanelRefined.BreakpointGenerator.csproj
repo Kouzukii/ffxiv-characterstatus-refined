@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <Reference Include="Lumina">
+            <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\Lumina.dll</HintPath>
+        </Reference>
+        <Reference Include="Lumina.Excel">
+            <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\Lumina.Excel.dll</HintPath>
+        </Reference>
+        <Reference Include="Serilog">
+            <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\Serilog.dll</HintPath>
+        </Reference>
+        <Reference Include="Serilog.Sinks.Console">
+            <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\Serilog.Sinks.Console.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+</Project>

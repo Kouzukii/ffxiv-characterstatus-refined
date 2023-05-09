@@ -719,7 +719,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
             parse[i] = double.Parse(split[i][1], cult);
         }
 
-        var subMax = parse.Max() * sync.CriticalHit / ilvl.CriticalHit - 0.1;
+        var subMax = SubstatBreakpoints.GetBreakpoint((byte)item.EquipSlotCategory.Row, (ushort)ilvlSync) ?? parse.Max() * sync.CriticalHit / ilvl.CriticalHit - 0.1;
         for (var i = 0; i < 4; i++) {
             if (subStrs[i] is not { } sub) continue;
             if (parse[i] > subMax) {

@@ -14,7 +14,7 @@
         <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-        <Version>1.7.1.4</Version>
+        <Version>1.7.1.5</Version>
     </PropertyGroup>
 
     <!-- Dalamud Configuration -->

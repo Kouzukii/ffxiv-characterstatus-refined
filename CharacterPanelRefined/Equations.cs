@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Dalamud.Logging;
 using FFXIVClientStructs.FFXIV.Client.Game;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using Lumina.Excel.GeneratedSheets;
@@ -123,7 +122,7 @@ public class Equations {
                 if (cachedIlvl?.Ilvl != ilvlSync)
                     cachedIlvl = (ilvlSync.Value, Service.DataManager.GetExcelSheet<ItemLevel>()!.GetRow(ilvlSync.Value)!.PhysicalDamage);
                 weaponBaseDamage = Math.Min(cachedIlvl.Value.Dmg, weaponBaseDamage);
-                PluginLog.LogDebug($"Using weapon damage {weaponBaseDamage}");
+                Service.PluginLog.Debug($"Using weapon damage {weaponBaseDamage}");
             }
 
             var weaponDamage = Math.Floor(weaponBaseDamage + lvlModifier.Main * jobId.AttackModifier() / 1000.0) / 100.0;
@@ -145,7 +144,7 @@ public class Equations {
             var critHeal = Math.Floor(normalHeal * critMult);
             return (avgDamage, normalDamage, critDamage, avgHeal, normalHeal, critHeal);
         } catch (Exception e) {
-            PluginLog.Warning(e, "Failed to calculate raw damage");
+            Service.PluginLog.Warning(e, "Failed to calculate raw damage");
             return (0, 0, 0, 0, 0, 0);
         }
     }

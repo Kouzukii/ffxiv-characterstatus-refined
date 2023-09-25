@@ -1,25 +1,27 @@
-using System.Globalization;
-using Dalamud;
-using Dalamud.Interface;
+using System;
+using Dalamud.Game.Command;
+using Dalamud.Plugin;
 using ImGuiNET;
 
 namespace CharacterPanelRefined; 
 
-public class ConfigWindow {
+public sealed class ConfigWindow : IDisposable {
     private readonly CharacterPanelRefinedPlugin plugin;
+    private bool showConfig;
 
-    public ConfigWindow(CharacterPanelRefinedPlugin plugin) {
+    public ConfigWindow(CharacterPanelRefinedPlugin plugin, DalamudPluginInterface pluginInterface) {
         this.plugin = plugin;
+        pluginInterface.UiBuilder.Draw += Draw;
+        pluginInterface.UiBuilder.OpenConfigUi += () => showConfig = true;
+        Service.CommandManager.AddHandler("/cprconfig",
+            new CommandInfo((_, _) => showConfig ^= true) { HelpMessage = "Open the Character Panel Refined configuration." });
     }
 
-    public bool ShowConfig { get; internal set; }
-
-    public void Draw() {
-        if (!ShowConfig)
+    private void Draw() {
+        if (!showConfig)
             return;
         var conf = plugin.Configuration;
-        var bShowConfig = ShowConfig;
-        if (ImGui.Begin(Localization.Config_Character_Panel_Refined_Config, ref bShowConfig, ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.AlwaysAutoResize)) {
+        if (ImGui.Begin(Localization.Config_Character_Panel_Refined_Config, ref showConfig, ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.AlwaysAutoResize)) {
             
             ImGui.TextUnformatted(Localization.Config_Help_Apply_Changes);
             ImGui.Spacing();
@@ -85,9 +87,6 @@ public class ConfigWindow {
                 ImGui.SetTooltip(Localization.Tooltip_Show_synced_stats);
 
             ImGui.End();
-
-            if (!bShowConfig)
-                ShowConfig = false;
         }
     }
     private void ShowTooltipsTooltip() {
@@ -104,5 +103,9 @@ public class ConfigWindow {
             ImGui.TextUnformatted(Localization.Config_Window_Use_Game_Language_Tooltip);
             ImGui.EndTooltip();
         }
+    }
+
+    public void Dispose() {
+        Service.CommandManager.RemoveHandler("/cprconfig");
     }
 }

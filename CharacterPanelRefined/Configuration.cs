@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Globalization;
-using Dalamud;
 using Dalamud.Configuration;
 using Dalamud.Plugin;
 

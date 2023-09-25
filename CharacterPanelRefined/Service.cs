@@ -1,11 +1,6 @@
-using Dalamud.Data;
-using Dalamud.Game;
-using Dalamud.Game.ClientState;
-using Dalamud.Game.ClientState.Keys;
-using Dalamud.Game.Command;
-using Dalamud.Game.Gui;
 using Dalamud.IoC;
 using Dalamud.Plugin;
+using Dalamud.Plugin.Services;
 
 #pragma warning disable 8618
 namespace CharacterPanelRefined; 
@@ -15,27 +10,30 @@ internal class Service {
     internal static void Initialize(DalamudPluginInterface pluginInterface) => pluginInterface.Create<Service>();
     
     [PluginService] 
-    [RequiredVersion("1.0")]
-    public static ClientState ClientState { get; private set; }
+    public static IClientState ClientState { get; private set; }
 
     [PluginService]
-    [RequiredVersion("1.0")]
-    internal static KeyState KeyState { get; private set; }
+    internal static IKeyState KeyState { get; private set; }
 
     [PluginService]
-    [RequiredVersion("1.0")]
-    internal static Framework Framework { get; private set; }
+    internal static IFramework Framework { get; private set; }
 
     [PluginService]
-    [RequiredVersion("1.0")]
-    internal static DataManager DataManager { get; private set; }
+    internal static IDataManager DataManager { get; private set; }
 
     [PluginService]
-    [RequiredVersion("1.0")]
-    internal static CommandManager CommandManager { get; private set; }
+    internal static ICommandManager CommandManager { get; private set; }
 
     [PluginService]
-    [RequiredVersion("1.0")]
-    internal static GameGui GameGui { get; private set; }
+    internal static IGameGui GameGui { get; private set; }
+
+    [PluginService]
+    internal static IGameInteropProvider GameInteropProvider { get; private set; }
+
+    [PluginService]
+    internal static IPluginLog PluginLog { get; private set; }
+
+    [PluginService]
+    internal static IAddonLifecycle AddonLifecycle { get; private set; }
 }
 #pragma warning restore 8618

@@ -190,7 +190,7 @@ public class Tooltips : IDisposable {
         var tooltip = tooltips[entry];
         ((TextPayload)tooltip.Payloads[keywordIndices[(entry, "PointsPerTier" + suffix)]]).Text = statInfo.PointsPerTier.ToString("N1");
         var wasting = statInfo.CurrentValue - statInfo.PrevTier;
-        ((UIForegroundPayload)tooltip.Payloads[keywordIndices[(entry, "@Wasting" + suffix)]]).ColorKey = (ushort)(wasting == 0 ? GreenColor : OrangeColor);
+        ((UIForegroundPayload)tooltip.Payloads[keywordIndices[(entry, "@Wasting" + suffix)]]).ColorKey = wasting == 0 ? GreenColor : OrangeColor;
         ((TextPayload)tooltip.Payloads[keywordIndices[(entry, "Wasting" + suffix)]]).Text = wasting.ToString();
         ((TextPayload)tooltip.Payloads[keywordIndices[(entry, $"Points{suffix}{suffix}")]]).Text =
             wasting == 1 ? Localization.Tooltips_Wasting_Points_Singular : Localization.Tooltips_Wasting_Points_Plural;

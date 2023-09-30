@@ -1,4 +1,5 @@
-﻿using Lumina;
+﻿using System.Diagnostics.CodeAnalysis;
+using Lumina;
 using Lumina.Excel.GeneratedSheets;
 using Serilog;
 using ILogger = Lumina.ILogger;
@@ -15,7 +16,7 @@ var cats = new (string, Predicate<int>, string, Dictionary<uint, int>)[] {
 };
 var gameData = new GameData(@"C:\Program Files\SquareEnix\FINAL FANTASY XIV - A Realm Reborn\game\sqpack", new SerilogLogger(),
     new LuminaOptions { LoadMultithreaded = true });
-var items = gameData.Excel.GetSheet<Item>();
+var items = gameData.Excel.GetSheet<Item>()!;
 foreach (var item in items) {
     var cat = (int) item.EquipSlotCategory.Row;
     if (cat is >= 1 and <= 13) {
@@ -91,6 +92,7 @@ foreach (var item in items) {
 }
 
 
+[SuppressMessage("ReSharper", "TemplateIsNotCompileTimeConstantProblem")]
 class SerilogLogger : ILogger {
     public void Verbose(string template, params object[] values) {
         Log.Verbose(template, values);

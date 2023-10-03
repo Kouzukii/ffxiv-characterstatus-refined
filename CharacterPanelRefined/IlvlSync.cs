@@ -15,15 +15,15 @@ public static class IlvlSync {
     public static unsafe (uint?, IlvlSyncType) GetCurrentIlvlSync() {
         if (EventFramework.Instance() != null && EventFramework.Instance()->GetInstanceContentDirector() != null) {
             var icd = (IntPtr)EventFramework.Instance()->GetInstanceContentDirector();
-            if (*(byte*)(icd + 3284) != 8 && (*(byte*)(icd + 828) & 1) == 0) {
+            if (*(byte*)(icd + 3300) != 8 && (*(byte*)(icd + 828) & 1) == 0) {
                 // min ilvl
-                if (*(byte*)(icd + 7324) >= 0x80 && *(ushort*)(icd + 1316) > 0) {
+                if (*(byte*)(icd + 7334) >= 0x80 && *(ushort*)(icd + 1316) > 0) {
                     Service.PluginLog.Debug($"Using min ilvl {*(ushort*)(icd + 1316)}");
                     return (*(ushort*)(icd + 1316), IlvlSyncType.Strict);
                 }
 
                 // duty is sync'd
-                if (((*(byte*)(icd + 7324) & 0x40) == 0 || (UIState.Instance()->PlayerState.IsLevelSynced & 1) != 0) && *(ushort*)(icd + 1318) > 0) {
+                if (((*(byte*)(icd + 7334) & 0x40) == 0 || (UIState.Instance()->PlayerState.IsLevelSynced & 1) != 0) && *(ushort*)(icd + 1318) > 0) {
                     Service.PluginLog.Debug($"Using duty ilvl sync {*(ushort*)(icd + 1318)}");
                     return (*(ushort*)(icd + 1318), IlvlSyncType.Strict);
                 }

@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using Dalamud.Game.Addon.Lifecycle;
 using Dalamud.Game.Addon.Lifecycle.AddonArgTypes;
-using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
+using Dalamud.Memory;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using FFXIVClientStructs.FFXIV.Component.GUI;
 using Lumina.Excel.GeneratedSheets;
@@ -46,18 +47,17 @@ public unsafe class ItemTooltipAugments {
         var cult = CultureInfo.InvariantCulture;
         // weapon
         if ((numberArrayData->IntArray[4] & 0x2000) != 0) {
-            if (ParseUnknownLength(stringArrayData->StringArray[9]) is not null) {
+            if (ParseString(stringArrayData->StringArray[9], out _)) {
                 var encoded = EncodeHighlighted(sync.PhysicalDamage.ToString(cult));
                 stringArrayData->SetValue(9, encoded, false, true, true);
             }
 
-            if (ParseUnknownLength(stringArrayData->StringArray[8]) is { } autoAtk) {
-                var encoded = EncodeHighlighted((double.Parse(autoAtk.Text!, cult) * sync.PhysicalDamage / ilvl.PhysicalDamage - 0.001).ToString("F2", cult));
+            if (ParseString(stringArrayData->StringArray[8], out var autoAtk) && double.TryParse(autoAtk.Text, cult, out var autoAtkVal)) {
+                var encoded = EncodeHighlighted((autoAtkVal * sync.PhysicalDamage / ilvl.PhysicalDamage - 0.001).ToString("F2", cult));
                 stringArrayData->SetValue(8, encoded, false, true, true);
             }
         } else {
-            if (ParseUnknownLength(stringArrayData->StringArray[8]) is { } def) {
-                var defVal = double.Parse(def.Text!, cult);
+            if (ParseString(stringArrayData->StringArray[8], out var def) && double.TryParse(def.Text, cult, out var defVal)) {
                 if (defVal > 1) {
                     var encoded = EncodeHighlighted((defVal * sync.Defense / ilvl.Defense - 0.1).ToString("F0", cult));
                     stringArrayData->SetValue(8, encoded, false, true, true);
@@ -66,8 +66,7 @@ public unsafe class ItemTooltipAugments {
                 }
             }
 
-            if (ParseUnknownLength(stringArrayData->StringArray[7]) is { } magicDef) {
-                var mDefVal = double.Parse(magicDef.Text!, cult);
+            if (ParseString(stringArrayData->StringArray[7], out var magicDef) && double.TryParse(magicDef.Text, cult, out var mDefVal)) {
                 if (mDefVal > 1) {
                     var encoded = EncodeHighlighted((mDefVal * sync.MagicDefense / ilvl.MagicDefense - 0.1).ToString("F0", cult));
                     stringArrayData->SetValue(7, encoded, false, true, true);
@@ -77,25 +76,36 @@ public unsafe class ItemTooltipAugments {
             }
         }
 
-        if (ParseUnknownLength(stringArrayData->StringArray[37]) is { } vit) {
-            var s = vit.Text!.Split('+');
-            var encoded = EncodeHighlighted($"{s[0]}+{(double.Parse(s[1], cult) * sync.Vitality / ilvl.Vitality - 0.1).ToString("F0", cult)}");
-            stringArrayData->SetValue(37, encoded, false, true, true);
+        var mainIdx = 37;
+        var vitIdx = 38;
+        // MND and INT are after VIT
+        if (item.UnkData59[0].BaseParam > 3)
+            (vitIdx, mainIdx) = (mainIdx, vitIdx);
+
+        if (ParseString(stringArrayData->StringArray[mainIdx], out var main)) {
+            var s = main.Text!.Split('+');
+            if (s.Length == 2 && double.TryParse(s[1], cult, out var mainVal)) {
+                var encoded = EncodeHighlighted($"{s[0]}+{(mainVal * sync.Strength / ilvl.Strength - 0.1).ToString("F0", cult)}");
+                stringArrayData->SetValue(mainIdx, encoded, false, true, true);
+            }
         }
 
-        if (ParseUnknownLength(stringArrayData->StringArray[38]) is { } main) {
-            var s = main.Text!.Split('+');
-            var encoded = EncodeHighlighted($"{s[0]}+{(double.Parse(s[1], cult) * sync.Strength / ilvl.Strength - 0.1).ToString("F0", cult)}");
-            stringArrayData->SetValue(38, encoded, false, true, true);
+        if (ParseString(stringArrayData->StringArray[vitIdx], out var vit)) {
+            var s = vit.Text!.Split('+');
+            if (s.Length == 2 && double.TryParse(s[1], cult, out var vitVal)) {
+                var encoded = EncodeHighlighted($"{s[0]}+{(vitVal * sync.Vitality / ilvl.Vitality - 0.1).ToString("F0", cult)}");
+                stringArrayData->SetValue(vitIdx, encoded, false, true, true);
+            }
         }
 
         var subStrs = new TextPayload?[4];
         var split = new string[4][];
         var parse = new double[4];
         for (var i = 0; i < 4; i++) {
-            if ((subStrs[i] = ParseUnknownLength(stringArrayData->StringArray[39 + i])) is not { } sub) continue;
-            split[i] = sub.Text!.Split('+');
-            parse[i] = double.Parse(split[i][1], cult);
+            if (!ParseString(stringArrayData->StringArray[39 + i], out subStrs[i])) continue;
+            split[i] = subStrs[i]!.Text!.Split('+');
+            if (split[i].Length != 2 || !double.TryParse(split[i][1], cult, out parse[i]))
+                subStrs[i] = null;
         }
 
         var subMax = SubstatBreakpoints.GetBreakpoint((byte)item.EquipSlotCategory.Row, (ushort)ilvlSync) ?? parse.Max() * sync.CriticalHit / ilvl.CriticalHit - 0.1;
@@ -105,12 +115,13 @@ public unsafe class ItemTooltipAugments {
                 var encoded = EncodeHighlighted($"{split[i][0]}+{Math.Min(parse[i], subMax).ToString("F0", cult)}");
                 stringArrayData->SetValue(39 + i, encoded, false, true, true);
             } else {
+                // write back the original value without highlighting, since it's not actually down-synced
                 stringArrayData->SetValue(39 + i, sub.Encode(), false, true, true);
             }
         }
 
         for (var i = 0; i < 5; i++) {
-            if (ParseUnknownLength(stringArrayData->StringArray[58 + i]) is { } mat) {
+            if (ParseString(stringArrayData->StringArray[58 + i], out var mat)) {
                 var encoded = EncodeHighlighted($"{mat.Text!.Split('+')[0]}+0");
                 stringArrayData->SetValue(58 + i, encoded, false, true, true);
             }
@@ -119,24 +130,23 @@ public unsafe class ItemTooltipAugments {
         numberArrayData->IntArray[4] |= 1 << 30;
     }
 
-    private TextPayload? ParseUnknownLength(byte* ptr) {
-        if (ptr == null) return null;
-        var end = 0;
-        for (; ptr[end] != 0; end++)
-            if (end >= 4096) return null;
-        return SeString.Parse(ptr, end).Payloads switch {
+    private bool ParseString(byte* ptr, [NotNullWhen(true)] out TextPayload? text) {
+        text = null;
+        if (ptr == null) return false;
+        text = MemoryHelper.ReadSeStringNullTerminated((IntPtr)ptr).Payloads switch {
             [_, _, _, TextPayload p, _, _, _] => p,
             [TextPayload p] => p,
             _ => null
         };
+        return text != null;
     }
 
     private static readonly byte[] FgPayload = new UIForegroundPayload(573).Encode();
     private static readonly byte[] GlPayload = new UIGlowPayload(574).Encode();
-    private static readonly byte[] EmPayload = new EmphasisItalicPayload(true).Encode();
-    private static readonly byte[] FgClPayload = new UIForegroundPayload(0).Encode();
-    private static readonly byte[] GlClPayload = new UIGlowPayload(0).Encode();
-    private static readonly byte[] EmClPayload = new EmphasisItalicPayload(false).Encode();
+    private static readonly byte[] EmPayload = EmphasisItalicPayload.ItalicsOn.Encode();
+    private static readonly byte[] FgClPayload = UIForegroundPayload.UIForegroundOff.Encode();
+    private static readonly byte[] GlClPayload = UIGlowPayload.UIGlowOff.Encode();
+    private static readonly byte[] EmClPayload = EmphasisItalicPayload.ItalicsOff.Encode();
 
     private byte[] EncodeHighlighted(string newText) {
         return new[] {

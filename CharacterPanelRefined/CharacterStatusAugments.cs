@@ -297,8 +297,8 @@ public sealed unsafe class CharacterStatusAugments : IDisposable {
         SetTooltip((AtkComponentNode*)node->AtkResNode.ParentNode, entry);
     }
     
-    internal void RequestedUpdate(AddonEvent type, AddonArgs args) {
-        if (args.Addon != (IntPtr)characterStatusPtr) {
+    internal void RequestedUpdate(IntPtr addon) {
+        if (addon != (IntPtr)characterStatusPtr) {
             ClearPointers();
             return;
         }
@@ -488,7 +488,7 @@ public sealed unsafe class CharacterStatusAugments : IDisposable {
     internal void Update() {
         var charStatus = AtkStage.GetSingleton()->RaptureAtkUnitManager->GetAddonByName("CharacterStatus");
         if (charStatus != null && charStatus->IsVisible) {
-            RequestedUpdate(AddonEvent.PostRequestedUpdate, new AddonRequestedUpdateArgs {Addon = (IntPtr)charStatus});
+            RequestedUpdate((IntPtr)charStatus);
             // Refresh the currently active tooltip
             var tooltipManager = &AtkStage.GetSingleton()->TooltipManager;
             var currentTooltipNode = ((AtkResNode**)tooltipManager)[4];

@@ -1,5 +1,6 @@
 using System;
 using FFXIVClientStructs.FFXIV.Client.Game.Event;
+using FFXIVClientStructs.FFXIV.Client.Game.InstanceContent;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
 
 namespace CharacterPanelRefined;
@@ -13,20 +14,31 @@ public enum IlvlSyncType {
 
 public static class IlvlSync {
     public static unsafe (uint?, IlvlSyncType) GetCurrentIlvlSync() {
-        if (EventFramework.Instance() != null && EventFramework.Instance()->GetInstanceContentDirector() != null) {
-            var icd = (IntPtr)EventFramework.Instance()->GetInstanceContentDirector();
-            if (*(byte*)(icd + 3300) != 8 && (*(byte*)(icd + 828) & 1) == 0) {
+        var icDirector = EventFramework.Instance() != null ? EventFramework.Instance()->GetInstanceContentDirector() : null;
+        if (icDirector != null) {
+            if (icDirector->InstanceContentType != InstanceContentType.BeginnerTraining && (icDirector->ContentDirector.Director.ContentFlags & 1) == 0) {
+                var icd = (IntPtr)icDirector;
                 // min ilvl
                 if (*(byte*)(icd + 7334) >= 0x80 && *(ushort*)(icd + 1316) > 0) {
                     Service.PluginLog.Debug($"Using min ilvl {*(ushort*)(icd + 1316)}");
                     return (*(ushort*)(icd + 1316), IlvlSyncType.Strict);
                 }
 
-                // duty is sync'd
+                // duty is synced
                 if (((*(byte*)(icd + 7334) & 0x40) == 0 || (UIState.Instance()->PlayerState.IsLevelSynced & 1) != 0) && *(ushort*)(icd + 1318) > 0) {
                     Service.PluginLog.Debug($"Using duty ilvl sync {*(ushort*)(icd + 1318)}");
                     return (*(ushort*)(icd + 1318), IlvlSyncType.Strict);
                 }
+            }
+        }
+
+        var pcDirector = EventFramework.Instance() != null ? EventFramework.Instance()->GetPublicContentDirector() : null;
+        if (pcDirector != null) {
+            var pcd = (IntPtr)pcDirector;
+            // eureka / bozja is synced
+            if (*(ushort*)(pcd + 1318) > 0) {
+                Service.PluginLog.Debug($"Using public content ilvl sync {*(ushort*)(pcd + 1318)}");
+                return (*(ushort*)(pcd + 1318), IlvlSyncType.Strict);
             }
         }
 

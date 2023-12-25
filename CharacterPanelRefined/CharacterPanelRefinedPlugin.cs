@@ -30,7 +30,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         Service.Framework.Update += FrameworkOnUpdate;
 
         Service.AddonLifecycle.RegisterListener(AddonEvent.PostSetup, "CharacterStatus", characterStatusAugments.OnSetup);
-        Service.AddonLifecycle.RegisterListener(AddonEvent.PreRequestedUpdate, "CharacterStatus", characterStatusAugments.RequestedUpdate);
+        Service.AddonLifecycle.RegisterListener(AddonEvent.PreRequestedUpdate, "CharacterStatus", (_, a) => characterStatusAugments.RequestedUpdate(a.Addon));
         Service.AddonLifecycle.RegisterListener(AddonEvent.PreRequestedUpdate, "ItemDetail", itemTooltipAugments.RequestedUpdate);
     }
 

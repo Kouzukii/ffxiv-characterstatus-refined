@@ -1309,7 +1309,7 @@ public class EquationTests {
         var levelModifier = LevelModifiers.LevelTable[90];
         
         foreach (var (wd, mnd, det, expectedDmg, expectedHeal) in expectedValues) {
-            *(ushort*)((IntPtr)(&inventoryManager) + 9160 + 42) = wd;
+            ((ushort*)((IntPtr)(&inventoryManager) + 9160))[17] = wd;
             uiState.PlayerState.Attributes[(int)Attributes.AttackMagicPotency] = mnd;
             var detVal = Equations.CalcDet(det, ref statInfo, levelModifier);
 

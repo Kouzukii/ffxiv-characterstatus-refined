@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Panel_Crit_Chance" xml:space="preserve">
+    <value>크리티컬 기회</value>
+  </data>
+  <data name="Panel_Crit_Damage" xml:space="preserve">
+    <value>크리티컬 데미지</value>
+  </data>
+  <data name="Panel_Damage_Increase" xml:space="preserve">
+    <value>데미지 증가</value>
+  </data>
+  <data name="Panel_Damage_per_100_Potency" xml:space="preserve">
+    <value>평균 데미지</value>
+  </data>
+  <data name="Panel_Heal_per_100_Potency" xml:space="preserve">
+    <value>평균 힐량</value>
+  </data>
+  <data name="Panel_Damage_and_Mitigation" xml:space="preserve">
+    <value>데미지 &amp; 경감</value>
+  </data>
+  <data name="Panel_Direct_Hit_Chance" xml:space="preserve">
+    <value>다이렉트히트 기회</value>
+  </data>
+  <data name="Panel_Fire_IV_GCD" xml:space="preserve">
+    <value>파이쟈 GCD</value>
+  </data>
+  <data name="Panel_RubyRite_GCD" xml:space="preserve">
+    <value>루비 GCD</value>
+  </data>
+  <data name="Panel_GCD" xml:space="preserve">
+    <value>GCD</value>
+  </data>
+  <data name="Panel_Magic_Mitigation" xml:space="preserve">
+    <value>마법 경감</value>
+  </data>
+  <data name="Panel_Mana_per_Tick" xml:space="preserve">
+    <value>틱 당 마나 회복</value>
+  </data>
+  <data name="Panel_Physical_Mitigation" xml:space="preserve">
+    <value>물리 경감</value>
+  </data>
+  <data name="Panel_Skill_Speed_Increase" xml:space="preserve">
+    <value>속도 증가</value>
+  </data>
+  <data name="Panel_Speed_Properties" xml:space="preserve">
+    <value>속도 속성</value>
+  </data>
+  <data name="Tooltips_Crit_Tooltip" xml:space="preserve">
+    <value>{@Title}크리티컬 히트{@Clear}는 공격과 치유의 빈도뿐만 아니라 이 속성에 의한 추가 데미지와 HP 회복에 영향을 줘요.
+
+크리티컬 히트의 빈도와 데미지는 매 {PointsPerTier} 포인트 마다 0.1%씩 증가해요.</value>
+  </data>
+  <data name="Tooltips_Determination_Tooltip" xml:space="preserve">
+    <value>{@Title}의지력{@Clear}은 공격 데미지 증가와 치유로 회복되는 HP량의 증가에 영향을 줘요.
+
+의사력의 효과는 매 {PointsPerTier} 포인트 마다 0.1%씩 증가해요.</value>
+  </data>
+  <data name="Tooltips_Direct_Hit_Tooltip" xml:space="preserve">
+    <value>{@Title}다이렉트 히트{@Clear}는 공격할 때 다이렉트 히트가 발동하는 빈도에 영향을 줘요.
+또한 다이렉트 히트는 데미지를 25% 증가시켜 줘요..
+
+다이렉트 히트는 매 {PointsPerTier} 포인트 마다 0.1%씩 증가해요.</value>
+  </data>
+  <data name="Tooltips_Skill_Spell_Speed_Tooltip" xml:space="preserve">
+    <value>{@Title}스킬/스펠 속도{@Clear}는 캐스팅 시간과 재캐스팅 시간을 줄여주고 도트의 데미지도 늘려줘요.</value>
+  </data>
+  <data name="Tooltips_Skill_Spell_Speed_GCD" xml:space="preserve">
+    <value>{GCD} GCD는 매 {PointsPerTier} 포인트 마다 0.01초씩 속도가 빨라져요.</value>
+  </data>
+  <data name="Tooltips_Skill_Spell_Speed_With_Mod" xml:space="preserve">
+    <value>{@Highlight}이러한 값들은 영향을 주는 기술({@Red}{ModName}{@Clear})이 활성상태라고 가정해요.
+CTRL 키를 누르면 {@Red}{ModName}{@Clear} 없이 값을 볼 수 있어요.{@Clear}</value>
+  </data>
+  <data name="Tooltips_Skill_Spell_Speed_Without_Mod" xml:space="preserve">
+    <value>CTRL 키를 누르면 영향을 주는 기술({@Red}{ModName}{@Clear})이 활성 상태라고 가정하고 값을 볼 수 있어요.{@Clear}</value>
+  </data>
+  <data name="Tooltips_Skill_Spell_Speed_DoT_Increase" xml:space="preserve">
+    <value>도트 데미지는 매 {PointsPerTier} 포인트 마다 0.1%씩 증가해요.</value>
+  </data>
+  <data name="Tooltips_Next_Tier" xml:space="preserve">
+    <value>다음 단계: {@Highlight}{NextTier}{@Clear} {Points}</value>
+  </data>
+  <data name="Tooltips_Wasting" xml:space="preserve">
+    <value>현재 {@Wasting}{Wasting}{@Clear} {Points}를 낭비하고 있어요.</value>
+  </data>
+  <data name="Tooltips_Wasting_Points_Singular" xml:space="preserve">
+    <value>포인트</value>
+  </data>
+  <data name="Tooltips_Wasting_Points_Plural" xml:space="preserve">
+    <value>포인트</value>
+  </data>
+  <data name="Tooltips_Expected_Damage" xml:space="preserve">
+    <value>100개의 포텐셜 스킬의 평균 데미지로, Main이나 Mend와 같은 패시브 스킬의 크리티컬과 다이렉트 히트도 포함되요.
+
+일반 공격을 하면 {@Highlight}{NormalValue}{@Clear}의 데미지가 발생해요.
+크리티컬 공격이 터지면 {@Highlight}{CritValue}{@Clear}의 데미지가 발생해요.
+
+데미지의 편차는 언제나 ±5% 정도예요.</value>
+  </data>
+  <data name="Tooltips_Expected_Heal" xml:space="preserve">
+    <value>100개의 포텐셜 스킬의 평균 HP 회복량으, Main이나 Mend와 같은 패시브 스킬의 크리티컬과 다이렉트 히트도 포함되요.
+
+일반 치유는 {@Highlight}{NormalValue}{@Clear}의 HP를 회복해요.
+크리티컬 치유가 터지면 {@Highlight}{CritValue}{@Clear}의 HP를 회복해요.
+
+HP 회복의 편차는 언제나 ±3% 정도예요.</value>
+  </data>
+  <data name="Tooltips_Tenacity_Tooltip" xml:space="preserve">
+    <value>{@Title}불굴{@Clear}은 주는 데미지가 증가하고 자신의 HP 회복량이 늘어나며 받는 데미지가 줄어들어요.
+
+불굴은 매 {PointsPerTier} 포인트마다 0.1%씩 늘어나요.</value>
+  </data>
+  <data name="Tooltips_Piety_Tooltip" xml:space="preserve">
+    <value>{@Title}신앙심{@Clear}은 서버 틱 마다 MP 회복량을 늘려줘요(매 3초).
+기본적으로 매 틱 당 200 MP를 회복해요.
+
+신앙심은 매 {PointsPerTier} 포인트마다 추가 1의 MP가 주어져요.</value>
+  </data>
+  <data name="Tooltips_Defense_Tooltip" xml:space="preserve">
+    <value>{@Title}방어{@Clear}는 매 {PointsPerTier} 포인트 마다 1%씩 물리 데미지를 줄여줘요.</value>
+  </data>
+  <data name="Tooltips_Magic_Defense_Tooltip" xml:space="preserve">
+    <value>{@Title}마법 방어{@Clear}는 매 {PointsPerTier} 포인트 마다 1%씩 데미지를 줄여줘요.</value>
+  </data>
+  <data name="Tooltips_Vitality_Tooltip" xml:space="preserve">
+    <value>{@Title}활력{@Clear}은 각 포인트 마다 최대 HP가 {HpPerPoint}  만큼 증가해요.
+당신의 {Job} 잡은 {BaseHp} 만큼의 기본 HP를 갖고 있어요.</value>
+  </data>
+  <data name="Tooltips_Main_Stat_Tooltip" xml:space="preserve">
+    <value>{@Title}주요 스텟{@Clear}은 주는 데미지와 HP 회복량에 관련되어 있어요.
+주요 스텟 10%가 증가하면 데미지와 HP 회복량이 10% 증가해요.
+
+다만, 서모너의 피직은 정신 스텟에 영향을 받으므로 예외 사항이예요.</value>
+  </data>
+  <data name="Config_Character_Panel_Refined_Config" xml:space="preserve">
+    <value>캐릭터 패널 리파인 설정</value>
+  </data>
+  <data name="Config_Override_default_tooltips" xml:space="preserve">
+    <value>캐릭터창의 도움말을 더 자세한 내용으로 덧씌워요</value>
+  </data>
+  <data name="Config_Use_Game_Language_if_available" xml:space="preserve">
+    <value>가능하다면 게임 내부 언어 표시를 사용해요</value>
+  </data>
+  <data name="Config_Override_default_tooltips_tooltip" xml:space="preserve">
+    <value>모든 스텟의 기본 도움말을 덮어써요</value>
+  </data>
+  <data name="Config_Window_Use_Game_Language_Tooltip" xml:space="preserve">
+    <value>이 플러그인에 내장된 언어를 사용해요.
+ 현재 영어, 독일어, 프랑스어, 한국말이 있어요.</value>
+  </data>
+  <data name="Config_Show_average_damage" xml:space="preserve">
+    <value>평균 데미지를 보여줘요</value>
+  </data>
+  <data name="Config_Show_average_healing" xml:space="preserve">
+    <value>평균 힐량을 보여줘요</value>
+  </data>
+  <data name="Config_Show_crit_damage_increase" xml:space="preserve">
+    <value>크리티컬 데미지 증가량을 보여줘요</value>
+  </data>
+  <data name="Config_Show_direct_hit_damage_increase" xml:space="preserve">
+    <value>다이렉트 히트 데미지 증가량을 보여줘요</value>
+  </data>
+  <data name="Config_Help_Apply_Changes" xml:space="preserve">
+    <value>바뀐 내용을 적용하려면 캐릭터창을 다시 여세요</value>
+  </data>
+  <data name="Panel_excluding_Consumables" xml:space="preserve">
+    <value>소모 제외</value>
+  </data>
+  <data name="Panel_CP" xml:space="preserve">
+    <value>CP</value>
+  </data>
+  <data name="Panel_GP" xml:space="preserve">
+    <value>GP</value>
+  </data>
+  <data name="Config_Show_stats_without_consumables" xml:space="preserve">
+    <value>제작/채집 스텟을 소모없이 보여줘요</value>
+  </data>
+  <data name="Buff_LeyLines" xml:space="preserve">
+    <value>흑마법 문양</value>
+  </data>
+  <data name="Buff_LeyLines_Abbrev" xml:space="preserve">
+    <value>문양</value>
+  </data>
+  <data name="Buff_GreasedLightning" xml:space="preserve">
+    <value>질풍번개</value>
+  </data>
+  <data name="Buff_GreasedLightning_Abbrev" xml:space="preserve">
+    <value>질풍</value>
+  </data>
+  <data name="Buff_Shifu" xml:space="preserve">
+    <value>사풍</value>
+  </data>
+  <data name="Buff_PresenceOfMind" xml:space="preserve">
+    <value>쾌속의 마법</value>
+  </data>
+  <data name="Buff_PresenceOfMind_Abbrev" xml:space="preserve">
+    <value>쾌속</value>
+  </data>
+  <data name="Buff_Huton" xml:space="preserve">
+    <value>풍둔술</value>
+  </data>
+  <data name="Buff_ArmysPaeon" xml:space="preserve">
+    <value>군신의 찬가</value>
+  </data>
+  <data name="Buff_ArmysPaeon_Abbrev" xml:space="preserve">
+    <value>찬가</value>
+  </data>
+  <data name="Buff_Astrodyne" xml:space="preserve">
+    <value>점성력</value>
+  </data>
+  <data name="Buff_Astrodyne_Abbrev" xml:space="preserve">
+    <value>점술</value>
+  </data>
+</root>

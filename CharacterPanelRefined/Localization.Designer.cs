@@ -439,7 +439,7 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Speed Increase.
+        ///   Looks up a localized string similar to Recast Time Reduction.
         /// </summary>
         internal static string Panel_Skill_Speed_Increase {
             get {

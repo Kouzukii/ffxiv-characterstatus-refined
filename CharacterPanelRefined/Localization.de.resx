@@ -49,7 +49,7 @@
         <value>Phys. Minderung</value>
     </data>
     <data name="Panel_Skill_Speed_Increase" xml:space="preserve">
-        <value>Geschw. Erhöhung</value>
+        <value>Reakt.Zeit Reduktion</value>
     </data>
     <data name="Panel_Speed_Properties" xml:space="preserve">
         <value>Geschw. Eigenschaften</value>
@@ -91,11 +91,11 @@ Die Direkte Treffer Rate erhöht sich um 0,1% alle {PointsPerTier} Punkte.</valu
         <value>Eine Reaktivierungszeit von {GCD}s wird im Durchschnitt alle {PointsPerTier} Punkte um 0,01s verkürzt.</value>
     </data>
     <data name="Tooltips_Expected_Damage" xml:space="preserve">
-        <value>Durchschnittlicher Schaden einer 100 Attacke-Wert Fähigkeit, inklusive kritischer und direkter Treffer, sowie passiven Fertigkeiten wie Verbesserte Kommandos. 
-            
+        <value>Durchschnittlicher Schaden einer 100 Attacke-Wert Fähigkeit, inklusive kritischer und direkter Treffer, sowie passiven Fertigkeiten wie Verbesserte Kommandos.
+
 Ein normaler Angriff verursacht {@Highlight}{NormalValue}{@Clear} Schaden.
 Ein kritischer Treffer verursacht {@Highlight}{CritValue}{@Clear} Schaden.
-        
+
 Schaden weicht immer bis zu ±5% ab von diesen Werten.</value>
     </data>
     <data name="Tooltips_Tenacity_Tooltip" xml:space="preserve">
@@ -119,7 +119,7 @@ Frömmigkeit erhöht dies um 1 alle {PointsPerTier} Punkte.</value>
 Als {Job} hast du {BaseHp} Grund LP.</value>
     </data>
     <data name="Tooltips_Main_Stat_Tooltip" xml:space="preserve">
-        <value>{@Title}Hauptattribut{@Clear} erhöht den verursachten Schaden durch Angriffe sowie die Stärke von Heilungszaubern. 
+        <value>{@Title}Hauptattribut{@Clear} erhöht den verursachten Schaden durch Angriffe sowie die Stärke von Heilungszaubern.
 Eine Erhöhung des Hauptattributes von 10% enstpricht einer Schadens- und Heilungserhöhung von 10%.
 
 Die einzige Ausnahme stellt Physick vom BSW dar, da es mit Willenskraft statt Intelligenz skaliert.</value>
@@ -137,7 +137,61 @@ Die einzige Ausnahme stellt Physick vom BSW dar, da es mit Willenskraft statt In
         <value>Überscheibe die Standard Tooltips für sämtliche Attribute.</value>
     </data>
     <data name="Config_Window_Use_Game_Language_Tooltip" xml:space="preserve">
-        <value>Verwende die interne Spielsprache für dieses Plugin, sollte sie verfügbar sein. 
+        <value>Verwende die interne Spielsprache für dieses Plugin, sollte sie verfügbar sein.
 Verfügbar: Englisch, Deutsch, Französisch</value>
+    </data>
+    <data name="Buff_ArmysPaeon" xml:space="preserve">
+        <value>Hymne der Krieger</value>
+    </data>
+    <data name="Buff_ArmysPaeon_Abbrev" xml:space="preserve">
+        <value>HdK</value>
+    </data>
+    <data name="Buff_GreasedLightning" xml:space="preserve">
+        <value>Geölter Blitz</value>
+    </data>
+    <data name="Buff_GreasedLightning_Abbrev" xml:space="preserve">
+        <value>GB</value>
+    </data>
+    <data name="Buff_LeyLines" xml:space="preserve">
+        <value>Ley-Linien</value>
+    </data>
+    <data name="Buff_PresenceOfMind" xml:space="preserve">
+        <value>Geistesgegenwart</value>
+    </data>
+    <data name="Buff_PresenceOfMind_Abbrev" xml:space="preserve">
+        <value>GGW</value>
+    </data>
+    <data name="Config_Help_Apply_Changes" xml:space="preserve">
+        <value>Um Änderungen an der Konfiguration anzuwenden, musst du das Charakterpanel erneut öffnen.</value>
+    </data>
+    <data name="Config_Show_average_damage" xml:space="preserve">
+        <value>Zeige durchschnittlichen Schaden</value>
+    </data>
+    <data name="Config_Show_average_healing" xml:space="preserve">
+        <value>Zeige durchschnittliche Heilung</value>
+    </data>
+    <data name="Config_Show_crit_damage_increase" xml:space="preserve">
+        <value>Zeige kritische Schadenserhöhung</value>
+    </data>
+    <data name="Config_Show_direct_hit_damage_increase" xml:space="preserve">
+        <value>Zeige direkter Treffer Schadenserhöhung</value>
+    </data>
+    <data name="Config_Show_item_level_information" xml:space="preserve">
+        <value>Zeige Item Level Info</value>
+    </data>
+    <data name="Config_Show_stats_without_consumables" xml:space="preserve">
+        <value>Zeige Handwerker und Sammler Stats ohne Buffs</value>
+    </data>
+    <data name="Panel_CP" xml:space="preserve">
+        <value>HP</value>
+    </data>
+    <data name="Panel_excluding_Consumables" xml:space="preserve">
+        <value>ohne Buffs</value>
+    </data>
+    <data name="Panel_GP" xml:space="preserve">
+        <value>SP</value>
+    </data>
+    <data name="Panel_RubyRite_GCD" xml:space="preserve">
+        <value>Rubin-Ritus Reakt. Zeit</value>
     </data>
 </root>

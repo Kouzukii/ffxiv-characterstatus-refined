@@ -7,14 +7,13 @@ using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using FFXIVClientStructs.FFXIV.Client.Graphics;
 using FFXIVClientStructs.FFXIV.Component.GUI;
 
-namespace CharacterPanelRefined; 
+namespace CharacterPanelRefined;
 
-public sealed unsafe class CharacterStatusAugments : IDisposable {
-    private readonly CharacterPanelRefinedPlugin plugin;
+public sealed unsafe class CharacterStatusAugments(CharacterPanelRefinedPlugin plugin) : IDisposable {
     private readonly Tooltips tooltips = new();
-    
+
     private JobId lastJob;
-    
+
     private AtkUnitBase* characterStatusPtr;
     private AtkTextNode* dhChancePtr;
     private AtkTextNode* dhDamagePtr;
@@ -51,8 +50,6 @@ public sealed unsafe class CharacterStatusAugments : IDisposable {
     private AtkTextNode* perceptionBasePtr;
     private AtkTextNode* gpPtr;
     private AtkTextNode* gpBasePtr;
-
-    public CharacterStatusAugments(CharacterPanelRefinedPlugin plugin) => this.plugin = plugin;
 
     internal void OnSetup(AddonEvent type, AddonArgs args) {
         var atkUnitBase = (AtkUnitBase*)args.Addon;
@@ -165,7 +162,7 @@ public sealed unsafe class CharacterStatusAugments : IDisposable {
         sksSpeedIncreasePtr = AddStatRow((AtkComponentNode*)skillSpeedPtr, Localization.Panel_Skill_Speed_Increase);
         sksGcdPtr = AddStatRow((AtkComponentNode*)skillSpeedPtr, Localization.Panel_GCD);
         SetTooltip(sksSpeedIncreasePtr, Tooltips.Entry.Speed);
-        
+
         gearPtr = atkUnitBase->UldManager.SearchNodeById(80);
         if (plugin.Configuration.ShowGearProperties) {
             gearPtr->Y = attributesHeight + offensiveHeight + 40;
@@ -239,7 +236,7 @@ public sealed unsafe class CharacterStatusAugments : IDisposable {
         newCollNode->AtkResNode.AtkEventManager.Event = null;
         component->Component->UldManager.UpdateDrawNodeList();
         var tooltipArgs = new AtkTooltipManager.AtkTooltipArgs { Text = (byte*)tooltips[tooltip], Flags = 0xFFFFFFFF };
-        AtkStage.GetSingleton()->TooltipManager.AddTooltip(AtkTooltipManager.AtkTooltipType.Text, parent->ID, (AtkResNode*)newCollNode, &tooltipArgs);
+        AtkStage.Instance()->TooltipManager.AddTooltip(AtkTooltipManager.AtkTooltipType.Text, parent->Id, (AtkResNode*)newCollNode, &tooltipArgs);
     }
 
     private AtkTextNode* AddStatRow(AtkComponentNode* parentNode, string label, bool hideOriginal = false, bool copyColor = false, bool expandCollisionNode = true) {
@@ -273,12 +270,12 @@ public sealed unsafe class CharacterStatusAugments : IDisposable {
             labelNode->AtkResNode.ToggleVisibility(false);
             numberNode->TextColor.A = 0; // toggle visibility doesn't work since it's constantly updated by the game
         }
-        
+
         parentNode->Component->UldManager.UpdateDrawNodeList();
 
         return newNumberNode;
     }
-    
+
     private void SetTooltip(AtkComponentNode* parentNode, Tooltips.Entry entry) {
         if (!plugin.Configuration.ShowTooltips)
             return;
@@ -288,15 +285,15 @@ public sealed unsafe class CharacterStatusAugments : IDisposable {
         if (collisionNode == null)
             return;
 
-        var ttMgr = AtkStage.GetSingleton()->TooltipManager;
-        var ttMsg = Util.Find(ttMgr.TooltipMap.Head->Parent, collisionNode).Value;
+        var ttMgr = AtkStage.Instance()->TooltipManager;
+        var ttMsg = ttMgr.TooltipMap[collisionNode].Value;
         ttMsg->AtkTooltipArgs.Text = (byte*)tooltips[entry];
     }
 
     private void SetTooltip(AtkTextNode* node, Tooltips.Entry entry) {
         SetTooltip((AtkComponentNode*)node->AtkResNode.ParentNode, entry);
     }
-    
+
     internal void RequestedUpdate(IntPtr addon) {
         if (addon != (IntPtr)characterStatusPtr) {
             ClearPointers();
@@ -486,11 +483,11 @@ public sealed unsafe class CharacterStatusAugments : IDisposable {
     }
 
     internal void Update() {
-        var charStatus = AtkStage.GetSingleton()->RaptureAtkUnitManager->GetAddonByName("CharacterStatus");
+        var charStatus = AtkStage.Instance()->RaptureAtkUnitManager->GetAddonByName("CharacterStatus");
         if (charStatus != null && charStatus->IsVisible) {
             RequestedUpdate((IntPtr)charStatus);
             // Refresh the currently active tooltip
-            var tooltipManager = &AtkStage.GetSingleton()->TooltipManager;
+            var tooltipManager = &AtkStage.Instance()->TooltipManager;
             var currentTooltipNode = ((AtkResNode**)tooltipManager)[4];
             if (currentTooltipNode == null)
                 return;

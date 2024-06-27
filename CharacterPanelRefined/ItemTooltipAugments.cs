@@ -10,13 +10,9 @@ using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using FFXIVClientStructs.FFXIV.Component.GUI;
 using Lumina.Excel.GeneratedSheets;
 
-namespace CharacterPanelRefined; 
+namespace CharacterPanelRefined;
 
-public unsafe class ItemTooltipAugments {
-    private readonly CharacterPanelRefinedPlugin plugin;
-    
-    public ItemTooltipAugments(CharacterPanelRefinedPlugin plugin) => this.plugin = plugin;
-
+public unsafe class ItemTooltipAugments(CharacterPanelRefinedPlugin plugin) {
     public void RequestedUpdate(AddonEvent type, AddonArgs args) {
         if (plugin.CtrlHeld) return;
         if (!plugin.Configuration.ShowSyncedStatsOnTooltip) return;
@@ -26,16 +22,16 @@ public unsafe class ItemTooltipAugments {
         if ((numberArrayData->IntArray[2] & 1) == 0) return;
         if ((numberArrayData->IntArray[4] & (1 << 30)) != 0) return; // already processed
         if (IlvlSync.GetCurrentIlvlSync() is not ({ } ilvlSync, var ilvlSyncType)) return;
-        
+
         var itemId = Service.GameGui.HoveredItem;
         if (itemId is >=500000 and <1000000 or >=2000000)
             return; // collectibles & key items
-        
+
         var item = Service.DataManager.GetExcelSheet<Item>()!.GetRow((uint)(itemId % 500000));
-        
+
         if (item == null || item.EquipSlotCategory.Row == 0)
             return;
-        
+
         if (item.LevelItem.Row <= ilvlSync)
             return;
 
@@ -126,7 +122,7 @@ public unsafe class ItemTooltipAugments {
                 stringArrayData->SetValue(58 + i, encoded, false, true, true);
             }
         }
-        
+
         numberArrayData->IntArray[4] |= 1 << 30;
     }
 

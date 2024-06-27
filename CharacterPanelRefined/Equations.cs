@@ -81,12 +81,12 @@ public class Equations {
     public static void CalcSpeed(int speed, ref StatInfo statInfo, ref StatInfo gcdMain, ref StatInfo gcdAlt, in LevelModifier lvlModifier, in AlternateGcd? altGcd, in GcdModifier? mod, out int baseModGcd, out int? altBaseModGcd) {
         var (_, sub, div) = lvlModifier;
         var modifier = mod?.Mod ?? 0;
-        
-        int SpeedCalc(double gcd, double spd) => 
+
+        int SpeedCalc(double gcd, double spd) =>
             (int) Math.Floor(Math.Floor((1000.0 + Math.Ceiling(130.0 * (sub - spd) / div)) * gcd / 100d) * (100d - modifier) / 1000d);
 
         int TierCalc(double curVal, int gcd) => -(int)Math.Floor(Math.Floor(Math.Ceiling(curVal * 100d * 1000d / (100d - modifier) - 0.01d) * 100 / gcd - 1000.01d) * div / 130d - sub);
-        
+
         statInfo.CurrentValue = speed;
         var cVal = statInfo.DisplayValue = Math.Floor(130d * (speed - sub) / div) / 1000d;
         statInfo.PrevTier = (int)Math.Ceiling(cVal * 1000d * div / 130d + sub);
@@ -134,7 +134,7 @@ public class Equations {
             var normalDamage = Math.Floor(withTen * jobId.TraitModifiers(lvl));
             var avgDamage = Math.Floor(Math.Floor(normalDamage * (1 + (critMult - 1) * critRate)) * (1 + dh * 0.25));
             var critDamage = Math.Floor(normalDamage * critMult);
-            
+
             var healPot = Math.Floor(100 + LevelModifiers.HealModifier(lvl) * (ap - lvlModifier.Main) / lvlModifier.Main) / 100;
             var healBaseMultiplier = Math.Floor(100 * healPot * weaponDamage);
             var healWithDet = Math.Floor(healBaseMultiplier * (1 + det));

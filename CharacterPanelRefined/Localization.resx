@@ -56,7 +56,7 @@
         <value>Physical Mitigation</value>
     </data>
     <data name="Panel_Skill_Speed_Increase" xml:space="preserve">
-        <value>Speed Increase</value>
+        <value>Recast Time Reduction</value>
     </data>
     <data name="Panel_Speed_Properties" xml:space="preserve">
         <value>Speed Properties</value>

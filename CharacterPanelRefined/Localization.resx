@@ -43,6 +43,9 @@
     <data name="Panel_RubyRite_GCD" xml:space="preserve">
         <value>Ruby Rite Recast</value>
     </data>
+    <data name="Panel_BlizzardInCyan_GCD" xml:space="preserve">
+        <value>Blizzard i.C. Recast</value>
+    </data>
     <data name="Panel_GCD" xml:space="preserve">
         <value>Recast</value>
     </data>
@@ -87,7 +90,7 @@ Direct Hit Rate increases by 0.1% every {PointsPerTier} points.</value>
         <value>A {GCD}s GCD is sped up by 0.01s on average every {PointsPerTier} points.</value>
     </data>
     <data name="Tooltips_Skill_Spell_Speed_With_Mod" xml:space="preserve">
-        <value>{@Highlight}These values assume {@Red}{ModName}{@Clear} is active. 
+        <value>{@Highlight}These values assume {@Red}{ModName}{@Clear} is active.
 Hold Ctrl to view these values without {@Red}{ModName}{@Clear}.{@Clear}</value>
     </data>
     <data name="Tooltips_Skill_Spell_Speed_Without_Mod" xml:space="preserve">
@@ -153,7 +156,7 @@ SMNs physick is the only exception since it scales with MND instead of INT.</val
     </data>
     <data name="Tooltips_Item_Level_Sync" xml:space="preserve">
         <value>{@Title}Item Level Sync{@Clear} applies whenever you enter a duty that {@Red}lowers your character's level{@Clear} or one that enforces a maximum ilvl, either when the duty is listed as {@Red} Item Level Sync{@Clear} or when queueing with {@Red}Minimum IL{@Clear} enabled.
-   
+
 Any item with an ilvl higher than the limit will lose all its melds and its stats will be truncated to the highest stat of an equivalent item at the maximum ilvl.</value>
     </data>
     <data name="Config_Character_Panel_Refined_Config" xml:space="preserve">
@@ -169,7 +172,7 @@ Any item with an ilvl higher than the limit will lose all its melds and its stat
         <value>Override the default tooltips for all stats.</value>
     </data>
     <data name="Config_Window_Use_Game_Language_Tooltip" xml:space="preserve">
-        <value>Use the internal game language for this plugin if available. 
+        <value>Use the internal game language for this plugin if available.
  Currently Available: English, German, French</value>
     </data>
     <data name="Config_Show_average_damage" xml:space="preserve">
@@ -206,7 +209,7 @@ Any item with an ilvl higher than the limit will lose all its melds and its stat
         <value>Show synced stats in item tooltips</value>
     </data>
     <data name="Tooltip_Show_synced_stats" xml:space="preserve">
-        <value>When item level synced, show synced stats in item tooltips. 
+        <value>When item level synced, show synced stats in item tooltips.
 Can be disabled by pressing Ctrl.
 (Due to the game's rounding method these may be off by 1 point)</value>
     </data>
@@ -240,10 +243,16 @@ Can be disabled by pressing Ctrl.
     <data name="Buff_ArmysPaeon_Abbrev" xml:space="preserve">
         <value>AP</value>
     </data>
-    <data name="Buff_Astrodyne" xml:space="preserve">
-        <value>Astrodyne</value>
+    <data name="Buff_HuntersInstinct" xml:space="preserve">
+        <value>Hunter's Instinct</value>
     </data>
-    <data name="Buff_Astrodyne_Abbrev" xml:space="preserve">
-        <value>AD</value>
+    <data name="Buff_HuntersInstinct_Abbrev" xml:space="preserve">
+        <value>HI</value>
+    </data>
+    <data name="Buff_Hyperphantasia" xml:space="preserve">
+        <value>Hyperphantasia</value>
+    </data>
+    <data name="Buff_Hyperphantasia_Abbrev" xml:space="preserve">
+        <value>Hp</value>
     </data>
 </root>

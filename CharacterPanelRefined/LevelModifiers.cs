@@ -5,7 +5,7 @@ namespace CharacterPanelRefined;
 public record LevelModifier(int Main, int Sub, int Div);
 
 public static class LevelModifiers {
-    
+
     public static readonly Dictionary<int, LevelModifier> LevelTable = new() {
         [1] = new(Main: 20, Sub: 56, Div: 56),
         [2] = new(Main: 21, Sub: 57, Div: 57),
@@ -96,7 +96,17 @@ public static class LevelModifiers {
         [87] = new(Main: 375, Sub: 394, Div: 1720),
         [88] = new(Main: 380, Sub: 396, Div: 1780),
         [89] = new(Main: 385, Sub: 398, Div: 1840),
-        [90] = new(Main: 390, Sub: 400, Div: 1900)
+        [90] = new(Main: 390, Sub: 400, Div: 1900),
+        [91] = new(Main: 395, Sub: 402, Div: 1960),
+        [92] = new(Main: 400, Sub: 404, Div: 2020),
+        [93] = new(Main: 405, Sub: 406, Div: 2080),
+        [94] = new(Main: 410, Sub: 408, Div: 2140),
+        [95] = new(Main: 415, Sub: 410, Div: 2200),
+        [96] = new(Main: 420, Sub: 412, Div: 2260),
+        [97] = new(Main: 425, Sub: 414, Div: 2320),
+        [98] = new(Main: 430, Sub: 416, Div: 2380),
+        [99] = new(Main: 435, Sub: 418, Div: 2440),
+        [100] = new(Main: 440, Sub: 420, Div: 2500)
     };
 
     // this seems to be the modifiers after some testing..

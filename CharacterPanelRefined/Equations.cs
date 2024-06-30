@@ -116,13 +116,12 @@ public class Equations {
         try {
             var lvl = uiState->PlayerState.CurrentLevel;
             var ap = uiState->PlayerState.Attributes[(int)(jobId.IsCaster() ? Attributes.AttackMagicPotency : Attributes.AttackPower)];
-            var inventoryItemData = (ushort*)((IntPtr)InventoryManager.Instance() + 9160);
+            var inventoryItemData = (ushort*)((IntPtr)InventoryManager.Instance() + 9272);
             var weaponBaseDamage = /* phys/magic damage */ inventoryItemData[jobId.IsCaster() ? 17 : 16] + /* hq bonus */ inventoryItemData[29];
             if (ilvlSync != null && (/* equip lvl */ inventoryItemData[35] > lvl || ilvlSyncType == IlvlSyncType.Strict)) {
                 if (cachedIlvl?.Ilvl != ilvlSync)
                     cachedIlvl = (ilvlSync.Value, Service.DataManager.GetExcelSheet<ItemLevel>()!.GetRow(ilvlSync.Value)!.PhysicalDamage);
                 weaponBaseDamage = Math.Min(cachedIlvl.Value.Dmg, weaponBaseDamage);
-                Service.PluginLog.Debug($"Using weapon damage {weaponBaseDamage}");
             }
 
             var weaponDamage = Math.Floor(weaponBaseDamage + lvlModifier.Main * jobId.AttackModifier() / 1000.0) / 100.0;

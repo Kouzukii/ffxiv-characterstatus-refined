@@ -78,24 +78,6 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Astrodyne.
-        /// </summary>
-        internal static string Buff_Astrodyne {
-            get {
-                return ResourceManager.GetString("Buff_Astrodyne", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AD.
-        /// </summary>
-        internal static string Buff_Astrodyne_Abbrev {
-            get {
-                return ResourceManager.GetString("Buff_Astrodyne_Abbrev", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Greased Lightning.
         /// </summary>
         internal static string Buff_GreasedLightning {
@@ -114,11 +96,47 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hunter&apos;s Instinct.
+        /// </summary>
+        internal static string Buff_HuntersInstinct {
+            get {
+                return ResourceManager.GetString("Buff_HuntersInstinct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HI.
+        /// </summary>
+        internal static string Buff_HuntersInstinct_Abbrev {
+            get {
+                return ResourceManager.GetString("Buff_HuntersInstinct_Abbrev", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Huton.
         /// </summary>
         internal static string Buff_Huton {
             get {
                 return ResourceManager.GetString("Buff_Huton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hyperphantasia.
+        /// </summary>
+        internal static string Buff_Hyperphantasia {
+            get {
+                return ResourceManager.GetString("Buff_Hyperphantasia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hp.
+        /// </summary>
+        internal static string Buff_Hyperphantasia_Abbrev {
+            get {
+                return ResourceManager.GetString("Buff_Hyperphantasia_Abbrev", resourceCulture);
             }
         }
         
@@ -276,12 +294,21 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use the internal game language for this plugin if available. 
+        ///   Looks up a localized string similar to Use the internal game language for this plugin if available.
         /// Currently Available: English, German, French.
         /// </summary>
         internal static string Config_Window_Use_Game_Language_Tooltip {
             get {
                 return ResourceManager.GetString("Config_Window_Use_Game_Language_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blizzard i.C. Recast.
+        /// </summary>
+        internal static string Panel_BlizzardInCyan_GCD {
+            get {
+                return ResourceManager.GetString("Panel_BlizzardInCyan_GCD", resourceCulture);
             }
         }
         
@@ -457,7 +484,7 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to When item level synced, show synced stats in item tooltips. 
+        ///   Looks up a localized string similar to When item level synced, show synced stats in item tooltips.
         ///Can be disabled by pressing Ctrl.
         ///(Due to the game&apos;s rounding method these may be off by 1 point).
         /// </summary>
@@ -540,7 +567,7 @@ namespace CharacterPanelRefined {
         
         /// <summary>
         ///   Looks up a localized string similar to {@Title}Item Level Sync{@Clear} applies whenever you enter a duty that {@Red}lowers your character&apos;s level{@Clear} or one that enforces a maximum ilvl, either when the duty is listed as {@Red} Item Level Sync{@Clear} or when queueing with {@Red}Minimum IL{@Clear} enabled.
-        ///   
+        ///
         ///Any item with an ilvl higher than the limit will lose all its melds and its stats will be truncated to the highest stat of an equivalent item at the maximum ilvl..
         /// </summary>
         internal static string Tooltips_Item_Level_Sync {
@@ -619,7 +646,7 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {@Highlight}These values assume {@Red}{ModName}{@Clear} is active. 
+        ///   Looks up a localized string similar to {@Highlight}These values assume {@Red}{ModName}{@Clear} is active.
         ///Hold Ctrl to view these values without {@Red}{ModName}{@Clear}.{@Clear}.
         /// </summary>
         internal static string Tooltips_Skill_Spell_Speed_With_Mod {

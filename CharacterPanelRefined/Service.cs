@@ -3,13 +3,13 @@ using Dalamud.Plugin;
 using Dalamud.Plugin.Services;
 
 #pragma warning disable 8618
-namespace CharacterPanelRefined; 
+namespace CharacterPanelRefined;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Local
 internal class Service {
-    internal static void Initialize(DalamudPluginInterface pluginInterface) => pluginInterface.Create<Service>();
-    
-    [PluginService] 
+    internal static void Initialize(IDalamudPluginInterface pluginInterface) => pluginInterface.Create<Service>();
+
+    [PluginService]
     public static IClientState ClientState { get; private set; }
 
     [PluginService]

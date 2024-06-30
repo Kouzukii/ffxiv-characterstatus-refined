@@ -1,5 +1,5 @@
 ﻿using System.Globalization;
-using Dalamud;
+using Dalamud.Game;
 using Dalamud.Game.Addon.Lifecycle;
 using Dalamud.Game.ClientState.Keys;
 using Dalamud.Plugin;
@@ -16,7 +16,7 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
     private readonly ItemTooltipAugments itemTooltipAugments;
     private readonly ConfigWindow configWindow;
 
-    public CharacterPanelRefinedPlugin(DalamudPluginInterface pluginInterface) {
+    public CharacterPanelRefinedPlugin(IDalamudPluginInterface pluginInterface) {
         Service.Initialize(pluginInterface);
 
         Configuration = Configuration.Get(pluginInterface);
@@ -24,9 +24,9 @@ public class CharacterPanelRefinedPlugin : IDalamudPlugin {
         GameFunctions = new GameFunctions();
         characterStatusAugments = new CharacterStatusAugments(this);
         itemTooltipAugments = new ItemTooltipAugments(this);
-        
+
         UpdateLanguage();
-        
+
         Service.Framework.Update += FrameworkOnUpdate;
 
         Service.AddonLifecycle.RegisterListener(AddonEvent.PostSetup, "CharacterStatus", characterStatusAugments.OnSetup);

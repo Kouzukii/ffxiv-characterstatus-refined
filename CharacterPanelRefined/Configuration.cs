@@ -6,7 +6,7 @@ namespace CharacterPanelRefined;
 
 [Serializable]
 public class Configuration : IPluginConfiguration {
-    [NonSerialized] private DalamudPluginInterface pluginInterface = null!;
+    [NonSerialized] private IDalamudPluginInterface pluginInterface = null!;
 
     public bool ShowTooltips { get; set; } = true;
     public bool UseGameLanguage { get; set; } = true;
@@ -19,7 +19,7 @@ public class Configuration : IPluginConfiguration {
     public bool ShowDoHDoLStatsWithoutFood { get; set; } = true;
     public int Version { get; set; } = 0;
 
-    public static Configuration Get(DalamudPluginInterface pluginInterface) {
+    public static Configuration Get(IDalamudPluginInterface pluginInterface) {
         var config = pluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
         config.pluginInterface = pluginInterface;
         return config;

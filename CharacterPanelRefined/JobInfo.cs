@@ -1,4 +1,4 @@
-namespace CharacterPanelRefined; 
+namespace CharacterPanelRefined;
 
 public static class JobInfo {
     public static bool IsCrafter(this JobId id) =>
@@ -13,7 +13,7 @@ public static class JobInfo {
             JobId.CUL => true,
             _ => false
         };
-        
+
     public static bool IsGatherer(this JobId id) =>
         id switch {
             JobId.MIN => true,
@@ -35,6 +35,7 @@ public static class JobInfo {
             JobId.RDM => true,
             JobId.BLU => true,
             JobId.SGE => true,
+            JobId.PCT => true,
             _ => false
         };
 
@@ -46,6 +47,7 @@ public static class JobInfo {
             JobId.NIN => true,
             JobId.MCH => true,
             JobId.DNC => true,
+            JobId.VPR => true,
             _ => false
         };
 
@@ -102,6 +104,8 @@ public static class JobInfo {
             JobId.DNC => 115,
             JobId.RPR => 115,
             JobId.SGE => 115,
+            JobId.VPR => 110,
+            JobId.PCT => 115,
             _ => 0
         };
 
@@ -147,6 +151,8 @@ public static class JobInfo {
             JobId.DNC => 105,
             JobId.RPR => 115,
             JobId.SGE => 105,
+            JobId.VPR => 111,
+            JobId.PCT => 105,
             _ => 0
         };
 
@@ -190,8 +196,9 @@ public static class JobInfo {
             (JobId.MNK or JobId.PGL, >=  1) => GcdModifier.GreasedLightning,
             (JobId.WHM, >= 30) => GcdModifier.PresenceOfMind,
             (JobId.BRD, >= 40) => GcdModifier.ArmysPaeon,
-            (JobId.AST, >= 50) => GcdModifier.Astrodyne,
             (JobId.BLM, >= 52) => GcdModifier.LeyLines,
+            (JobId.VPR, >= 65) => GcdModifier.HuntersInstinct,
+            (JobId.PCT, >= 82) => GcdModifier.Hyperphantasia,
             _ => null
         };
 
@@ -199,6 +206,7 @@ public static class JobInfo {
         (id, level) switch {
             (JobId.BLM, >= 60) => AlternateGcd.FireIV,
             (JobId.SMN or JobId.ARC, >= 6) => AlternateGcd.RubyRite,
+            (JobId.PCT, >= 60) => AlternateGcd.BlizzardInCyan,
             _ => null
         };
 }
@@ -206,6 +214,7 @@ public static class JobInfo {
 public record AlternateGcd(int Gcd, string Name) {
     public static readonly AlternateGcd FireIV = new(280, Localization.Panel_Fire_IV_GCD);
     public static readonly AlternateGcd RubyRite = new(300, Localization.Panel_RubyRite_GCD);
+    public static readonly AlternateGcd BlizzardInCyan = new(330, Localization.Panel_BlizzardInCyan_GCD);
 }
 
 public record GcdModifier(int Mod, string Name, string Abbrev, bool Passive) {
@@ -217,7 +226,8 @@ public record GcdModifier(int Mod, string Name, string Abbrev, bool Passive) {
     public static readonly GcdModifier EnhancedGreasedLightning1 = new(10, Localization.Buff_GreasedLightning, Localization.Buff_GreasedLightning_Abbrev, true);
     public static readonly GcdModifier GreasedLightning = new(5, Localization.Buff_GreasedLightning, Localization.Buff_GreasedLightning_Abbrev, true);
     public static readonly GcdModifier ArmysPaeon = new (16, Localization.Buff_ArmysPaeon, Localization.Buff_ArmysPaeon_Abbrev, false);
-    public static readonly GcdModifier Astrodyne = new (10, Localization.Buff_Astrodyne, Localization.Buff_Astrodyne_Abbrev, false);
     public static readonly GcdModifier LeyLines = new (15, Localization.Buff_LeyLines, Localization.Buff_LeyLines_Abbrev, false);
     public static readonly GcdModifier PresenceOfMind = new (20, Localization.Buff_PresenceOfMind, Localization.Buff_PresenceOfMind_Abbrev, false);
+    public static readonly GcdModifier HuntersInstinct = new(15, Localization.Buff_HuntersInstinct, Localization.Buff_HuntersInstinct_Abbrev, true);
+    public static readonly GcdModifier Hyperphantasia = new(25, Localization.Buff_Hyperphantasia, Localization.Buff_Hyperphantasia_Abbrev, false);
 }

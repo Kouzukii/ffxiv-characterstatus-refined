@@ -19,15 +19,15 @@ public static class IlvlSync {
             if (icDirector->InstanceContentType != InstanceContentType.BeginnerTraining && (icDirector->ContentDirector.Director.ContentFlags & 1) == 0) {
                 var icd = (IntPtr)icDirector;
                 // min ilvl
-                if (*(byte*)(icd + 7334) >= 0x80 && *(ushort*)(icd + 1316) > 0) {
-                    Service.PluginLog.Debug($"Using min ilvl {*(ushort*)(icd + 1316)}");
-                    return (*(ushort*)(icd + 1316), IlvlSyncType.Strict);
+                if (*(byte*)(icd + 7566) >= 0x80 && *(ushort*)(icd + 1320) > 0) {
+                    Service.PluginLog.Debug($"Using min ilvl {*(ushort*)(icd + 1320)}");
+                    return (*(ushort*)(icd + 1320), IlvlSyncType.Strict);
                 }
 
                 // duty is synced
-                if (((*(byte*)(icd + 7334) & 0x40) == 0 || (UIState.Instance()->PlayerState.IsLevelSynced & 1) != 0) && *(ushort*)(icd + 1318) > 0) {
-                    Service.PluginLog.Debug($"Using duty ilvl sync {*(ushort*)(icd + 1318)}");
-                    return (*(ushort*)(icd + 1318), IlvlSyncType.Strict);
+                if (((*(byte*)(icd + 7566) & 0x40) == 0 || (UIState.Instance()->PlayerState.IsLevelSynced & 1) != 0) && *(ushort*)(icd + 1322) > 0) {
+                    Service.PluginLog.Debug($"Using duty ilvl sync {*(ushort*)(icd + 1322)}");
+                    return (*(ushort*)(icd + 1322), IlvlSyncType.Strict);
                 }
             }
         }
@@ -36,15 +36,18 @@ public static class IlvlSync {
         if (pcDirector != null) {
             var pcd = (IntPtr)pcDirector;
             // eureka / bozja is synced
-            if (*(ushort*)(pcd + 1318) > 0) {
+            if (*(ushort*)(pcd + 1322) > 0) {
                 Service.PluginLog.Debug($"Using public content ilvl sync {*(ushort*)(pcd + 1318)}");
-                return (*(ushort*)(pcd + 1318), IlvlSyncType.Strict);
+                return (*(ushort*)(pcd + 1322), IlvlSyncType.Strict);
             }
         }
 
         if (UIState.Instance()->PlayerState.IsLevelSynced == 1) {
             var syncedLevel = UIState.Instance()->PlayerState.CurrentLevel;
             var ilvl = (uint)(syncedLevel switch {
+                100 => 790,
+                >=93 => 660 + (syncedLevel - 93) * 3,
+                >=91 => 650 + (syncedLevel - 91) * 5,
                 90 => 660,
                 >=83 => 530 + (syncedLevel - 83) * 3,
                 >=81 => 520 + (syncedLevel - 81) * 5,

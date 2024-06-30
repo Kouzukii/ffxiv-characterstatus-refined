@@ -13,14 +13,16 @@ using Lumina.Excel.GeneratedSheets;
 namespace CharacterPanelRefined;
 
 public unsafe class ItemTooltipAugments(CharacterPanelRefinedPlugin plugin) {
+    private const int AlreadyProcessed = 0x40000000;
+
     public void RequestedUpdate(AddonEvent type, AddonArgs args) {
         if (plugin.CtrlHeld) return;
         if (!plugin.Configuration.ShowSyncedStatsOnTooltip) return;
         if (args is not AddonRequestedUpdateArgs requestedUpdateArgs) return;
         var numberArrayData = ((NumberArrayData**)requestedUpdateArgs.NumberArrayData)[29];
         var stringArrayData = ((StringArrayData**)requestedUpdateArgs.StringArrayData)[26];
-        if ((numberArrayData->IntArray[2] & 1) == 0) return;
-        if ((numberArrayData->IntArray[4] & (1 << 30)) != 0) return; // already processed
+        if ((numberArrayData->IntArray[5] & 16) == 0) return;
+        if ((numberArrayData->IntArray[5] & AlreadyProcessed) != 0) return; // already processed
         if (IlvlSync.GetCurrentIlvlSync() is not ({ } ilvlSync, var ilvlSyncType)) return;
 
         var itemId = Service.GameGui.HoveredItem;
@@ -42,7 +44,7 @@ public unsafe class ItemTooltipAugments(CharacterPanelRefinedPlugin plugin) {
         var sync = Service.DataManager.GetExcelSheet<ItemLevel>()!.GetRow(ilvlSync)!;
         var cult = CultureInfo.InvariantCulture;
         // weapon
-        if ((numberArrayData->IntArray[4] & 0x2000) != 0) {
+        if ((numberArrayData->IntArray[5] & 0x2000) != 0) {
             if (ParseString(stringArrayData->StringArray[9], out _)) {
                 var encoded = EncodeHighlighted(sync.PhysicalDamage.ToString(cult));
                 stringArrayData->SetValue(9, encoded, false, true, true);
@@ -123,7 +125,7 @@ public unsafe class ItemTooltipAugments(CharacterPanelRefinedPlugin plugin) {
             }
         }
 
-        numberArrayData->IntArray[4] |= 1 << 30;
+        numberArrayData->IntArray[5] |= AlreadyProcessed;
     }
 
     private bool ParseString(byte* ptr, [NotNullWhen(true)] out TextPayload? text) {

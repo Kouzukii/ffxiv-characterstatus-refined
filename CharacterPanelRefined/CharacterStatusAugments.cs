@@ -236,7 +236,7 @@ public sealed unsafe class CharacterStatusAugments(CharacterPanelRefinedPlugin p
         newCollNode->AtkResNode.AtkEventManager.Event = null;
         component->Component->UldManager.UpdateDrawNodeList();
         var tooltipArgs = new AtkTooltipManager.AtkTooltipArgs { Text = (byte*)tooltips[tooltip], Flags = 0xFFFFFFFF };
-        AtkStage.Instance()->TooltipManager.AddTooltip(AtkTooltipManager.AtkTooltipType.Text, parent->Id, (AtkResNode*)newCollNode, &tooltipArgs);
+        AtkStage.Instance()->TooltipManager.AttachTooltip(AtkTooltipManager.AtkTooltipType.Text, parent->Id, (AtkResNode*)newCollNode, &tooltipArgs);
     }
 
     private AtkTextNode* AddStatRow(AtkComponentNode* parentNode, string label, bool hideOriginal = false, bool copyColor = false, bool expandCollisionNode = true) {

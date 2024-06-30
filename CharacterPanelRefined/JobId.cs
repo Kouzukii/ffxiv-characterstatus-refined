@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace CharacterPanelRefined; 
+namespace CharacterPanelRefined;
 
 [SuppressMessage("ReSharper", "InconsistentNaming")]
 public enum JobId : byte {
@@ -44,5 +44,7 @@ public enum JobId : byte {
     GNB = 37,
     DNC = 38,
     RPR = 39,
-    SGE = 40
+    SGE = 40,
+    VPR = 41,
+    PCT = 42,
 }

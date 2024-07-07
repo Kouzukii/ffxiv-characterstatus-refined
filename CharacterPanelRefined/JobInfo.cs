@@ -197,7 +197,7 @@ public static class JobInfo {
             (JobId.WHM, >= 30) => GcdModifier.PresenceOfMind,
             (JobId.BRD, >= 40) => GcdModifier.ArmysPaeon,
             (JobId.BLM, >= 52) => GcdModifier.LeyLines,
-            (JobId.VPR, >= 65) => GcdModifier.HuntersInstinct,
+            (JobId.VPR, >= 65) => GcdModifier.Swiftscaled,
             (JobId.PCT, >= 82) => GcdModifier.Hyperphantasia,
             _ => null
         };
@@ -207,6 +207,7 @@ public static class JobInfo {
             (JobId.BLM, >= 60) => AlternateGcd.FireIV,
             (JobId.SMN or JobId.ARC, >= 6) => AlternateGcd.RubyRite,
             (JobId.PCT, >= 60) => AlternateGcd.BlizzardInCyan,
+            // Viper has 2.0s 2.2s 2.5s 3.0s and 3.5s GCDs, we can't fit that...
             _ => null
         };
 }
@@ -228,6 +229,6 @@ public record GcdModifier(int Mod, string Name, string Abbrev, bool Passive) {
     public static readonly GcdModifier ArmysPaeon = new (16, Localization.Buff_ArmysPaeon, Localization.Buff_ArmysPaeon_Abbrev, false);
     public static readonly GcdModifier LeyLines = new (15, Localization.Buff_LeyLines, Localization.Buff_LeyLines_Abbrev, false);
     public static readonly GcdModifier PresenceOfMind = new (20, Localization.Buff_PresenceOfMind, Localization.Buff_PresenceOfMind_Abbrev, false);
-    public static readonly GcdModifier HuntersInstinct = new(15, Localization.Buff_HuntersInstinct, Localization.Buff_HuntersInstinct_Abbrev, true);
+    public static readonly GcdModifier Swiftscaled = new(15, Localization.Buff_Swiftscaled, Localization.Buff_Swiftscaled_Abbrev, true);
     public static readonly GcdModifier Hyperphantasia = new(25, Localization.Buff_Hyperphantasia, Localization.Buff_Hyperphantasia_Abbrev, false);
 }

@@ -5,7 +5,6 @@ namespace CharacterPanelRefined;
 public record LevelModifier(int Main, int Sub, int Div);
 
 public static class LevelModifiers {
-
     public static readonly Dictionary<int, LevelModifier> LevelTable = new() {
         [1] = new(Main: 20, Sub: 56, Div: 56),
         [2] = new(Main: 21, Sub: 57, Div: 57),
@@ -97,16 +96,16 @@ public static class LevelModifiers {
         [88] = new(Main: 380, Sub: 396, Div: 1780),
         [89] = new(Main: 385, Sub: 398, Div: 1840),
         [90] = new(Main: 390, Sub: 400, Div: 1900),
-        [91] = new(Main: 395, Sub: 402, Div: 1960),
-        [92] = new(Main: 400, Sub: 404, Div: 2020),
-        [93] = new(Main: 405, Sub: 406, Div: 2080),
-        [94] = new(Main: 410, Sub: 408, Div: 2140),
-        [95] = new(Main: 415, Sub: 410, Div: 2200),
-        [96] = new(Main: 420, Sub: 412, Div: 2260),
-        [97] = new(Main: 425, Sub: 414, Div: 2320),
-        [98] = new(Main: 430, Sub: 416, Div: 2380),
-        [99] = new(Main: 435, Sub: 418, Div: 2440),
-        [100] = new(Main: 440, Sub: 420, Div: 2500)
+        [91] = new(Main: 395, Sub: 402, Div: 1988),
+        [92] = new(Main: 400, Sub: 404, Div: 2076),
+        [93] = new(Main: 405, Sub: 406, Div: 2164),
+        [94] = new(Main: 410, Sub: 408, Div: 2252),
+        [95] = new(Main: 415, Sub: 410, Div: 2340),
+        [96] = new(Main: 420, Sub: 412, Div: 2428),
+        [97] = new(Main: 425, Sub: 414, Div: 2516),
+        [98] = new(Main: 430, Sub: 416, Div: 2604),
+        [99] = new(Main: 435, Sub: 418, Div: 2692),
+        [100] = new(Main: 440, Sub: 420, Div: 2780),
     };
 
     // this seems to be the modifiers after some testing..
@@ -130,12 +129,15 @@ public static class LevelModifiers {
         if (level < 60) {
             return level * 1.5 + 10;
         }
+
         if (level < 70) {
             return (level - 60) * 2 + 100;
         }
+
         if (level < 80) {
             return 120;
         }
+
         return (level - 80) * 2.5 + 120.8;
     }
 

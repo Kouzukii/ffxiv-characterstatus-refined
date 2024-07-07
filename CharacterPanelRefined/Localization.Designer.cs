@@ -96,24 +96,6 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hunter&apos;s Instinct.
-        /// </summary>
-        internal static string Buff_HuntersInstinct {
-            get {
-                return ResourceManager.GetString("Buff_HuntersInstinct", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to HI.
-        /// </summary>
-        internal static string Buff_HuntersInstinct_Abbrev {
-            get {
-                return ResourceManager.GetString("Buff_HuntersInstinct_Abbrev", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Huton.
         /// </summary>
         internal static string Buff_Huton {
@@ -182,6 +164,24 @@ namespace CharacterPanelRefined {
         internal static string Buff_Shifu {
             get {
                 return ResourceManager.GetString("Buff_Shifu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swiftscaled.
+        /// </summary>
+        internal static string Buff_Swiftscaled {
+            get {
+                return ResourceManager.GetString("Buff_Swiftscaled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to S.
+        /// </summary>
+        internal static string Buff_Swiftscaled_Abbrev {
+            get {
+                return ResourceManager.GetString("Buff_Swiftscaled_Abbrev", resourceCulture);
             }
         }
         

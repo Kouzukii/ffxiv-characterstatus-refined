@@ -243,11 +243,11 @@ Can be disabled by pressing Ctrl.
     <data name="Buff_ArmysPaeon_Abbrev" xml:space="preserve">
         <value>AP</value>
     </data>
-    <data name="Buff_HuntersInstinct" xml:space="preserve">
-        <value>Hunter's Instinct</value>
+    <data name="Buff_Swiftscaled" xml:space="preserve">
+        <value>Swiftscaled</value>
     </data>
-    <data name="Buff_HuntersInstinct_Abbrev" xml:space="preserve">
-        <value>HI</value>
+    <data name="Buff_Swiftscaled_Abbrev" xml:space="preserve">
+        <value>S</value>
     </data>
     <data name="Buff_Hyperphantasia" xml:space="preserve">
         <value>Hyperphantasia</value>

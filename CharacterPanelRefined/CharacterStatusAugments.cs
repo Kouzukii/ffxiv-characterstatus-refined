@@ -29,6 +29,7 @@ public sealed unsafe class CharacterStatusAugments(CharacterPanelRefinedPlugin p
     private AtkTextNode* spsGcdPtr;
     private AtkTextNode* spsAltGcdPtr;
     private AtkTextNode* tenMitPtr;
+    private AtkTextNode* tenDmgPtr;
     private AtkTextNode* pieManaPtr;
     private AtkTextNode* expectedDamagePtr;
     private AtkTextNode* expectedHealPtr;
@@ -71,13 +72,12 @@ public sealed unsafe class CharacterStatusAugments(CharacterPanelRefinedPlugin p
         vitalityNode->Y = 20;
         SetTooltip((AtkComponentNode*)vitalityNode, Tooltips.Entry.Vitality);
 
-        var attributesHeight = 130;
+        var attributesHeight = 150;
 
         var mentProperties = atkUnitBase->UldManager.SearchNodeById(58);
         var magAtkPotency = mentProperties->ChildNode->PrevSiblingNode;
         var healMagPotency = magAtkPotency->PrevSiblingNode;
         if (plugin.Configuration.ShowAvgHealing) {
-            attributesHeight += 20;
             healMagPotency->Y = -attributesHeight - 10;
             expectedHealPtr = AddStatRow((AtkComponentNode*)healMagPotency, Localization.Panel_Heal_per_100_Potency, true);
             SetTooltip(expectedHealPtr, Tooltips.Entry.ExpectedHeal);
@@ -85,7 +85,8 @@ public sealed unsafe class CharacterStatusAugments(CharacterPanelRefinedPlugin p
             healMagPotency->ToggleVisibility(false);
         }
         if (plugin.Configuration.ShowAvgDamage) {
-            attributesHeight += 20;
+            if (plugin.Configuration.ShowAvgHealing)
+                attributesHeight += 20;
             magAtkPotency->Y = -attributesHeight - 10;
             magAtkPotency->PrevSiblingNode->ToggleVisibility(false); // header
             expectedDamagePtr = AddStatRow((AtkComponentNode*)magAtkPotency, Localization.Panel_Damage_per_100_Potency, true);
@@ -181,7 +182,8 @@ public sealed unsafe class CharacterStatusAugments(CharacterPanelRefinedPlugin p
         pieManaPtr = AddStatRow((AtkComponentNode*)pietyPtr, Localization.Panel_Mana_per_Tick);
         SetTooltip(pieManaPtr, Tooltips.Entry.Piety);
         tenacityPtr = pietyPtr->PrevSiblingNode;
-        tenMitPtr = AddStatRow((AtkComponentNode*)tenacityPtr, Localization.Panel_Damage_and_Mitigation);
+        tenMitPtr = AddStatRow((AtkComponentNode*)tenacityPtr, Localization.Panel_Damage_Mitigation);
+        tenDmgPtr = AddStatRow((AtkComponentNode*)tenacityPtr, Localization.Panel_Damage_Increase);
         tenacityPtr->PrevSiblingNode->ToggleVisibility(false); // header
         SetTooltip(tenMitPtr, Tooltips.Entry.Tenacity);
 
@@ -367,9 +369,12 @@ public sealed unsafe class CharacterStatusAugments(CharacterPanelRefinedPlugin p
         pieManaPtr->SetText($"{statInfo.DisplayValue:N0}");
         tooltips.Update(Tooltips.Entry.Piety, statInfo);
 
-        var ten = Equations.CalcTenacity(uiState->PlayerState.Attributes[(int)Attributes.Tenacity], ref statInfo, levelModifier);
+        Equations.CalcTenacityMit(uiState->PlayerState.Attributes[(int)Attributes.Tenacity], ref statInfo, levelModifier);
         tenMitPtr->SetText($"{statInfo.DisplayValue:P1}");
-        tooltips.Update(Tooltips.Entry.Tenacity, statInfo);
+        var tenDmg = new StatInfo();
+        var ten = Equations.CalcTenacityDmg(uiState->PlayerState.Attributes[(int)Attributes.Tenacity], ref tenDmg, levelModifier);
+        tenDmgPtr->SetText($"{tenDmg.DisplayValue:P1}");
+        tooltips.UpdateTenacity(Tooltips.Entry.Tenacity, statInfo, tenDmg);
 
         Equations.CalcHp(uiState, jobId, out var hpPerVitality, out var hpModifier);
         tooltips.UpdateVitality(jobId.ToString(), hpPerVitality, hpModifier);
@@ -511,6 +516,7 @@ public sealed unsafe class CharacterStatusAugments(CharacterPanelRefinedPlugin p
         spsGcdPtr = null;
         spsAltGcdPtr = null;
         tenMitPtr = null;
+        tenDmgPtr = null;
         pieManaPtr = null;
         expectedDamagePtr = null;
         expectedHealPtr = null;

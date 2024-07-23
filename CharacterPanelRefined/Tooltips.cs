@@ -104,7 +104,7 @@ public class Tooltips : IDisposable {
         LoadLocString(Entry.Determination, Localization.Tooltips_Determination_Tooltip, "\n", Localization.Tooltips_Wasting, "\n",
             Localization.Tooltips_Next_Tier);
         LoadLocString(Entry.DirectHit, Localization.Tooltips_Direct_Hit_Tooltip, "\n", Localization.Tooltips_Wasting, "\n", Localization.Tooltips_Next_Tier);
-        LoadLocString(Entry.Tenacity, Localization.Tooltips_Tenacity_Tooltip, "\n", Localization.Tooltips_Wasting, "\n", Localization.Tooltips_Next_Tier);
+        LoadLocString(Entry.Tenacity, Localization.Tooltips_Tenacity_Tooltip, "\n", Localization.Tooltips_Wasting, "\n", Localization.Tooltips_Next_Tier, "\n\n", Localization.Tooltips_Tenacity_Damage_Increase, "\n", Localization.Tooltips_Wasting, "\n", Localization.Tooltips_Next_Tier);
         LoadLocString(Entry.Piety, Localization.Tooltips_Piety_Tooltip, "\n", Localization.Tooltips_Wasting, "\n", Localization.Tooltips_Next_Tier);
         LoadLocString(Entry.Defense, Localization.Tooltips_Defense_Tooltip, "\n", Localization.Tooltips_Wasting, "\n", Localization.Tooltips_Next_Tier);
         LoadLocString(Entry.MagicDefense, Localization.Tooltips_Magic_Defense_Tooltip, "\n", Localization.Tooltips_Wasting, "\n",
@@ -163,11 +163,11 @@ public class Tooltips : IDisposable {
             .Append(Localization.Tooltips_Wasting)
             .Append('\n')
             .Append(Localization.Tooltips_Next_Tier);
-        
+
         LoadLocString(Entry.Speed, sb.ToString());
-        
+
         var tooltip = tooltips[Entry.Speed];
-        
+
         ((TextPayload)tooltip.Payloads[keywordIndices[(Entry.Speed, "GCD")]]).Text = (baseGcd / 100.0).ToString("N2");
         if (mod != null) {
             ((TextPayload)tooltip.Payloads[keywordIndices[(Entry.Speed, "ModName")]]).Text = mod.Name;
@@ -184,6 +184,12 @@ public class Tooltips : IDisposable {
         }
 
         WriteString(Entry.Speed);
+    }
+
+    public void UpdateTenacity(Entry entry, in StatInfo tenMit, in StatInfo tenDmg, string suffix = "") {
+        Update(Entry.Tenacity, tenMit);
+        Update(Entry.Tenacity, tenDmg, "_");
+        WriteString(entry);
     }
 
     public void Update(Entry entry, in StatInfo statInfo, string suffix = "") {

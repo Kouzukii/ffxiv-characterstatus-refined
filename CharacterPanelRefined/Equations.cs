@@ -60,12 +60,20 @@ public class Equations {
         statInfo.PointsPerTier = lvlModifier.Div / 15d;
     }
 
-    public static double CalcTenacity(int ten, ref StatInfo statInfo, in LevelModifier lvlModifier) {
+    public static void CalcTenacityMit(int ten, ref StatInfo statInfo, in LevelModifier lvlModifier) {
         statInfo.CurrentValue = ten;
-        var cVal = statInfo.DisplayValue = Math.Floor(100d * (ten - lvlModifier.Sub) / lvlModifier.Div) / 1000d;
-        statInfo.PrevTier = (int)Math.Ceiling(cVal * 1000d * lvlModifier.Div / 100d + lvlModifier.Sub);
-        statInfo.NextTier = (int)Math.Ceiling((cVal + 0.001) * 1000d * lvlModifier.Div / 100d + lvlModifier.Sub);
-        statInfo.PointsPerTier = lvlModifier.Div / 100d;
+        var cVal = statInfo.DisplayValue = Math.Floor(200d * (ten - lvlModifier.Sub) / lvlModifier.Div) / 1000d;
+        statInfo.PrevTier = (int)Math.Ceiling(cVal * 1000d * lvlModifier.Div / 200d + lvlModifier.Sub);
+        statInfo.NextTier = (int)Math.Ceiling((cVal + 0.001) * 1000d * lvlModifier.Div / 200d + lvlModifier.Sub);
+        statInfo.PointsPerTier = lvlModifier.Div / 200d;
+    }
+
+    public static double CalcTenacityDmg(int ten, ref StatInfo statInfo, in LevelModifier lvlModifier) {
+        statInfo.CurrentValue = ten;
+        var cVal = statInfo.DisplayValue = Math.Floor(112d * (ten - lvlModifier.Sub) / lvlModifier.Div) / 1000d;
+        statInfo.PrevTier = (int)Math.Ceiling(cVal * 1000d * lvlModifier.Div / 112d + lvlModifier.Sub);
+        statInfo.NextTier = (int)Math.Ceiling((cVal + 0.001) * 1000d * lvlModifier.Div / 112d + lvlModifier.Sub);
+        statInfo.PointsPerTier = lvlModifier.Div / 112d;
         return cVal;
     }
 

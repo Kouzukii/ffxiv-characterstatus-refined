@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace CharacterPanelRefined;
@@ -110,50 +111,35 @@ public static class LevelModifiers {
 
     // this seems to be the modifiers after some testing..
     public static double AttackModifier(int level) {
-        if (level <= 50) {
-            return 75;
-        }
-
-        if (level <= 70) {
-            return (level - 50) * 2.5 + 75;
-        }
-
-        if (level <= 80) {
-            return (level - 70) * 4 + 125;
-        }
-
-        return (level - 80) * 3 + 165;
+        return level switch {
+            <= 50 => 75,
+            <= 70 => (level - 50) * 2.5 + 75,
+            <= 80 => (level - 70) * 4 + 125,
+            <= 90 => (level - 80) * 3 + 165,
+            _ => (level - 90) * 4.2 + 195
+        };
     }
 
     public static double HealModifier(int level) {
-        if (level < 60) {
-            return level * 1.5 + 10;
-        }
-
-        if (level < 70) {
-            return (level - 60) * 2 + 100;
-        }
-
-        if (level < 80) {
-            return 120;
-        }
-
-        return (level - 80) * 2.5 + 120.8;
+        return level switch {
+            < 60 => level * 1.5 + 10,
+            < 70 => (level - 60) * 2 + 100,
+            < 80 => 120,
+            _ => (level - 80) * 2.5 + 120.8
+        };
     }
 
     public static double TankAttackModifier(int level) {
-        if (level <= 80) {
-            return level + 35;
-        }
-
-        return (level - 80) * 4.1 + 115; // goes from 115 at 80 to 156 at 90 ?
+        return level switch {
+            <= 80 => level + 35,
+            <= 90 => (level - 80) * 4.1 + 115,
+            _ => (level - 90) * 3.4 + 156
+        };
     }
 
-    public static double HpModifier(int level) {
-        return 4.5 + 0.22 * level;
-    }
+    public static double HpModifier(int level) =>
+        Math.Floor(5.71 * level - 270) / 10;
 
-    public static double TankHpModifier(int level) {
-        return 6.7 + 0.31 * level;
-    }
+    public static double TankHpModifier(int level) =>
+        Math.Floor(8.31 * level - 401) / 10;
 }

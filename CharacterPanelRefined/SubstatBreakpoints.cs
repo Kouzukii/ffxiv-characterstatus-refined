@@ -483,6 +483,7 @@ public static class SubstatBreakpoints {
                 <= 675 => 190,
                 690 => 206,
                 700 => 219,
+                710 => 225,
                 _ => null
             },
             // Body, Legs
@@ -625,6 +626,7 @@ public static class SubstatBreakpoints {
                 675 => 302,
                 690 => 327,
                 700 => 348,
+                710 => 357,
                 _ => null
             },
             // Accessory

@@ -31,8 +31,8 @@
     <data name="Panel_Heal_per_100_Potency" xml:space="preserve">
         <value>Avg. Healing</value>
     </data>
-    <data name="Panel_Damage_and_Mitigation" xml:space="preserve">
-        <value>Damage &amp; Mitigation</value>
+    <data name="Panel_Damage_Mitigation" xml:space="preserve">
+        <value>Damage Mitigation</value>
     </data>
     <data name="Panel_Direct_Hit_Chance" xml:space="preserve">
         <value>Direct Hit Chance</value>
@@ -130,7 +130,10 @@ HP restored will always vary by ±3%.</value>
     <data name="Tooltips_Tenacity_Tooltip" xml:space="preserve">
         <value>{@Title}Tenacity{@Clear} increases damage dealt and HP restored by your own actions as well as reducing damage taken.
 
-Tenacity's effect increases by 0.1% every {PointsPerTier} points.</value>
+Damage reduction increases by 0.1% every {PointsPerTier} points.</value>
+    </data>
+    <data name="Tooltips_Tenacity_Damage_Increase" xml:space="preserve">
+        <value>Damage and healing increases by 0.1% every {PointsPerTier} points.</value>
     </data>
     <data name="Tooltips_Piety_Tooltip" xml:space="preserve">
         <value>{@Title}Piety{@Clear} increases the amount of MP gained per server tick (every 3s).

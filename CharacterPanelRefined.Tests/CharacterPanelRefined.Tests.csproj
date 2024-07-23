@@ -33,6 +33,9 @@
       <Reference Include="Lumina.Excel">
         <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\Lumina.Excel.dll</HintPath>
       </Reference>
+      <Reference Include="InteropGenerator.Runtime">
+        <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\InteropGenerator.Runtime.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

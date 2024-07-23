@@ -340,20 +340,20 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Damage &amp; Mitigation.
-        /// </summary>
-        internal static string Panel_Damage_and_Mitigation {
-            get {
-                return ResourceManager.GetString("Panel_Damage_and_Mitigation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Damage Increase.
         /// </summary>
         internal static string Panel_Damage_Increase {
             get {
                 return ResourceManager.GetString("Panel_Damage_Increase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Damage Mitigation.
+        /// </summary>
+        internal static string Panel_Damage_Mitigation {
+            get {
+                return ResourceManager.GetString("Panel_Damage_Mitigation", resourceCulture);
             }
         }
         
@@ -665,9 +665,18 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Damage and healing increases by 0.1% every {PointsPerTier} points..
+        /// </summary>
+        internal static string Tooltips_Tenacity_Damage_Increase {
+            get {
+                return ResourceManager.GetString("Tooltips_Tenacity_Damage_Increase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {@Title}Tenacity{@Clear} increases damage dealt and HP restored by your own actions as well as reducing damage taken.
         ///
-        ///Tenacity&apos;s effect increases by 0.1% every {PointsPerTier} points..
+        ///Damage reduction increases by 0.1% every {PointsPerTier} points..
         /// </summary>
         internal static string Tooltips_Tenacity_Tooltip {
             get {

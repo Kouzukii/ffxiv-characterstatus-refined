@@ -147,6 +147,10 @@ public static class SubstatBreakpoints {
                 690 => 339,
                 700 => 361,
                 710 => 370,
+                720 => 380,
+                725 => 384,
+                730 => 388,
+                735 => 393,
                 _ => null
             },
             // Main-Hand
@@ -278,6 +282,10 @@ public static class SubstatBreakpoints {
                 690 => 242,
                 700 => 258,
                 710 => 264,
+                720 => 271,
+                725 => 274,
+                730 => 277,
+                735 => 281,
                 _ => null
             },
             // Off-Hand
@@ -359,6 +367,10 @@ public static class SubstatBreakpoints {
                 690 => 97,
                 700 => 103,
                 710 => 106,
+                720 => 109,
+                <= 725 => 110,
+                <= 730 => 111,
+                <= 735 => 112,
                 _ => null
             },
             // Head, Hands, Feet
@@ -483,7 +495,10 @@ public static class SubstatBreakpoints {
                 <= 675 => 190,
                 690 => 206,
                 700 => 219,
+                705 => 222,
                 710 => 225,
+                720 => 231,
+                730 => 236,
                 _ => null
             },
             // Body, Legs
@@ -626,7 +641,10 @@ public static class SubstatBreakpoints {
                 675 => 302,
                 690 => 327,
                 700 => 348,
+                705 => 352,
                 710 => 357,
+                720 => 366,
+                730 => 374,
                 _ => null
             },
             // Accessory
@@ -745,7 +763,10 @@ public static class SubstatBreakpoints {
                 <= 678 => 151,
                 690 => 162,
                 700 => 173,
+                705 => 175,
                 710 => 177,
+                720 => 182,
+                730 => 186,
                 _ => null
             },
             _ => null

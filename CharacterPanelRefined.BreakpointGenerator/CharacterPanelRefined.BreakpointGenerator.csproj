@@ -14,6 +14,9 @@
         <Reference Include="Lumina.Excel">
             <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\Lumina.Excel.dll</HintPath>
         </Reference>
+        <Reference Include="Microsoft.Extensions.ObjectPool">
+            <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\Microsoft.Extensions.ObjectPool.dll</HintPath>
+        </Reference>
         <Reference Include="Serilog">
             <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\Serilog.dll</HintPath>
         </Reference>

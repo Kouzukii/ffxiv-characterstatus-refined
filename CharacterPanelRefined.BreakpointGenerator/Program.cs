@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Lumina;
-using Lumina.Excel.GeneratedSheets;
+using Lumina.Excel.Sheets;
 using Serilog;
 using ILogger = Lumina.ILogger;
 
@@ -16,21 +16,23 @@ var cats = new (string, Predicate<int>, string, Dictionary<uint, int>)[] {
 };
 var gameData = new GameData(@"C:\Program Files\SquareEnix\FINAL FANTASY XIV - A Realm Reborn\game\sqpack", new SerilogLogger(),
     new LuminaOptions { LoadMultithreaded = true });
-var items = gameData.Excel.GetSheet<Item>()!;
+var items = gameData.Excel.GetSheet<Item>();
 foreach (var item in items) {
-    var cat = (int) item.EquipSlotCategory.Row;
+    var cat = (int) item.EquipSlotCategory.RowId;
     if (cat is >= 1 and <= 13) {
         var majorStat = 0;
         var store = cats.First(c => c.Item2(cat));
-        foreach (var data in item.UnkData59) {
-            if (data.BaseParam is 6 or 19 or 22 or 27 or 44 or 45 or 46) {
-                var val = data.BaseParamValue + (item.UnkData73.FirstOrDefault(i => i.BaseParamSpecial == data.BaseParam)?.BaseParamValueSpecial ?? 0);
+        for (var i = 0; i < item.BaseParam.Count; i++) {
+            var attribute = item.BaseParam[i].RowId;
+            if (attribute is 6 or 19 or 22 or 27 or 44 or 45 or 46) {
+                var special = item.BaseParamSpecial.TakeWhile(c => c.RowId != attribute).Count();
+                var val = item.BaseParamValue[i] + item.BaseParamValueSpecial.ElementAtOrDefault(special);
                 if (val > majorStat)
                     majorStat = val;
             }
         }
 
-        var itemLevel = item.LevelItem.Row;
+        var itemLevel = item.LevelItem.RowId;
         if (majorStat > store.Item4.GetValueOrDefault(itemLevel, 0)) {
             store.Item4[itemLevel] = majorStat;
         }

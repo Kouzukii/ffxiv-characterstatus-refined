@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FFXIVClientStructs.FFXIV.Client.Game;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
-using Lumina.Excel.GeneratedSheets;
+using Lumina.Excel.Sheets;
 
 namespace CharacterPanelRefined;
 
@@ -91,9 +91,10 @@ public class Equations {
         var modifier = mod?.Mod ?? 0;
 
         int SpeedCalc(double gcd, double spd) =>
-            (int) Math.Floor(Math.Floor((1000.0 + Math.Ceiling(130.0 * (sub - spd) / div)) * gcd / 100d) * (100d - modifier) / 1000d);
+            (int)Math.Floor(Math.Floor((1000.0 + Math.Ceiling(130.0 * (sub - spd) / div)) * gcd / 100d) * (100d - modifier) / 1000d);
 
-        int TierCalc(double curVal, int gcd) => -(int)Math.Floor(Math.Floor(Math.Ceiling(curVal * 100d * 1000d / (100d - modifier) - 0.01d) * 100 / gcd - 1000.01d) * div / 130d - sub);
+        int TierCalc(double curVal, int gcd) =>
+            -(int)Math.Floor(Math.Floor(Math.Ceiling(curVal * 100d * 1000d / (100d - modifier) - 0.01d) * 100 / gcd - 1000.01d) * div / 130d - sub);
 
         statInfo.CurrentValue = speed;
         var cVal = statInfo.DisplayValue = Math.Floor(130d * (speed - sub) / div) / 1000d;
@@ -126,9 +127,9 @@ public class Equations {
             var ap = uiState->PlayerState.Attributes[(int)(jobId.IsCaster() ? Attributes.AttackMagicPotency : Attributes.AttackPower)];
             var inventoryItemData = (ushort*)((IntPtr)InventoryManager.Instance() + 9272);
             var weaponBaseDamage = /* phys/magic damage */ inventoryItemData[jobId.IsCaster() ? 17 : 16] + /* hq bonus */ inventoryItemData[29];
-            if (ilvlSync != null && (/* equip lvl */ inventoryItemData[35] > lvl || ilvlSyncType == IlvlSyncType.Strict)) {
+            if (ilvlSync != null && ( /* equip lvl */ inventoryItemData[35] > lvl || ilvlSyncType == IlvlSyncType.Strict)) {
                 if (cachedIlvl?.Ilvl != ilvlSync)
-                    cachedIlvl = (ilvlSync.Value, Service.DataManager.GetExcelSheet<ItemLevel>()!.GetRow(ilvlSync.Value)!.PhysicalDamage);
+                    cachedIlvl = (ilvlSync.Value, Service.DataManager.GetExcelSheet<ItemLevel>().GetRow(ilvlSync.Value).PhysicalDamage);
                 weaponBaseDamage = Math.Min(cachedIlvl.Value.Dmg, weaponBaseDamage);
             }
 
@@ -167,21 +168,22 @@ public class Equations {
         var foodSheet = Service.DataManager.GetExcelSheet<ItemFood>();
         foreach (var status in Service.ClientState.LocalPlayer!.StatusList.Where(s => s.StatusId is 48 or 49)) {
             var hq = Math.DivRem(status.Param, 10000, out var foodId);
-            var food = foodSheet?.GetRow((uint)foodId);
-            if (food == null)
+            if (foodSheet.GetRowOrDefault((uint)foodId) is not { } food)
                 return fd;
-            foreach (var bonus in food.UnkData1) {
+            foreach (var bonus in food.Params) {
                 var val = hq == 1 ? bonus.ValueHQ : bonus.Value;
-                var currentStat = fd.GetValueOrDefault((Attributes)bonus.BaseParam, uiState->PlayerState.Attributes[bonus.BaseParam]);
+                var attribute = (Attributes)bonus.BaseParam.RowId;
+                var currentStat = fd.GetValueOrDefault(attribute, uiState->PlayerState.Attributes[(int)attribute]);
                 if (bonus.IsRelative) {
                     var max = hq == 1 ? bonus.MaxHQ : bonus.Max;
                     var sub = Math.Min(max, Math.Floor(currentStat - currentStat / (1 + val * 0.01)));
-                    fd[(Attributes)bonus.BaseParam] = (int)(currentStat - sub);
+                    fd[attribute] = (int)(currentStat - sub);
                 } else {
-                    fd[(Attributes)bonus.BaseParam] = currentStat - val;
+                    fd[attribute] = currentStat - val;
                 }
             }
         }
+
         return fd;
     }
 }

@@ -2,8 +2,6 @@ using System;
 using System.Runtime.InteropServices;
 using Dalamud.Memory;
 using FFXIVClientStructs.FFXIV.Component.GUI;
-using FFXIVClientStructs.Interop;
-using FFXIVClientStructs.STD;
 
 namespace CharacterPanelRefined;
 

@@ -8,7 +8,7 @@ using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Dalamud.Memory;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using FFXIVClientStructs.FFXIV.Component.GUI;
-using Lumina.Excel.GeneratedSheets;
+using Lumina.Excel.Sheets;
 
 namespace CharacterPanelRefined;
 
@@ -29,19 +29,17 @@ public unsafe class ItemTooltipAugments(CharacterPanelRefinedPlugin plugin) {
         if (itemId is >=500000 and <1000000 or >=2000000)
             return; // collectibles & key items
 
-        var item = Service.DataManager.GetExcelSheet<Item>()!.GetRow((uint)(itemId % 500000));
-
-        if (item == null || item.EquipSlotCategory.Row == 0)
+        if (Service.DataManager.GetExcelSheet<Item>().GetRowOrDefault((uint)(itemId % 500000)) is not { EquipSlotCategory.RowId: > 0 } item)
             return;
 
-        if (item.LevelItem.Row <= ilvlSync)
+        if (item.LevelItem.RowId <= ilvlSync)
             return;
 
         if (ilvlSyncType == IlvlSyncType.LevelBased && item.LevelEquip <= UIState.Instance()->PlayerState.CurrentLevel)
             return;
 
-        var ilvl = item.LevelItem.Value!;
-        var sync = Service.DataManager.GetExcelSheet<ItemLevel>()!.GetRow(ilvlSync)!;
+        var ilvl = item.LevelItem.Value;
+        var sync = Service.DataManager.GetExcelSheet<ItemLevel>().GetRow(ilvlSync);
         var cult = CultureInfo.InvariantCulture;
         // weapon
         if ((numberArrayData->IntArray[5] & 0x2000) != 0) {
@@ -77,7 +75,7 @@ public unsafe class ItemTooltipAugments(CharacterPanelRefinedPlugin plugin) {
         var mainIdx = 37;
         var vitIdx = 38;
         // MND and INT are after VIT
-        if (item.UnkData59[0].BaseParam > 3)
+        if (item.BaseParam[0].RowId > (uint) Attributes.Vitality)
             (vitIdx, mainIdx) = (mainIdx, vitIdx);
 
         if (ParseString(stringArrayData->StringArray[mainIdx], out var main)) {
@@ -106,7 +104,7 @@ public unsafe class ItemTooltipAugments(CharacterPanelRefinedPlugin plugin) {
                 subStrs[i] = null;
         }
 
-        var subMax = SubstatBreakpoints.GetBreakpoint((byte)item.EquipSlotCategory.Row, (ushort)ilvlSync) ?? parse.Max() * sync.CriticalHit / ilvl.CriticalHit - 0.1;
+        var subMax = SubstatBreakpoints.GetBreakpoint((byte)item.EquipSlotCategory.RowId, (ushort)ilvlSync) ?? parse.Max() * sync.CriticalHit / ilvl.CriticalHit - 0.1;
         for (var i = 0; i < 4; i++) {
             if (subStrs[i] is not { } sub) continue;
             if (parse[i] > subMax) {

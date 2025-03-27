@@ -1,64 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Dalamud.NET.Sdk/12.0.2">
     <PropertyGroup>
-        <PlatformTarget>x64</PlatformTarget>
-        <TargetFramework>net8.0-windows</TargetFramework>
-        <LangVersion>latest</LangVersion>
-        <Platforms>x64</Platforms>
-        <Configurations>Debug;Release</Configurations>
-        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-        <Nullable>enable</Nullable>
-        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-        <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-        <Version>1.8.2.1</Version>
+        <Version>1.8.3.0</Version>
     </PropertyGroup>
-
-    <!-- Dalamud Configuration -->
-    <PropertyGroup>
-        <DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
-    </PropertyGroup>
-
-    <!-- Assembly Reference Locations -->
-    <PropertyGroup>
-        <AssemblySearchPaths>
-            $(AssemblySearchPaths);
-            $(DalamudLibPath);
-        </AssemblySearchPaths>
-    </PropertyGroup>
-
-    <ItemGroup>
-        <Reference Include="Dalamud">
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="Newtonsoft.Json">
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="ImGui.NET">
-            <Private>false</Private>
-        </Reference>
-        <Reference Include="Lumina">
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="Lumina.Excel">
-            <Private>False</Private>
-        </Reference>
-        <Reference Include="FFXIVClientStructs">
-            <Private>False</Private>
-        </Reference>
-    </ItemGroup>
 
     <ItemGroup>
         <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
             <_Parameter1>$(MSBuildProjectName).Tests</_Parameter1>
         </AssemblyAttribute>
-    </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="DalamudPackager" Version="11.0.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -76,8 +24,6 @@
       <Content Include="images\image2.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
-      <Compile Remove="CharacterPanelRefined.Tests\**" />
-      <None Remove="CharacterPanelRefined.Tests\**" />
       <Compile Update="Localization.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>

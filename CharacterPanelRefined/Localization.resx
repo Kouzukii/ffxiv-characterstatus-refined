@@ -37,8 +37,8 @@
     <data name="Panel_Direct_Hit_Chance" xml:space="preserve">
         <value>Direct Hit Chance</value>
     </data>
-    <data name="Panel_Fire_IV_GCD" xml:space="preserve">
-        <value>Fire IV Cast</value>
+    <data name="Panel_FireIII_GCD" xml:space="preserve">
+        <value>Fire III Cast</value>
     </data>
     <data name="Panel_RubyRite_GCD" xml:space="preserve">
         <value>Ruby Rite Recast</value>

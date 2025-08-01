@@ -33,8 +33,8 @@
     <data name="Panel_Direct_Hit_Chance" xml:space="preserve">
         <value>Chances de Coup net</value>
     </data>
-    <data name="Panel_Fire_IV_GCD" xml:space="preserve">
-        <value>Cast de Giga Feu</value>
+    <data name="Panel_FireIII_GCD" xml:space="preserve">
+        <value>Cast de Méga Feu</value>
     </data>
     <data name="Panel_GCD" xml:space="preserve">
         <value>Recharge</value>
@@ -147,7 +147,7 @@ Le sort Médecine de l'Invocateur est la seule exception à cette règle car il 
         <value>Remplace les infobulles du jeu pour toutes les statistiques.</value>
     </data>
     <data name="Config_Window_Use_Game_Language_Tooltip" xml:space="preserve">
-        <value>Utilise la langue interne du jeu pour ce plugin si elle est disponible. 
+        <value>Utilise la langue interne du jeu pour ce plugin si elle est disponible.
  Actuellement disponible : Anglais, Allemand, Français</value>
     </data>
     <data name="Config_Show_average_damage" xml:space="preserve">

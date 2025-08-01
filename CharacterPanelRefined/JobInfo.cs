@@ -204,7 +204,7 @@ public static class JobInfo {
 
     public static AlternateGcd? AltGcd(this JobId id, int level) =>
         (id, level) switch {
-            (JobId.BLM, >= 60) => AlternateGcd.FireIV,
+            (JobId.BLM, >= 35) => AlternateGcd.FireIII,
             (JobId.SMN or JobId.ARC, >= 6) => AlternateGcd.RubyRite,
             (JobId.PCT, >= 60) => AlternateGcd.BlizzardInCyan,
             // Viper has 2.0s 2.2s 2.5s 3.0s and 3.5s GCDs, we can't fit that...
@@ -213,7 +213,7 @@ public static class JobInfo {
 }
 
 public record AlternateGcd(int Gcd, string Name) {
-    public static readonly AlternateGcd FireIV = new(280, Localization.Panel_Fire_IV_GCD);
+    public static readonly AlternateGcd FireIII = new(350, Localization.Panel_FireIII_GCD);
     public static readonly AlternateGcd RubyRite = new(300, Localization.Panel_RubyRite_GCD);
     public static readonly AlternateGcd BlizzardInCyan = new(330, Localization.Panel_BlizzardInCyan_GCD);
 }

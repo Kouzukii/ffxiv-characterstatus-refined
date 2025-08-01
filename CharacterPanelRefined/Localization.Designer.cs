@@ -385,11 +385,11 @@ namespace CharacterPanelRefined {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fire IV Cast.
+        ///   Looks up a localized string similar to Fire III Cast.
         /// </summary>
-        internal static string Panel_Fire_IV_GCD {
+        internal static string Panel_FireIII_GCD {
             get {
-                return ResourceManager.GetString("Panel_Fire_IV_GCD", resourceCulture);
+                return ResourceManager.GetString("Panel_FireIII_GCD", resourceCulture);
             }
         }
         

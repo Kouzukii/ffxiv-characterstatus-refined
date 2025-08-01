@@ -33,8 +33,8 @@
     <data name="Panel_Direct_Hit_Chance" xml:space="preserve">
         <value>Direkt Chance</value>
     </data>
-    <data name="Panel_Fire_IV_GCD" xml:space="preserve">
-        <value>Feuka Aktivierung</value>
+    <data name="Panel_FireIII_GCD" xml:space="preserve">
+        <value>Feuraga Aktivierung</value>
     </data>
     <data name="Panel_GCD" xml:space="preserve">
         <value>Reaktivierungszeit</value>

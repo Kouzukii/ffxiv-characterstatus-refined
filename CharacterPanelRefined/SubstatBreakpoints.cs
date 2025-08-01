@@ -516,6 +516,7 @@ public static class SubstatBreakpoints {
                 725 => 233,
                 730 => 236,
                 740 => 241,
+                745 => 243,
                 750 => 246,
                 760 => 251,
                 _ => null
@@ -666,6 +667,7 @@ public static class SubstatBreakpoints {
                 725 => 370,
                 730 => 374,
                 740 => 383,
+                745 => 387,
                 750 => 391,
                 760 => 399,
                 _ => null

@@ -20,13 +20,13 @@ public static class IlvlSync {
             if (icDirector->InstanceContentType != InstanceContentType.BeginnerTraining && (icDirector->ContentDirector.Director.ContentFlags & 1) == 0) {
                 var icd = (IntPtr)icDirector;
                 // min ilvl
-                if (*(byte*)(icd + 7654) >= 0x80 && *(ushort*)(icd + 1328) > 0) {
+                if (*(byte*)(icd + 8166) >= 0x80 && *(ushort*)(icd + 1328) > 0) {
                     Service.PluginLog.Debug($"Using min ilvl {*(ushort*)(icd + 1328)}");
                     return (*(ushort*)(icd + 1328), IlvlSyncType.Strict);
                 }
 
                 // duty is synced
-                if (((*(byte*)(icd + 7654) & 0x40) == 0 || (UIState.Instance()->PlayerState.IsLevelSynced & 1) != 0) && *(ushort*)(icd + 1330) > 0) {
+                if (((*(byte*)(icd + 8166) & 0x40) == 0 || UIState.Instance()->PlayerState.IsLevelSynced) && *(ushort*)(icd + 1330) > 0) {
                     Service.PluginLog.Debug($"Using duty ilvl sync {*(ushort*)(icd + 1330)}");
                     return (*(ushort*)(icd + 1330), IlvlSyncType.Strict);
                 }
@@ -43,7 +43,7 @@ public static class IlvlSync {
             }
         }
 
-        if (UIState.Instance()->PlayerState.IsLevelSynced == 1) {
+        if (UIState.Instance()->PlayerState.IsLevelSynced) {
             var syncedLevel = UIState.Instance()->PlayerState.CurrentLevel;
             var ilvl = (uint)(syncedLevel switch {
                 100 => 790,

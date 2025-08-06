@@ -1,7 +1,7 @@
 using System;
+using Dalamud.Bindings.ImGui;
 using Dalamud.Game.Command;
 using Dalamud.Plugin;
-using ImGuiNET;
 
 namespace CharacterPanelRefined;
 

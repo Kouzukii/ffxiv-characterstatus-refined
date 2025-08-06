@@ -5,6 +5,7 @@ using Dalamud.Game.Addon.Lifecycle.AddonArgTypes;
 using Dalamud.Memory;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using FFXIVClientStructs.FFXIV.Client.Graphics;
+using FFXIVClientStructs.FFXIV.Client.System.Memory;
 using FFXIVClientStructs.FFXIV.Component.GUI;
 
 namespace CharacterPanelRefined;
@@ -53,7 +54,7 @@ public sealed unsafe class CharacterStatusAugments(CharacterPanelRefinedPlugin p
     private AtkTextNode* gpBasePtr;
 
     internal void OnSetup(AddonEvent type, AddonArgs args) {
-        var atkUnitBase = (AtkUnitBase*)args.Addon;
+        var atkUnitBase = (AtkUnitBase*)args.Addon.Address;
         var uiState = UIState.Instance();
         var job = (JobId)uiState->PlayerState.CurrentClassJobId;
         var lvl = uiState->PlayerState.CurrentLevel;
@@ -237,8 +238,9 @@ public sealed unsafe class CharacterStatusAugments(CharacterPanelRefinedPlugin p
         newCollNode->AtkResNode.Y = forTextNode->AtkResNode.Y;
         newCollNode->AtkResNode.AtkEventManager.Event = null;
         component->Component->UldManager.UpdateDrawNodeList();
-        var tooltipArgs = new AtkTooltipManager.AtkTooltipArgs { Text = (byte*)tooltips[tooltip], Flags = 0xFFFFFFFF };
-        AtkStage.Instance()->TooltipManager.AttachTooltip(AtkTooltipManager.AtkTooltipType.Text, parent->Id, (AtkResNode*)newCollNode, &tooltipArgs);
+        var tooltipArgs = IMemorySpace.GetUISpace()->Create<AtkTooltipManager.AtkTooltipArgs>();
+        tooltipArgs->TextArgs.Text = (byte*)tooltips[tooltip];
+        AtkStage.Instance()->TooltipManager.AttachTooltip(AtkTooltipManager.AtkTooltipType.Text, parent->Id, (AtkResNode*)newCollNode, tooltipArgs);
     }
 
     private AtkTextNode* AddStatRow(AtkComponentNode* parentNode, string label, bool hideOriginal = false, bool copyColor = false, bool expandCollisionNode = true) {
@@ -289,7 +291,7 @@ public sealed unsafe class CharacterStatusAugments(CharacterPanelRefinedPlugin p
 
         var ttMgr = AtkStage.Instance()->TooltipManager;
         var ttMsg = ttMgr.TooltipMap[collisionNode].Value;
-        ttMsg->AtkTooltipArgs.Text = (byte*)tooltips[entry];
+        ttMsg->AtkTooltipArgs.TextArgs.Text = (byte*)tooltips[entry];
     }
 
     private void SetTooltip(AtkTextNode* node, Tooltips.Entry entry) {

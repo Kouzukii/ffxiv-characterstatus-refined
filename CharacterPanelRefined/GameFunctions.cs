@@ -5,7 +5,7 @@ namespace CharacterPanelRefined;
 
 public sealed class GameFunctions {
 
-    [Signature("E8 ?? ?? ?? ?? E9 ?? ?? ?? ?? 83 FE 71")]
+    [Signature("E8 ?? ?? ?? ?? E9 ?? ?? ?? ?? 41 83 FF 71")]
     public readonly unsafe delegate*unmanaged[Thiscall]<AtkTooltipManager*, AtkResNode*, void> AtkTooltipManagerShowNodeTooltip = null!;
 
     public GameFunctions() {

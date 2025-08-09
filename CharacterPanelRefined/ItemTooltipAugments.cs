@@ -19,8 +19,8 @@ public unsafe class ItemTooltipAugments(CharacterPanelRefinedPlugin plugin) {
         if (plugin.CtrlHeld) return;
         if (!plugin.Configuration.ShowSyncedStatsOnTooltip) return;
         if (args is not AddonRequestedUpdateArgs requestedUpdateArgs) return;
-        var numberArrayData = ((NumberArrayData**)requestedUpdateArgs.NumberArrayData)[29];
-        var stringArrayData = ((StringArrayData**)requestedUpdateArgs.StringArrayData)[26];
+        var numberArrayData = ((NumberArrayData**)requestedUpdateArgs.NumberArrayData)[30];
+        var stringArrayData = ((StringArrayData**)requestedUpdateArgs.StringArrayData)[27];
         if ((numberArrayData->IntArray[5] & 16) == 0) return;
         if ((numberArrayData->IntArray[5] & AlreadyProcessed) != 0) return; // already processed
         if (IlvlSync.GetCurrentIlvlSync() is not ({ } ilvlSync, var ilvlSyncType)) return;

@@ -166,7 +166,7 @@ public class Equations {
     public static unsafe Dictionary<Attributes, int> EstimateBaseStats(UIState* uiState) {
         var fd = new Dictionary<Attributes, int>();
         var foodSheet = Service.DataManager.GetExcelSheet<ItemFood>();
-        foreach (var status in Service.ClientState.LocalPlayer!.StatusList.Where(s => s.StatusId is 48 or 49)) {
+        foreach (var status in Service.ObjectTable.LocalPlayer!.StatusList.Where(s => s.StatusId is 48 or 49)) {
             var hq = Math.DivRem(status.Param, 10000, out var foodId);
             if (foodSheet.GetRowOrDefault((uint)foodId) is not { } food)
                 return fd;

@@ -13,6 +13,9 @@ internal class Service {
     public static IClientState ClientState { get; private set; }
 
     [PluginService]
+    public static IObjectTable ObjectTable { get; private set; }
+
+    [PluginService]
     internal static IKeyState KeyState { get; private set; }
 
     [PluginService]

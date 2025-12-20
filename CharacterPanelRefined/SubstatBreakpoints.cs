@@ -157,6 +157,11 @@ public static class SubstatBreakpoints {
                 755 => 410,
                 760 => 414,
                 765 => 419,
+                770 => 424,
+                775 => 429,
+                780 => 434,
+                790 => 443,
+                795 => 447,
                 _ => null
             },
             // Main-Hand
@@ -298,6 +303,11 @@ public static class SubstatBreakpoints {
                 755 => 293,
                 760 => 296,
                 765 => 299,
+                770 => 303,
+                775 => 306,
+                780 => 310,
+                790 => 316,
+                795 => 319,
                 _ => null
             },
             // Off-Hand
@@ -389,6 +399,11 @@ public static class SubstatBreakpoints {
                 <= 755 => 117,
                 <= 760 => 118,
                 765 => 120,
+                <= 770 => 121,
+                775 => 123,
+                <= 780 => 124,
+                790 => 127,
+                <= 795 => 128,
                 _ => null
             },
             // Head, Hands, Feet
@@ -522,7 +537,11 @@ public static class SubstatBreakpoints {
                 740 => 241,
                 745 => 243,
                 750 => 246,
+                755 => 249,
                 760 => 251,
+                770 => 257,
+                780 => 263,
+                790 => 269,
                 _ => null
             },
             // Body, Legs
@@ -674,7 +693,11 @@ public static class SubstatBreakpoints {
                 740 => 383,
                 745 => 387,
                 750 => 391,
+                755 => 395,
                 760 => 399,
+                770 => 409,
+                780 => 418,
+                790 => 427,
                 _ => null
             },
             // Accessory
@@ -800,8 +823,13 @@ public static class SubstatBreakpoints {
                 730 => 186,
                 735 => 188,
                 740 => 190,
+                745 => 192,
                 750 => 194,
+                755 => 196,
                 760 => 198,
+                770 => 203,
+                780 => 207,
+                790 => 212,
                 _ => null
             },
             _ => null

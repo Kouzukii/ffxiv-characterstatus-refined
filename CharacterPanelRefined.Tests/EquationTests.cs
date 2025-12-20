@@ -4,6 +4,7 @@ using System.Linq;
 using FFXIVClientStructs.FFXIV.Client.Game;
 using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace CharacterPanelRefined.Tests;
 
@@ -1014,9 +1015,9 @@ public class EquationTests {
                 equation.Invoke(null, args);
                 statInfo = (StatInfo)args[1];
 
-                Assert.AreEqual(lbp.Value, statInfo.DisplayValue, "{0}: Value is off for {1}", name, stat);
-                Assert.AreEqual(lbp.Stat, statInfo.PrevTier, "{0}: PrevTier is off for {1}", name, stat);
-                Assert.AreEqual(nbp.Stat, statInfo.NextTier, "{0}: NextTier is off for {1}", name, stat);
+                ClassicAssert.AreEqual(lbp.Value, statInfo.DisplayValue, "{0}: Value is off for {1}", name, stat);
+                ClassicAssert.AreEqual(lbp.Stat, statInfo.PrevTier, "{0}: PrevTier is off for {1}", name, stat);
+                ClassicAssert.AreEqual(nbp.Stat, statInfo.NextTier, "{0}: NextTier is off for {1}", name, stat);
             }
         }
     }
@@ -1048,29 +1049,29 @@ public class EquationTests {
 
             Equations.CalcSpeed(speed, ref statInfo, ref gcd25, ref gcd28, lvlModifier, altGcd, null, out var baseModGcd, out var altBaseModGcd);
 
-            Assert.AreEqual(250, baseModGcd, "Base GCD is off for {0}", speed);
-            Assert.AreEqual(280, altBaseModGcd, "Alt Base GCD is off for {0}", speed);
+            ClassicAssert.AreEqual(250, baseModGcd, "Base GCD is off for {0}", speed);
+            ClassicAssert.AreEqual(280, altBaseModGcd, "Alt Base GCD is off for {0}", speed);
 
-            Assert.AreEqual(lbp.GcdScalar, gcd25.DisplayValue, "GCD is off for {0}", speed);
-            Assert.AreEqual(lbp.Speed, gcd25.PrevTier, "PrevTier is off for {0}", speed);
-            Assert.AreEqual(nbp.Speed, gcd25.NextTier, "NextTier is off for {0}", speed);
+            ClassicAssert.AreEqual(lbp.GcdScalar, gcd25.DisplayValue, "GCD is off for {0}", speed);
+            ClassicAssert.AreEqual(lbp.Speed, gcd25.PrevTier, "PrevTier is off for {0}", speed);
+            ClassicAssert.AreEqual(nbp.Speed, gcd25.NextTier, "NextTier is off for {0}", speed);
 
-            Assert.AreEqual(lbp28.GcdScalar, gcd28.DisplayValue, "GCD is off for {0}", speed);
-            Assert.AreEqual(lbp28.Speed, gcd28.PrevTier, "PrevTier is off for {0}", speed);
-            Assert.AreEqual(nbp28.Speed, gcd28.NextTier, "NextTier is off for {0}", speed);
+            ClassicAssert.AreEqual(lbp28.GcdScalar, gcd28.DisplayValue, "GCD is off for {0}", speed);
+            ClassicAssert.AreEqual(lbp28.Speed, gcd28.PrevTier, "PrevTier is off for {0}", speed);
+            ClassicAssert.AreEqual(nbp28.Speed, gcd28.NextTier, "NextTier is off for {0}", speed);
         }
     }
 
     [Test]
     public void TestLevelModifiers() {
-        Assert.AreEqual(195, LevelModifiers.AttackModifier(90));
-        Assert.AreEqual(156, LevelModifiers.TankAttackModifier(90));
-        Assert.AreEqual(24.3, LevelModifiers.HpModifier(90));
-        Assert.AreEqual(34.6, LevelModifiers.TankHpModifier(90));
-        Assert.AreEqual(237, LevelModifiers.AttackModifier(100));
-        Assert.AreEqual(190, LevelModifiers.TankAttackModifier(100));
-        Assert.AreEqual(30.1, LevelModifiers.HpModifier(100));
-        Assert.AreEqual(43, LevelModifiers.TankHpModifier(100));
+        ClassicAssert.AreEqual(195, LevelModifiers.AttackModifier(90));
+        ClassicAssert.AreEqual(156, LevelModifiers.TankAttackModifier(90));
+        ClassicAssert.AreEqual(24.3, LevelModifiers.HpModifier(90));
+        ClassicAssert.AreEqual(34.6, LevelModifiers.TankHpModifier(90));
+        ClassicAssert.AreEqual(237, LevelModifiers.AttackModifier(100));
+        ClassicAssert.AreEqual(190, LevelModifiers.TankAttackModifier(100));
+        ClassicAssert.AreEqual(30.1, LevelModifiers.HpModifier(100));
+        ClassicAssert.AreEqual(43, LevelModifiers.TankHpModifier(100));
     }
 
     [Test]
@@ -1098,8 +1099,8 @@ public class EquationTests {
 
             var result = Equations.CalcExpectedOutput(&uiState, JobId.WHM, detVal, 1.4, 0.05, 0, 0, levelModifier, null, IlvlSyncType.Strict);
 
-            Assert.AreEqual(expectedDmg, result.AvgDamage, "Damage is off for {0}|{1}|{2}", wd, mnd, det);
-            Assert.AreEqual(expectedHeal, result.NormalHeal, "Heal is off for {0}|{1}|{2}", wd, mnd, det);
+            ClassicAssert.AreEqual(expectedDmg, result.AvgDamage, "Damage is off for {0}|{1}|{2}", wd, mnd, det);
+            ClassicAssert.AreEqual(expectedHeal, result.NormalHeal, "Heal is off for {0}|{1}|{2}", wd, mnd, det);
         }
     }
 }

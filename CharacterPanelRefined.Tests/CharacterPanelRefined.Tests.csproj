@@ -25,19 +25,19 @@
 
     <ItemGroup>
       <Reference Include="Dalamud">
-        <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\Dalamud.dll</HintPath>
+        <HintPath>$(appdata)\XIVLauncherCN\addon\Hooks\dev\Dalamud.dll</HintPath>
       </Reference>
       <Reference Include="FFXIVClientStructs">
-        <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\FFXIVClientStructs.dll</HintPath>
+        <HintPath>$(appdata)\XIVLauncherCN\addon\Hooks\dev\FFXIVClientStructs.dll</HintPath>
       </Reference>
       <Reference Include="Lumina">
-        <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\Lumina.dll</HintPath>
+        <HintPath>$(appdata)\XIVLauncherCN\addon\Hooks\dev\Lumina.dll</HintPath>
       </Reference>
       <Reference Include="Lumina.Excel">
-        <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\Lumina.Excel.dll</HintPath>
+        <HintPath>$(appdata)\XIVLauncherCN\addon\Hooks\dev\Lumina.Excel.dll</HintPath>
       </Reference>
       <Reference Include="InteropGenerator.Runtime">
-        <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\InteropGenerator.Runtime.dll</HintPath>
+        <HintPath>$(appdata)\XIVLauncherCN\addon\Hooks\dev\InteropGenerator.Runtime.dll</HintPath>
       </Reference>
     </ItemGroup>
 

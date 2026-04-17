@@ -1,11 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <DalamudLibPath Condition="$([MSBuild]::IsOSPlatform('Windows'))">$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
+        <DalamudLibPath Condition="$([MSBuild]::IsOSPlatform('Linux'))">$(HOME)/.xlcore/dalamud/Hooks/dev/</DalamudLibPath>
+        <DalamudLibPath Condition="$([MSBuild]::IsOSPlatform('OSX'))">$(HOME)/Library/Application Support/XIV on Mac/dalamud/Hooks/dev/</DalamudLibPath>
+        <DalamudLibPath Condition="$(DALAMUD_HOME) != ''">$(DALAMUD_HOME)/</DalamudLibPath>
+    </PropertyGroup>
+
+    <PropertyGroup>
         <TargetFramework>net10.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
 
         <IsPackable>false</IsPackable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <AssemblySearchPaths>$(AssemblySearchPaths);$(DalamudLibPath)</AssemblySearchPaths>
     </PropertyGroup>
 
     <ItemGroup>
@@ -24,21 +32,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="Dalamud">
-        <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\Dalamud.dll</HintPath>
-      </Reference>
-      <Reference Include="FFXIVClientStructs">
-        <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\FFXIVClientStructs.dll</HintPath>
-      </Reference>
-      <Reference Include="Lumina">
-        <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\Lumina.dll</HintPath>
-      </Reference>
-      <Reference Include="Lumina.Excel">
-        <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\Lumina.Excel.dll</HintPath>
-      </Reference>
-      <Reference Include="InteropGenerator.Runtime">
-        <HintPath>$(appdata)\XIVLauncher\addon\Hooks\dev\InteropGenerator.Runtime.dll</HintPath>
-      </Reference>
+      <Reference Include="Dalamud" />
+      <Reference Include="FFXIVClientStructs" />
+      <Reference Include="Lumina" />
+      <Reference Include="Lumina.Excel" />
+      <Reference Include="InteropGenerator.Runtime" />
     </ItemGroup>
 
 </Project>

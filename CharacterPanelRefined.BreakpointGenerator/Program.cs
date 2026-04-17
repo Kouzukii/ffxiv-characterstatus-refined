@@ -14,7 +14,7 @@ var cats = new (string, Predicate<int>, string, Dictionary<uint, int>)[] {
     ("Body, Legs", c => c is 4 or 7, "4 or 7", new Dictionary<uint, int>()),
     ("Accessory", c => c is >= 9 and <= 12, ">= 9 and <= 12", new Dictionary<uint, int>()),
 };
-var gameData = new GameData(@"C:\Program Files\SquareEnix\FINAL FANTASY XIV - A Realm Reborn\game\sqpack", new SerilogLogger(),
+var gameData = new GameData("/var/mnt/Newton/Program Files/SquareEnix/FINAL FANTASY XIV - A Realm Reborn/game/sqpack", new SerilogLogger(),
     new LuminaOptions { LoadMultithreaded = true });
 var items = gameData.Excel.GetSheet<Item>();
 foreach (var item in items) {

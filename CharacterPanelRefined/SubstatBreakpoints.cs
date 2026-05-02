@@ -160,6 +160,7 @@ public static class SubstatBreakpoints {
                 770 => 424,
                 775 => 429,
                 780 => 434,
+                785 => 438,
                 790 => 443,
                 795 => 447,
                 _ => null
@@ -306,6 +307,7 @@ public static class SubstatBreakpoints {
                 770 => 303,
                 775 => 306,
                 780 => 310,
+                785 => 313,
                 790 => 316,
                 795 => 319,
                 _ => null
@@ -402,6 +404,7 @@ public static class SubstatBreakpoints {
                 <= 770 => 121,
                 775 => 123,
                 <= 780 => 124,
+                <= 785 => 125,
                 790 => 127,
                 <= 795 => 128,
                 _ => null
@@ -539,6 +542,7 @@ public static class SubstatBreakpoints {
                 750 => 246,
                 755 => 249,
                 760 => 251,
+                765 => 254,
                 770 => 257,
                 780 => 263,
                 790 => 269,
@@ -695,6 +699,7 @@ public static class SubstatBreakpoints {
                 750 => 391,
                 755 => 395,
                 760 => 399,
+                765 => 404,
                 770 => 409,
                 780 => 418,
                 790 => 427,
@@ -827,6 +832,7 @@ public static class SubstatBreakpoints {
                 750 => 194,
                 755 => 196,
                 760 => 198,
+                765 => 201,
                 770 => 203,
                 780 => 207,
                 790 => 212,

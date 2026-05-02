@@ -20,15 +20,15 @@ public static class IlvlSync {
             if (icDirector->InstanceContentType != InstanceContentType.BeginnerTraining && (icDirector->ContentDirector.Director.ContentFlags & 1) == 0) {
                 var icd = (IntPtr)icDirector;
                 // min ilvl
-                if (*(byte*)(icd + 8078) >= 0x80 && *(ushort*)(icd + 1236) > 0) {
-                    Service.PluginLog.Debug($"Using min ilvl {*(ushort*)(icd + 1236)}");
-                    return (*(ushort*)(icd + 1236), IlvlSyncType.Strict);
+                if (*(byte*)(icd + 0x1F8E) >= 0x80 && *(ushort*)(icd + 0x4D4) > 0) {
+                    Service.PluginLog.Debug($"Using min ilvl {*(ushort*)(icd + 0x4D4)}");
+                    return (*(ushort*)(icd + 0x4D4), IlvlSyncType.Strict);
                 }
 
                 // duty is synced
-                if (((*(byte*)(icd + 8078) & 0x40) == 0 || UIState.Instance()->PlayerState.IsLevelSynced) && *(ushort*)(icd + 1238) > 0) {
-                    Service.PluginLog.Debug($"Using duty ilvl sync {*(ushort*)(icd + 1238)}");
-                    return (*(ushort*)(icd + 1238), IlvlSyncType.Strict);
+                if (((*(byte*)(icd + 0x1F8E) & 0x40) == 0 || UIState.Instance()->PlayerState.IsLevelSynced) && *(ushort*)(icd + 0x4D6) > 0) {
+                    Service.PluginLog.Debug($"Using duty ilvl sync {*(ushort*)(icd + 0x4D6)}");
+                    return (*(ushort*)(icd + 0x4D6), IlvlSyncType.Strict);
                 }
             }
         }
@@ -37,9 +37,9 @@ public static class IlvlSync {
         if (pcDirector != null) {
             var pcd = (IntPtr)pcDirector;
             // eureka / bozja is synced
-            if (*(ushort*)(pcd + 1238) > 0) {
-                Service.PluginLog.Debug($"Using public content ilvl sync {*(ushort*)(pcd + 1238)}");
-                return (*(ushort*)(pcd + 1238), IlvlSyncType.Strict);
+            if (*(ushort*)(pcd + 0x4D6) > 0) {
+                Service.PluginLog.Debug($"Using public content ilvl sync {*(ushort*)(pcd + 0x4D6)}");
+                return (*(ushort*)(pcd + 0x4D6), IlvlSyncType.Strict);
             }
         }
 
